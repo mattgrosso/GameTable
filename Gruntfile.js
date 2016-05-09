@@ -52,6 +52,12 @@ module.exports = function(grunt) {
           src: ['**/*.html'],
           dest: 'build/',
           cwd: 'src/'
+        },
+        js:{
+          expand: true,
+          src: ['**/*.js'],
+          dest: 'build/js/',
+          cwd: 'vendor/'
         }
       },
 
