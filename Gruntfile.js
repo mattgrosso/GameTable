@@ -7,7 +7,7 @@ module.exports = function(grunt) {
         options: {
           jshintrc: true
         },
-        all: ['./**/*.js']
+        all: ['src/**/*.js']
       },
 
       sass: {
@@ -19,7 +19,18 @@ module.exports = function(grunt) {
       },
 
       watch: {
-
+        js: {
+          files: ['src/**/*.js'],
+          tasks: ['js-build']
+        },
+        sass: {
+          files: ['src/**/*.scss'],
+          tasks: ['css-build']
+        },
+        html: {
+          files: ['src/**/*.html'],
+          tasks: ['copy:html']
+        }
       },
 
       clean: ['build/'],
@@ -48,6 +59,8 @@ module.exports = function(grunt) {
 
     require('load-grunt-tasks')(grunt);
 
+    grunt.registerTask('js-build', ['jshint', 'concat:js']);
+    grunt.registerTask('css-build', ['sass']);
     grunt.registerTask('default', ['clean', 'copy', 'concat', 'jshint']);
 
 };
