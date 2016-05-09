@@ -33,15 +33,19 @@
 
   function HomeController(CollectionFactory) {
 
-    console.log('in the controller');
 
     var that = this;
 
     this.username = null;
 
+    this.collection = [];
+
     this.getUserCollection = function getUserCollection() {
-      console.log(that.username);
-      return CollectionFactory.getUserCollection(that.username);
+      CollectionFactory.getUserCollection(that.username)
+        .then(function (response) {
+          that.collection = response;
+          return that.collection;
+        });
     };
 
   }
@@ -69,8 +73,8 @@
         method: 'GET',
         url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username,
       }).then(function successGetUserCollection(response) {
-        console.log('success ', response);
-        return response;
+        console.log(response.data.items.item);
+        return response.data.items.item;
       }).catch(function errorGetUserCollection(response) {
         console.log('error ', response);
       });

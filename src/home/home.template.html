@@ -1,8 +1,8 @@
 <h1>Welcome to Game Chooser</h1>
 <form ng-submit="home.getUserCollection()" class="login-form">
   <input ng-model="home.username" type="text" placeholder="BGG username">
-  <input type="button" value="login">
+  <input type="submit" value="login">
 </form>
-<p>
-  {{home.username}}
-</p>
+<ul>
+  <li ng-repeat="game in home.collection">{{game.name[0]._}}</li>
+</ul>

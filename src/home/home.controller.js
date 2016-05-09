@@ -9,15 +9,19 @@
 
   function HomeController(CollectionFactory) {
 
-    console.log('in the controller');
 
     var that = this;
 
     this.username = null;
 
+    this.collection = [];
+
     this.getUserCollection = function getUserCollection() {
-      console.log(that.username);
-      return CollectionFactory.getUserCollection(that.username);
+      CollectionFactory.getUserCollection(that.username)
+        .then(function (response) {
+          that.collection = response;
+          return that.collection;
+        });
     };
 
   }

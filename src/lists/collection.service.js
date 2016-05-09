@@ -19,8 +19,8 @@
         method: 'GET',
         url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username,
       }).then(function successGetUserCollection(response) {
-        console.log('success ', response);
-        return response;
+        console.log(response.data.items.item);
+        return response.data.items.item;
       }).catch(function errorGetUserCollection(response) {
         console.log('error ', response);
       });
