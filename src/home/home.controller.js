@@ -3,9 +3,23 @@
 
   angular
     .module('game')
-    .controller('HomeController', homeController);
+    .controller('HomeController', HomeController);
 
-  function homeController() {
+  HomeController.$inject = ['CollectionFactory'];
+
+  function HomeController(CollectionFactory) {
+
+    console.log('in the controller');
+
+    var that = this;
+
+    this.username = null;
+
+    this.getUserCollection = function getUserCollection() {
+      console.log(that.username);
+      return CollectionFactory.getUserCollection(that.username);
+    };
+
   }
 
 })();

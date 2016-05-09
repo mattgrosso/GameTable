@@ -91,6 +91,7 @@
       "angular": true,
       "chai": true,
       "module": true,
-      "inject": true
+      "inject": true,
+      "X2JS": true
       }        // additional predefined global variables
 }

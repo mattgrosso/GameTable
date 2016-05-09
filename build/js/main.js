@@ -27,9 +27,23 @@
 
   angular
     .module('game')
-    .controller('HomeController', homeController);
+    .controller('HomeController', HomeController);
 
-  function homeController() {
+  HomeController.$inject = ['CollectionFactory'];
+
+  function HomeController(CollectionFactory) {
+
+    console.log('in the controller');
+
+    var that = this;
+
+    this.username = null;
+
+    this.getUserCollection = function getUserCollection() {
+      console.log(that.username);
+      return CollectionFactory.getUserCollection(that.username);
+    };
+
   }
 
 })();
@@ -50,11 +64,15 @@
     };
 
     function getUserCollection(username) {
+      console.log('attempting to retrieve data');
       return $http({
         method: 'GET',
-        url: 'http://www.boardgamegeek.com/xmlapi2/collection?username=' + username
+        url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username,
       }).then(function successGetUserCollection(response) {
+        console.log('success ', response);
         return response;
+      }).catch(function errorGetUserCollection(response) {
+        console.log('error ', response);
       });
     }
   }
