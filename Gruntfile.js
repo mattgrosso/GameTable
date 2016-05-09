@@ -3,14 +3,22 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
 
-      jshint:{
-        options:{
+      jshint: {
+        options: {
           jshintrc: true
         },
         all: ['./**/*.js']
       },
 
-      watch:{
+      sass: {
+        project: {
+          files: {
+            'build/css/main.css':'src/scss/main.scss'
+          }
+        }
+      },
+
+      watch: {
 
       },
 
@@ -27,8 +35,8 @@ module.exports = function(grunt) {
         }
       },
 
-      copy:{
-        html:{
+      copy: {
+        html: {
           expand: true,
           src: ['**/*.html'],
           dest: 'build/',
