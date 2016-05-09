@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('game', ['ui.router'])
+    .module('game', ['ui.router', 'ngStorage'])
     .config(gameConfig);
 
   gameConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
@@ -29,12 +29,13 @@
     .module('game')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['CollectionFactory'];
+  HomeController.$inject = ['CollectionFactory', '$localStorage'];
 
-  function HomeController(CollectionFactory) {
-
+  function HomeController(CollectionFactory, $localStorage) {
 
     var that = this;
+
+    this.$storage = $localStorage;
 
     this.username = null;
 
@@ -44,6 +45,9 @@
       CollectionFactory.getUserCollection(that.username)
         .then(function (response) {
           that.collection = response;
+          console.log('collection in storage before: ', that.$storage.collection);
+          that.$storage.collection = that.collection;
+          console.log('collection in storage after: ', that.$storage.collection);
           return that.collection;
         });
     };
@@ -68,12 +72,10 @@
     };
 
     function getUserCollection(username) {
-      console.log('attempting to retrieve data');
       return $http({
         method: 'GET',
         url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username,
       }).then(function successGetUserCollection(response) {
-        console.log(response.data.items.item);
         return response.data.items.item;
       }).catch(function errorGetUserCollection(response) {
         console.log('error ', response);

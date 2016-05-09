@@ -4,5 +4,5 @@
   <input type="submit" value="login">
 </form>
 <ul>
-  <li ng-repeat="game in home.collection">{{game.name[0]._}}</li>
+  <li ng-repeat="game in home.collection"> <img ng-src="{{game.thumbnail[0]}}"/>{{game.name[0]._}}</li>
 </ul>

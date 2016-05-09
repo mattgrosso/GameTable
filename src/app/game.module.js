@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('game', ['ui.router'])
+    .module('game', ['ui.router', 'ngStorage'])
     .config(gameConfig);
 
   gameConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
