@@ -1,0 +1,44 @@
+{
+  "name": "game-chooser",
+  "version": "0.1.0",
+  "description": "An app to help board game players choose what game to play",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattgrosso/GameChooser.git"
+  },
+  "author": "Matt Grosso",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mattgrosso/GameChooser/issues"
+  },
+  "homepage": "https://github.com/mattgrosso/GameChooser#readme",
+  "devDependencies": {
+    "angular": "^1.5.5",
+    "angular-mocks": "^1.5.5",
+    "angular-ui-router": "^0.2.18",
+    "chai": "^3.5.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-karma": "^1.0.0",
+    "karma": "^0.13.22",
+    "karma-chai": "^0.1.0",
+    "karma-coverage": "^1.0.0",
+    "karma-mocha": "^1.0.1",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "load-grunt-tasks": "^3.5.0",
+    "mocha": "^2.4.5",
+    "phantomjs-prebuilt": "^2.1.7"
+  }
+}
