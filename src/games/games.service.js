@@ -5,32 +5,33 @@
     .module('game')
     .factory('GameFactory', GameFactory);
 
-  GameFactory.$inject = ['$http'];
+  GameFactory.$inject = ['$http', '$q'];
 
-  function GameFactory($http) {
+  function GameFactory($http, $q) {
+    console.log('I am starting the factory');
 
-    var collection = [];
+    var collection;
 
     return {
       getUserCollection: getUserCollection,
-      userCollection: collection
     };
 
     function getUserCollection(username) {
-      console.log('getUserCollection is running');
-      console.log('username is ', username);
-      return $http({
-        method: 'GET',
-        url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username,
-      }).then(function successGetUserCollection(response) {
-        console.log('.then in getUserCollection is running');
-        collection = response.data.items.item;
-        console.log(response);
-        console.log(collection);
-      }).catch(function errorGetUserCollection(response) {
-        console.log('error ', response);
-      });
+      if (collection){
+        var def = $q.defer();
+        def.resolve(collection);
+        return def.promise;
+      } else {
+        return $http({
+          method: 'GET',
+          url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username,
+        }).then(function successGetUserCollection(response) {
+          collection = response.data.items.item;
+          return collection;
+        });
+      }
     }
+
   }
 
 

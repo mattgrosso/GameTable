@@ -9,6 +9,8 @@ LoginController.$inject = ['GameFactory'];
 
   function LoginController(GameFactory) {
 
+    console.log('I am starting the login controller');
+
     var that = this;
 
     this.username = null;
@@ -20,7 +22,6 @@ LoginController.$inject = ['GameFactory'];
       GameFactory.getUserCollection(that.username)
         .then(function () {
           console.log('login successful');
-          console.log(GameFactory.userCollection);
           that.message = "You are now logged in.";
         })
         .catch(function () {
