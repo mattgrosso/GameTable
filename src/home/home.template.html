@@ -1,8 +1,9 @@
 <h1>Welcome to Game Chooser</h1>
-<form ng-submit="home.getUserCollection()" class="login-form">
-  <input ng-model="home.username" type="text" placeholder="BGG username">
-  <input type="submit" value="login">
-</form>
-<ul>
-  <li ng-repeat="game in home.collection"> <img ng-src="{{game.thumbnail[0]}}"/>{{game.name[0]._}}</li>
-</ul>
+<nav>
+  <ul>
+    <li><a ui-sref="choose">Choose a Game</a></li>
+    <li><a ui-sref="login">Login</a></li>
+    <li><a ui-sref="list">List My Games</a></li>
+    <li><a ui-sref="settings">Settings</a></li>
+  </ul>
+</nav>

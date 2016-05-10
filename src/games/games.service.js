@@ -3,14 +3,17 @@
 
   angular
     .module('game')
-    .factory('CollectionFactory', CollectionFactory);
+    .factory('GameFactory', GameFactory);
 
-  CollectionFactory.$inject = ['$http'];
+  GameFactory.$inject = ['$http'];
 
-  function CollectionFactory($http) {
+  function GameFactory($http) {
+
+    var collection = [];
 
     return {
-      getUserCollection: getUserCollection
+      getUserCollection: getUserCollection,
+      userCollection: collection
     };
 
     function getUserCollection(username) {
@@ -18,7 +21,7 @@
         method: 'GET',
         url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username,
       }).then(function successGetUserCollection(response) {
-        return response.data.items.item;
+        collection = response.data.items.item;
       }).catch(function errorGetUserCollection(response) {
         console.log('error ', response);
       });
