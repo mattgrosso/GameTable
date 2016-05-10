@@ -16,7 +16,9 @@ LoginController.$inject = ['GameFactory', '$localStorage'];
     this.message = "";
 
     this.login = function login() {
+      console.log('in login.login before clearing localStorage collection',$localStorage.collection);
       $localStorage.collection = null;
+      console.log('in login.login after clearing localStorage collection',$localStorage.collection);
       GameFactory.getUserCollection(that.username)
         .then(function () {
           $localStorage.username = that.username;
