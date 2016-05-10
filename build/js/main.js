@@ -139,11 +139,11 @@ LoginController.$inject = ['GameFactory', '$localStorage'];
     var that = this;
 
     this.username = null;
+    this.storedUsername = $localStorage.username;
     this.message = "";
 
     this.login = function login() {
       $localStorage.collection = null;
-      console.log("that.username in login() ",that.username);
       GameFactory.getUserCollection(that.username)
         .then(function () {
           $localStorage.username = that.username;
@@ -158,5 +158,21 @@ LoginController.$inject = ['GameFactory', '$localStorage'];
 
 })();
 
+(function() {
+  'use strict';
+
+  angular
+    .module('game')
+    .controller('SettingsController', SettingsController);
+
+  SettingsController.$inject = ['$localStorage'];
+
+  function SettingsController($localStorage) {
+    this.logout = function logout() {
+      $localStorage.username = null;
+      $localStorage.collection = null;
+    };
+  }
+})();
 
 //# sourceMappingURL=main.js.map
