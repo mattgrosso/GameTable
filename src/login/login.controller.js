@@ -5,27 +5,22 @@
     .module('game')
     .controller('LoginController', LoginController);
 
-LoginController.$inject = ['GameFactory'];
+LoginController.$inject = ['GameFactory', '$localStorage'];
 
-  function LoginController(GameFactory) {
-
-    console.log('I am starting the login controller');
+  function LoginController(GameFactory, $localStorage) {
 
     var that = this;
 
     this.username = null;
-
     this.message = "";
 
     this.login = function login() {
-      console.log('this.login is running');
       GameFactory.getUserCollection(that.username)
         .then(function () {
-          console.log('login successful');
+          $localStorage.username = that.username;
           that.message = "You are now logged in.";
         })
         .catch(function () {
-          console.log('You are not logged in.');
         });
 
     };

@@ -7,11 +7,9 @@
 
   ListController.$inject = ['GameFactory', '$localStorage'];
 
-  function ListController(GameFactory, $localStorage) {
+  function ListController(GameFactory) {
 
     var that = this;
-
-    this.$storage = $localStorage;
 
     this.collection = [];
 
