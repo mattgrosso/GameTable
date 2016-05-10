@@ -64,12 +64,10 @@
 
     function getUserCollection(username) {
       if ($localStorage.collection){
-        console.log('inside of if($localStorage.collection)', $localStorage.collection);
         var def = $q.defer();
         def.resolve($localStorage.collection);
         return def.promise;
       } else {
-        console.log('inside of else in getUserCollection', $localStorage.collection);
         return $http({
           method: 'GET',
           url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username,
@@ -109,15 +107,13 @@
 
   ListController.$inject = ['GameFactory', '$localStorage'];
 
-  function ListController(GameFactory, $localStorage) {
+  function ListController(GameFactory) {
 
     var that = this;
 
     this.collection = [];
 
     GameFactory.getUserCollection().then(function (collection) {
-      console.log('in getUserCollection ', $localStorage.collection);
-      console.log('in getUserCollection ', collection);
       that.collection = collection;
     });
 
