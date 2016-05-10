@@ -7,17 +7,17 @@
 
   ListController.$inject = ['GameFactory', '$localStorage'];
 
-  function ListController(GameFactory) {
+  function ListController(GameFactory, $localStorage) {
 
     var that = this;
 
     this.collection = [];
 
     GameFactory.getUserCollection().then(function (collection) {
+      console.log('in getUserCollection ', $localStorage.collection);
+      console.log('in getUserCollection ', collection);
       that.collection = collection;
     });
-
-    console.log('this.collection in ListController', this.collection);
 
   }
 

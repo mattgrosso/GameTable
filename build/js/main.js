@@ -64,10 +64,12 @@
 
     function getUserCollection(username) {
       if ($localStorage.collection){
+        console.log('inside of if($localStorage.collection)', $localStorage.collection);
         var def = $q.defer();
         def.resolve($localStorage.collection);
         return def.promise;
       } else {
+        console.log('inside of else in getUserCollection', $localStorage.collection);
         return $http({
           method: 'GET',
           url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username,
@@ -107,17 +109,17 @@
 
   ListController.$inject = ['GameFactory', '$localStorage'];
 
-  function ListController(GameFactory) {
+  function ListController(GameFactory, $localStorage) {
 
     var that = this;
 
     this.collection = [];
 
     GameFactory.getUserCollection().then(function (collection) {
+      console.log('in getUserCollection ', $localStorage.collection);
+      console.log('in getUserCollection ', collection);
       that.collection = collection;
     });
-
-    console.log('this.collection in ListController', this.collection);
 
   }
 
@@ -130,27 +132,25 @@
     .module('game')
     .controller('LoginController', LoginController);
 
-LoginController.$inject = ['GameFactory'];
+LoginController.$inject = ['GameFactory', '$localStorage'];
 
-  function LoginController(GameFactory) {
-
-    console.log('I am starting the login controller');
+  function LoginController(GameFactory, $localStorage) {
 
     var that = this;
 
     this.username = null;
-
     this.message = "";
 
     this.login = function login() {
-      console.log('this.login is running');
+      $localStorage.collection = null;
+      console.log("that.username in login() ",that.username);
       GameFactory.getUserCollection(that.username)
         .then(function () {
-          console.log('login successful');
+          $localStorage.username = that.username;
           that.message = "You are now logged in.";
         })
         .catch(function () {
-          console.log('You are not logged in.');
+          that.message = "Log in failed. Please check your username.";
         });
 
     };
