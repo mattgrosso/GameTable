@@ -40,5 +40,11 @@
     "load-grunt-tasks": "^3.5.0",
     "mocha": "^2.4.5",
     "phantomjs-prebuilt": "^2.1.7"
+  },
+  "dependencies": {
+    "harp": "^0.20.3"
+  },
+  "engines": {
+    "node": "~4.4.3"
   }
 }
