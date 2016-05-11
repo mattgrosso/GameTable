@@ -63,8 +63,8 @@
           if(duration && duration > each.playTime){
             include = false;
           }
-          if(genre){
-            include = each.genres.indexOf(genre) > -1;
+          if(include && genre){
+            include = each.genres.indexOf(genre.toLowerCase()) > -1;
           }
           return include;
         });
@@ -105,11 +105,16 @@
     this.collection = [];
     this.players = "";
     this.duration = "";
+    this.genre = "";
     this.genreArray = $localStorage.genreArray;
 
     GameFactory.getUserCollection().then(function (collection) {
       that.collection = collection;
     });
+
+    this.tester = function () {
+      console.log(this.genre, this.players, this.duration);
+    };
   }
 })();
 

@@ -13,10 +13,15 @@
     this.collection = [];
     this.players = "";
     this.duration = "";
+    this.genre = "";
     this.genreArray = $localStorage.genreArray;
 
     GameFactory.getUserCollection().then(function (collection) {
       that.collection = collection;
     });
+
+    this.tester = function () {
+      console.log(this.genre, this.players, this.duration);
+    };
   }
 })();

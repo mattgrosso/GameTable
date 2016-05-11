@@ -10,7 +10,7 @@
   </fieldset>
   <fieldset>
     <label for="genre">Genre</label>
-    <select name="genre">
+    <select ng-model="choose.genre" name="genre">
       <option ng-repeat="genre in choose.genreArray">{{genre | titleCase}}</option>
     </select>
   </fieldset>
@@ -18,7 +18,7 @@
     <label for="chooser">How to choose</label>
     <input type="text" name="chooser" placeholder="How to choose">
   </fieldset>
-  <button type="button" name="choose-button">Choose</button>
+  <button ng-click="choose.tester()" type="button" name="choose-button">Choose</button>
 </form>
 
 <ul>

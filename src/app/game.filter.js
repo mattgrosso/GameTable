@@ -15,8 +15,8 @@
           if(duration && duration > each.playTime){
             include = false;
           }
-          if(genre){
-            include = each.genres.indexOf(genre) > -1;
+          if(include && genre){
+            include = each.genres.indexOf(genre.toLowerCase()) > -1;
           }
           return include;
         });
