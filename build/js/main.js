@@ -107,8 +107,10 @@
                 geekRating: each.stats[0].rating[0].bayesaverage[0].$.value,
               };
               gameObject.rank = {};
+              gameObject.genre = [];
               each.stats[0].rating[0].ranks[0].rank.forEach(function (rank) {
                 gameObject.rank[rank.$.name] = rank.$.value;
+                gameObject.genre.push(rank.$.name);
               });
               prettyCollectionArray.push(gameObject);
             });
