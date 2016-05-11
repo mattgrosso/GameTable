@@ -14,17 +14,18 @@
     };
 
     function getUserCollection(username) {
-      console.log('Im in games.service.js');
       if ($localStorage.collection){
         var def = $q.defer();
         def.resolve($localStorage.collection);
+        console.log($localStorage.collection);
         return def.promise;
       } else {
         return $http({
           method: 'GET',
-          url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username + '&stats=1',
+          url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username + '&stats=1&excludesubtype=boardgameexpansion&own=1',
           transformResponse: function prettifyCollectionArray(response) {
             var parsedResponse = JSON.parse(response);
+            console.log(parsedResponse);
             var prettyCollectionArray = [];
             parsedResponse.items.item.forEach(function (each) {
               var gameObject = {};
@@ -64,6 +65,7 @@
             return prettyCollectionArray;
           }
         }).then(function successGetUserCollection(response) {
+          console.log(response.data);
           $localStorage.collection = response.data;
           return response.data;
         });
