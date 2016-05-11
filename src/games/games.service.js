@@ -83,6 +83,7 @@
       gameArray.forEach(function (each) {
         each.genres.forEach(function (genre) {
           if($localStorage.genreArray.indexOf(genre) < 0){
+            
             $localStorage.genreArray.push(genre);
           }
         });

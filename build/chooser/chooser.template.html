@@ -10,7 +10,9 @@
   </fieldset>
   <fieldset>
     <label for="genre">Genre</label>
-    <input ng-model="choose.genre" type="text" name="genre" placeholder="genre">
+    <select name="genre">
+      <option ng-repeat="genre in choose.genreArray">{{genre | titleCase}}</option>
+    </select>
   </fieldset>
   <fieldset>
     <label for="chooser">How to choose</label>

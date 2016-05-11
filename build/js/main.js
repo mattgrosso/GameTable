@@ -78,16 +78,34 @@
 
   angular
     .module('game')
+    // This filter was lifted from http://ng.malsup.com/#!/titlecase-filter.
+    .filter('titleCase', function () {
+      return function(s) {
+        s = ( s === undefined || s === null ) ? '' : s;
+        return s.toString().toLowerCase().replace( /\b([a-z])/g, function(ch) {
+            return ch.toUpperCase();
+        });
+      };
+    });
+
+})();
+
+(function() {
+  'use strict';
+
+  angular
+    .module('game')
     .controller('ChooserController', ChooserController);
 
-  ChooserController.$inject = ['GameFactory'];
+  ChooserController.$inject = ['GameFactory', '$localStorage'];
 
-  function ChooserController(GameFactory) {
+  function ChooserController(GameFactory, $localStorage) {
     var that = this;
+
     this.collection = [];
     this.players = "";
     this.duration = "";
-    this.genre = "";
+    this.genreArray = $localStorage.genreArray;
 
     GameFactory.getUserCollection().then(function (collection) {
       that.collection = collection;
@@ -180,6 +198,7 @@
       gameArray.forEach(function (each) {
         each.genres.forEach(function (genre) {
           if($localStorage.genreArray.indexOf(genre) < 0){
+            
             $localStorage.genreArray.push(genre);
           }
         });
