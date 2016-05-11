@@ -95,6 +95,21 @@
                 wantInTrade: each.status[0].$.want
               };
               gameObject.year = each.yearpublished[0];
+              gameObject.playerCount = {
+                max: each.stats[0].$.maxplayers,
+                min: each.stats[0].$.minplayers
+              };
+              gameObject.playTime = each.stats[0].$.playingtime;
+              gameObject.rating = {
+                myRating: each.stats[0].rating[0].$.value,
+                userAverage: each.stats[0].rating[0].average[0].$.value,
+                userRatings: each.stats[0].rating[0].usersrated[0].$.value,
+                geekRating: each.stats[0].rating[0].bayesaverage[0].$.value,
+              };
+              gameObject.rank = {};
+              each.stats[0].rating[0].ranks[0].rank.forEach(function (rank) {
+                gameObject.rank[rank.$.name] = rank.$.value;
+              });
               prettyCollectionArray.push(gameObject);
             });
             console.log('right after I run the forEach prettyCollectionArray looks like this: ',prettyCollectionArray);
