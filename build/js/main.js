@@ -106,6 +106,8 @@
 
   function GameFactory($http, $q, $localStorage) {
 
+    var genreArray = [];
+
     return {
       getUserCollection: getUserCollection,
     };
@@ -114,6 +116,8 @@
       if ($localStorage.collection){
         var def = $q.defer();
         def.resolve($localStorage.collection);
+        buildGenreArray($localStorage.collection);
+        console.log($localStorage.genreArray);
         console.log($localStorage.collection);
         return def.promise;
       } else {
@@ -162,11 +166,25 @@
             return prettyCollectionArray;
           }
         }).then(function successGetUserCollection(response) {
-          console.log(response.data);
+          buildGenreArray(response.data);
           $localStorage.collection = response.data;
+          console.log(response.data);
+          console.log($localStorage.genreArray);
           return response.data;
         });
       }
+    }
+
+    function buildGenreArray(gameArray) {
+      $localStorage.genreArray = [];
+      gameArray.forEach(function (each) {
+        each.genres.forEach(function (genre) {
+          if($localStorage.genreArray.indexOf(genre) < 0){
+            $localStorage.genreArray.push(genre);
+          }
+        });
+      });
+      return genreArray;
     }
 
   }
