@@ -73,9 +73,8 @@
         console.log('Now were in the else statement of getUserCollection');
         return $http({
           method: 'GET',
-          url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username,
+          url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username + '&stats=1',
           transformResponse: function prettifyCollectionArray(response) {
-            console.log('Inside of transformResponse the data looks like this: ', response);
             var parsedResponse = JSON.parse(response);
             console.log('After I run JSON.parse on it the data looks like this: ', parsedResponse);
             var prettyCollectionArray = [];
