@@ -15,7 +15,6 @@
 
     GameFactory.getUserCollection().then(function (collection) {
       that.collection = collection;
-      console.log(that.collection);
     });
 
   }

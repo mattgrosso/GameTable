@@ -46,6 +46,54 @@
 
 })();
 
+(function() {
+  'use strict';
+
+  angular
+    .module('game')
+    .filter('gameFilter', function () {
+      return function gameFilter(input, players, duration, genre) {
+        players = Number(players) || null;
+        duration = Number(duration) || null;
+        return input.filter(function (each) {
+          var include = true;
+          if(players && (players < each.playerCount.min || players > each.playerCount.max)){
+            include = false;
+          }
+          if(duration && duration > each.playTime){
+            include = false;
+          }
+          if(genre){
+            include = each.genres.indexOf(genre) > -1;
+          }
+          return include;
+        });
+      };
+    });
+
+})();
+
+(function() {
+  'use strict';
+
+  angular
+    .module('game')
+    .controller('ChooserController', ChooserController);
+
+  ChooserController.$inject = ['GameFactory'];
+
+  function ChooserController(GameFactory) {
+    var that = this;
+    this.collection = [];
+    this.players = "";
+    this.duration = "";
+    this.genre = "";
+
+    GameFactory.getUserCollection().then(function (collection) {
+      that.collection = collection;
+    });
+  }
+})();
 
 (function() {
   'use strict';
@@ -63,22 +111,18 @@
     };
 
     function getUserCollection(username) {
-      console.log('in getUserCollection, this is localStorage collection:', $localStorage.collection, '(It should be null)');
+      console.log('Im in games.service.js');
       if ($localStorage.collection){
-        console.log('Somehow we got into the first if statement. We shouldnt have.');
         var def = $q.defer();
         def.resolve($localStorage.collection);
         return def.promise;
       } else {
-        console.log('Now were in the else statement of getUserCollection');
         return $http({
           method: 'GET',
           url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username + '&stats=1',
           transformResponse: function prettifyCollectionArray(response) {
             var parsedResponse = JSON.parse(response);
-            console.log('After I run JSON.parse on it the data looks like this: ', parsedResponse);
             var prettyCollectionArray = [];
-            console.log('Right before I run the forEach parsedResponse.items.item looks like this: ', parsedResponse.items.item);
             parsedResponse.items.item.forEach(function (each) {
               var gameObject = {};
               gameObject.objectID = each.$.objectid;
@@ -107,18 +151,16 @@
                 geekRating: each.stats[0].rating[0].bayesaverage[0].$.value,
               };
               gameObject.rank = {};
-              gameObject.genre = [];
+              gameObject.genres = [];
               each.stats[0].rating[0].ranks[0].rank.forEach(function (rank) {
                 gameObject.rank[rank.$.name] = rank.$.value;
-                gameObject.genre.push(rank.$.name);
+                gameObject.genres.push(rank.$.name);
               });
               prettyCollectionArray.push(gameObject);
             });
-            console.log('right after I run the forEach prettyCollectionArray looks like this: ',prettyCollectionArray);
             return prettyCollectionArray;
           }
         }).then(function successGetUserCollection(response) {
-          console.log('This is the response that is sent to the .then statement after getUserCollection: ',response);
           $localStorage.collection = response.data;
           return response.data;
         });
@@ -162,7 +204,6 @@
 
     GameFactory.getUserCollection().then(function (collection) {
       that.collection = collection;
-      console.log(that.collection);
     });
 
   }
@@ -187,9 +228,7 @@ LoginController.$inject = ['GameFactory', '$localStorage'];
     this.message = "";
 
     this.login = function login() {
-      console.log('in login.login before clearing localStorage collection',$localStorage.collection);
       $localStorage.collection = null;
-      console.log('in login.login after clearing localStorage collection',$localStorage.collection);
       GameFactory.getUserCollection(that.username)
         .then(function () {
           $localStorage.username = that.username;

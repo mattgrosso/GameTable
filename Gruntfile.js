@@ -41,7 +41,7 @@ module.exports = function(grunt) {
           sourceMap: true
         },
         js: {
-          src: 'src/**/*.js',
+          src: ['src/app/game.module.js', 'src/**/*.js'],
           dest: 'build/js/main.js'
         }
       },
