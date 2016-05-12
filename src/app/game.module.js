@@ -24,12 +24,6 @@
         controller: 'LoginController',
         controllerAs: 'login'
       })
-      .state('choose', {
-        url: '/choose',
-        templateUrl: 'chooser/chooser.template.html',
-        controller: 'ChooserController',
-        controllerAs: 'choose'
-      })
       .state('list', {
         url: '/list',
         templateUrl: 'lists/game-list.template.html',
@@ -41,6 +35,18 @@
         templateUrl: 'settings/settings.template.html',
         controller: 'SettingsController',
         controllerAs: 'settings'
+      })
+      .state('choose', {
+        url: '/choose',
+        templateUrl: 'chooser/chooser.template.html',
+        controller: 'ChooserController',
+        controllerAs: 'choose'
+      })
+      .state('random', {
+        url: '/random',
+        templateUrl: 'chooser/random-chooser.template.html',
+        controller: 'RandomChooserController',
+        controllerAs: 'random'
       });
   }
 
