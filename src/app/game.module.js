@@ -96,61 +96,24 @@
           filteredCollection: []
         }
       })
-      .state('nominate-rank.value1', {
+      .state('nominate-rank.value', {
         url: '/nomrank/value1',
-        templateUrl: 'chooser/nomrank-value1.template.html',
+        templateUrl: 'chooser/nomrank-value.template.html',
         controller: 'NomRankChooserController',
         controllerAs: 'nomrank',
         params: {
           filteredCollection: []
         }
       })
-      .state('nominate-rank.value2', {
-        url: '/nomrank/value2',
-        templateUrl: 'chooser/nomrank-value2.template.html',
-        controller: 'NomRankChooserController',
-        controllerAs: 'nomrank',
-        params: {
-          filteredCollection: []
-        }
-      })
-      .state('nominate-rank.value3', {
-        url: '/nomrank/value3',
-        templateUrl: 'chooser/nomrank-value3.template.html',
-        controller: 'NomRankChooserController',
-        controllerAs: 'nomrank',
-        params: {
-          filteredCollection: []
-        }
-      })
-      .state('nominate-rank.value1-results', {
+      .state('nominate-rank.results', {
         url: '/nomrank/value1-results',
-        templateUrl: 'chooser/nomrank-value1-results.template.html',
-        controller: 'NomRankChooserController',
-        controllerAs: 'nomrank',
-        params: {
-          filteredCollection: []
-        }
-      })
-      .state('nominate-rank.value2-results', {
-        url: '/nomrank/value2-results',
-        templateUrl: 'chooser/nomrank-value2-results.template.html',
-        controller: 'NomRankChooserController',
-        controllerAs: 'nomrank',
-        params: {
-          filteredCollection: []
-        }
-      })
-      .state('nominate-rank.final-results', {
-        url: '/nomrank/final-results',
-        templateUrl: 'chooser/nomrank-final-results.template.html',
+        templateUrl: 'chooser/nomrank-results.template.html',
         controller: 'NomRankChooserController',
         controllerAs: 'nomrank',
         params: {
           filteredCollection: []
         }
       });
-
   }
 
 })();

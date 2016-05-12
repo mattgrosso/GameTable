@@ -1,0 +1,7 @@
+<button ng-show="{{nomrank.currentValueOfVotes}} < 3" ng-click="nomrank.goToValueVoting()" type="button"></button>
+
+<ul ng-show="{{nomrank.currentValueOfVotes}} < 3">
+  <li ng-repeat="game in nomrank.nomineesArray">{{game.name}} ({{game.value}}pts)</li>
+</ul>
+
+<h2 ng-hide="{{nomrank.currentValueOfVotes}} < 3">{{nomrank.winner.name}} with {{nomrank.winner.value}}pts</h2>

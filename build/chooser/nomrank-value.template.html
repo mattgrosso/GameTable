@@ -1,0 +1,10 @@
+<button ng-click="nomrank.goToResults()" type="button">
+  Done adding value {{nomrank.currentValueOfVotes}}s
+</button>
+
+<ul>
+  <li ng-repeat="game in nomrank.nomineesArray">
+    {{game.name}}
+    <button ng-click="nomrank.addValue(game)" type="button">Place Vote (value {{nomrank.currentValueOfVotes}})</button>
+  </li>
+</ul>

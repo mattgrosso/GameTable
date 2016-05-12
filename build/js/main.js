@@ -96,61 +96,24 @@
           filteredCollection: []
         }
       })
-      .state('nominate-rank.value1', {
+      .state('nominate-rank.value', {
         url: '/nomrank/value1',
-        templateUrl: 'chooser/nomrank-value1.template.html',
+        templateUrl: 'chooser/nomrank-value.template.html',
         controller: 'NomRankChooserController',
         controllerAs: 'nomrank',
         params: {
           filteredCollection: []
         }
       })
-      .state('nominate-rank.value2', {
-        url: '/nomrank/value2',
-        templateUrl: 'chooser/nomrank-value2.template.html',
-        controller: 'NomRankChooserController',
-        controllerAs: 'nomrank',
-        params: {
-          filteredCollection: []
-        }
-      })
-      .state('nominate-rank.value3', {
-        url: '/nomrank/value3',
-        templateUrl: 'chooser/nomrank-value3.template.html',
-        controller: 'NomRankChooserController',
-        controllerAs: 'nomrank',
-        params: {
-          filteredCollection: []
-        }
-      })
-      .state('nominate-rank.value1-results', {
+      .state('nominate-rank.results', {
         url: '/nomrank/value1-results',
-        templateUrl: 'chooser/nomrank-value1-results.template.html',
-        controller: 'NomRankChooserController',
-        controllerAs: 'nomrank',
-        params: {
-          filteredCollection: []
-        }
-      })
-      .state('nominate-rank.value2-results', {
-        url: '/nomrank/value2-results',
-        templateUrl: 'chooser/nomrank-value2-results.template.html',
-        controller: 'NomRankChooserController',
-        controllerAs: 'nomrank',
-        params: {
-          filteredCollection: []
-        }
-      })
-      .state('nominate-rank.final-results', {
-        url: '/nomrank/final-results',
-        templateUrl: 'chooser/nomrank-final-results.template.html',
+        templateUrl: 'chooser/nomrank-results.template.html',
         controller: 'NomRankChooserController',
         controllerAs: 'nomrank',
         params: {
           filteredCollection: []
         }
       });
-
   }
 
 })();
@@ -314,6 +277,7 @@
     this.collection = $stateParams.filteredCollection;
     this.nomineesArray = [];
     this.currentValueOfVotes = 0;
+    this.winner = null;
 
     this.addNominee = function addNominee() {
       this.nomineesArray = this.collection.filter(function (game) {
@@ -325,13 +289,42 @@
       });
     };
 
-    this.goToValue1 = function goToValue1() {
-      this.currentValueOfVotes++;
-      $state.go('nominate-rank.value1');
+    this.goToValueVoting = function goToValueVoting() {
+      if(this.currentValueOfVotes < 3){
+        this.currentValueOfVotes++;
+        $state.go('nominate-rank.value');
+      } else {
+        $state.go('nominate-rank.results');
+      }
     };
 
     this.addValue = function addValue(game) {
+      game.value = game.value || 0;
       game.value = game.value + this.currentValueOfVotes;
+    };
+
+    this.goToResults = function goToResults() {
+      if(this.currentValueOfVotes < 3){
+        $state.go('nominate-rank.results');
+      } else {
+        var mostValue = {
+          value: 0,
+          name: null,
+          games: []
+        };
+
+        this.nomineesArray.forEach(function (each) {
+          if(each.value > mostValue.value){
+            mostValue.name = each.name;
+            mostValue.value = each.value;
+            mostValue.games = [each];
+          } else if((each.value > 0) && (each.value === mostValue.value)){
+            mostValue.name = mostValue.name + ' and ' + each.name;
+            mostValue.games.push(each);
+          }
+        });
+        this.winner = mostValue;
+      }
     };
 
   }
