@@ -68,6 +68,15 @@
         params: {
           filteredCollection: []
         }
+      })
+      .state('vote', {
+        url: '/vote',
+        templateUrl: 'chooser/vote.template.html',
+        controller: 'VoteChooserController',
+        controllerAs: 'vote',
+        params: {
+          filteredCollection: []
+        }
       });
   }
 
