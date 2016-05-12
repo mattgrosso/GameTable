@@ -37,12 +37,19 @@
 
     this.showWinner = function showWinner() {
       var mostVotes = {
-        votes: 0
+        votes: 0,
+        name: null,
+        games: []
       };
 
       this.nomineesArray.forEach(function (each) {
         if(each.votes > mostVotes.votes){
-          mostVotes = each;
+          mostVotes.name = each.name;
+          mostVotes.votes = each.votes;
+          mostVotes.games = [each];
+        } else if((each.votes > 0) && (each.votes === mostVotes.votes)){
+          mostVotes.name = mostVotes.name + ' and ' + each.name;
+          mostVotes.games.push(each);
         }
       });
       this.showNominees = false;
