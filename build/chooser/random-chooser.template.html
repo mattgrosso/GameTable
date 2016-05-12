@@ -1,3 +1,7 @@
-<ul>
+<ul ng-hide="random.randomGame">
   <li ng-repeat="game in random.collection">{{game.name}}</li>
 </ul>
+
+<button type="button" ng-click="random.chooseRandomGame()">Choose Random Game</button>
+
+<h2 ng-show="random.randomGame">{{random.randomGame.name}}</h2>

@@ -136,10 +136,17 @@
     .module('game')
     .controller('RandomChooserController', RandomChooserController);
 
-  RandomChooserController.$inject = ['$stateProvider'];
+  RandomChooserController.$inject = ['$stateParams'];
 
-  function RandomChooserController($stateProvider) {
-    this.collection = $stateProvider.filteredCollection;
+  function RandomChooserController($stateParams) {
+
+    this.collection = $stateParams.filteredCollection;
+    this.randomGame = null;
+
+    this.chooseRandomGame = function chooseRandomGame() {
+      var randomNumber = Math.floor(Math.random() * this.collection.length);
+      this.randomGame = this.collection[randomNumber];
+    };
   }
 
 })();
