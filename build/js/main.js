@@ -62,7 +62,7 @@
       })
       .state('eliminate', {
         url: '/eliminate',
-        templateUrl: 'chooser/eliminate.template.html',
+        templateUrl: 'chooser/eliminate-chooser.template.html',
         controller: 'EliminateChooserController',
         controllerAs: 'eliminate',
         params: {
@@ -71,13 +71,86 @@
       })
       .state('vote', {
         url: '/vote',
-        templateUrl: 'chooser/vote.template.html',
+        templateUrl: 'chooser/vote-chooser.template.html',
         controller: 'VoteChooserController',
         controllerAs: 'vote',
         params: {
           filteredCollection: []
         }
+      })
+      .state('nominate-rank', {
+        url: '/nomrank',
+        templateUrl: 'chooser/nominate-rank-chooser.template.html',
+        controller: 'NomRankChooserController',
+        controllerAs: 'nomrank',
+        params: {
+          filteredCollection: []
+        }
+      })
+      .state('nominate-rank.nominate', {
+        url: '/nomrank/nominate',
+        templateUrl: 'chooser/nomrank-nominate.template.html',
+        controller: 'NomRankChooserController',
+        controllerAs: 'nomrank',
+        params: {
+          filteredCollection: []
+        }
+      })
+      .state('nominate-rank.value1', {
+        url: '/nomrank/value1',
+        templateUrl: 'chooser/nomrank-value1.template.html',
+        controller: 'NomRankChooserController',
+        controllerAs: 'nomrank',
+        params: {
+          filteredCollection: []
+        }
+      })
+      .state('nominate-rank.value2', {
+        url: '/nomrank/value2',
+        templateUrl: 'chooser/nomrank-value2.template.html',
+        controller: 'NomRankChooserController',
+        controllerAs: 'nomrank',
+        params: {
+          filteredCollection: []
+        }
+      })
+      .state('nominate-rank.value3', {
+        url: '/nomrank/value3',
+        templateUrl: 'chooser/nomrank-value3.template.html',
+        controller: 'NomRankChooserController',
+        controllerAs: 'nomrank',
+        params: {
+          filteredCollection: []
+        }
+      })
+      .state('nominate-rank.value1-results', {
+        url: '/nomrank/value1-results',
+        templateUrl: 'chooser/nomrank-value1-results.template.html',
+        controller: 'NomRankChooserController',
+        controllerAs: 'nomrank',
+        params: {
+          filteredCollection: []
+        }
+      })
+      .state('nominate-rank.value2-results', {
+        url: '/nomrank/value2-results',
+        templateUrl: 'chooser/nomrank-value2-results.template.html',
+        controller: 'NomRankChooserController',
+        controllerAs: 'nomrank',
+        params: {
+          filteredCollection: []
+        }
+      })
+      .state('nominate-rank.final-results', {
+        url: '/nomrank/final-results',
+        templateUrl: 'chooser/nomrank-final-results.template.html',
+        controller: 'NomRankChooserController',
+        controllerAs: 'nomrank',
+        params: {
+          filteredCollection: []
+        }
       });
+
   }
 
 })();
@@ -223,6 +296,44 @@
       var randomNumber = Math.floor(Math.random() * this.nomineesArray.length);
       this.randomGame = this.nomineesArray[randomNumber];
     };
+  }
+
+})();
+
+(function() {
+  'use strict';
+
+  angular
+    .module('game')
+    .controller('NomRankChooserController', NomRankChooserController);
+
+  NomRankChooserController.$inject = ['$stateParams', '$state'];
+
+  function NomRankChooserController($stateParams, $state) {
+
+    this.collection = $stateParams.filteredCollection;
+    this.nomineesArray = [];
+    this.currentValueOfVotes = 0;
+
+    this.addNominee = function addNominee() {
+      this.nomineesArray = this.collection.filter(function (game) {
+        if(game.nominated){
+          return true;
+        } else{
+          return false;
+        }
+      });
+    };
+
+    this.goToValue1 = function goToValue1() {
+      this.currentValueOfVotes++;
+      $state.go('nominate-rank.value1');
+    };
+
+    this.addValue = function addValue(game) {
+      game.value = game.value + this.currentValueOfVotes;
+    };
+
   }
 
 })();

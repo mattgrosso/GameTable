@@ -1,0 +1,8 @@
+<ul ng-hide="eliminate.downToOne">
+  <li ng-repeat="game in eliminate.collection">
+    {{game.name}}
+    <button ng-click="eliminate.eliminateGame(game)" type="button">X</button>
+  </li>
+</ul>
+
+<h2 ng-show="eliminate.downToOne">{{eliminate.collection[0].name}}</h2>

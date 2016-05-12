@@ -1,0 +1,8 @@
+<button ng-click="nomrank.goToValue1()" type="button">Done Nominating</button>
+
+<ul>
+  <li ng-repeat="game in nomrank.collection">
+    {{game.name}}
+    <input ng-click="nomrank.addNominee()" ng-model="game.nominated" type="checkbox" value="nominated">
+  </li>
+</ul>
