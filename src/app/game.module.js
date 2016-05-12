@@ -59,6 +59,15 @@
         params: {
           filteredCollection: []
         }
+      })
+      .state('eliminate', {
+        url: '/eliminate',
+        templateUrl: 'chooser/eliminate.template.html',
+        controller: 'EliminateChooserController',
+        controllerAs: 'eliminate',
+        params: {
+          filteredCollection: []
+        }
       });
   }
 

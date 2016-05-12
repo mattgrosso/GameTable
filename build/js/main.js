@@ -59,6 +59,15 @@
         params: {
           filteredCollection: []
         }
+      })
+      .state('eliminate', {
+        url: '/eliminate',
+        templateUrl: 'chooser/eliminate.template.html',
+        controller: 'EliminateChooserController',
+        controllerAs: 'eliminate',
+        params: {
+          filteredCollection: []
+        }
       });
   }
 
@@ -126,7 +135,7 @@
     this.genre = "";
     this.genreArray = $localStorage.genreArray;
     this.chooser = "";
-    this.chooserArray = ['random', 'nominate-random'];
+    this.chooserArray = ['random', 'nominate-random', 'eliminate'];
 
     GameFactory.getUserCollection().then(function (collection) {
       that.collection = collection;
@@ -146,6 +155,41 @@
 
   angular
     .module('game')
+    .controller('EliminateChooserController', EliminateChooserController);
+
+  EliminateChooserController.$inject = ['$stateParams'];
+
+  function EliminateChooserController($stateParams) {
+
+    this.collection = $stateParams.filteredCollection;
+    this.downToOne = false;
+
+    this.eliminateGame = function eliminateGame(game) {
+      game.eliminated = true;
+      console.log(game.eliminated);
+      this.collection = this.collection.filter(function (game) {
+        if(game.eliminated){
+          return false;
+        } else{
+          return true;
+        }
+      });
+      console.log(this.collection.length);
+      if(this.collection.length === 1){
+        this.downToOne = true;
+      }
+    };
+
+  }
+
+
+})();
+
+(function() {
+  'use strict';
+
+  angular
+    .module('game')
     .controller('NomRandChooserController', NomRandChooserController);
 
   NomRandChooserController.$inject = ['$stateParams'];
@@ -154,8 +198,6 @@
     this.collection = $stateParams.filteredCollection;
     this.nomineesArray = [];
     this.randomGame = null;
-
-    console.log(this.collection);
 
     this.addNominee = function addNominee() {
       this.nomineesArray = this.collection.filter(function (game) {

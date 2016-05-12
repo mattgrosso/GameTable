@@ -12,8 +12,6 @@
     this.nomineesArray = [];
     this.randomGame = null;
 
-    console.log(this.collection);
-
     this.addNominee = function addNominee() {
       this.nomineesArray = this.collection.filter(function (game) {
         if(game.nominated){

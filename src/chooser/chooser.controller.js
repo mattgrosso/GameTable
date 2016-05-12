@@ -16,7 +16,7 @@
     this.genre = "";
     this.genreArray = $localStorage.genreArray;
     this.chooser = "";
-    this.chooserArray = ['random', 'nominate-random'];
+    this.chooserArray = ['random', 'nominate-random', 'eliminate'];
 
     GameFactory.getUserCollection().then(function (collection) {
       that.collection = collection;
