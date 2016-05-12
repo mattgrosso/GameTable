@@ -20,9 +20,9 @@
       <option ng-repeat="chooser in choose.chooserArray">{{chooser}}</option>
     </select>
   </fieldset>
-  <button ng-click="choose.goToChooser()" type="button" name="choose-button">Choose</button>
+  <button ng-click="choose.goToChooser(filteredCollection)" type="button" name="choose-button">Choose</button>
 </form>
-
+<p>numgames = {{filteredCollection.length}}</p>
 <ul>
   <li ng-repeat="game in choose.collection | gameFilter:choose.players:choose.duration:choose.genre as filteredCollection"> <img ng-src="{{game.image.thumbnailURL}}"/>{{game.name}}</li>
 </ul>

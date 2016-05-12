@@ -7,7 +7,7 @@
 
   ChooserController.$inject = ['GameFactory', '$localStorage', '$state'];
 
-  function ChooserController(GameFactory, $localStorage) {
+  function ChooserController(GameFactory, $localStorage, $state) {
     var that = this;
 
     this.collection = [];
@@ -22,8 +22,8 @@
       that.collection = collection;
     });
 
-    this.goToChooser = function () {
-      // $state.go('random');
+    this.goToChooser = function (filtered) {
+      $state.go('random', {filteredCollection: filtered});
     };
   }
 })();

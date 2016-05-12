@@ -58,6 +58,12 @@ module.exports = function(grunt) {
           src: ['**/*.js'],
           dest: 'build/js/',
           cwd: 'vendor/'
+        },
+        img: {
+          expand: true,
+          src: ['**/*.png'],
+          dest: 'build/',
+          cwd: 'src/'
         }
       },
 

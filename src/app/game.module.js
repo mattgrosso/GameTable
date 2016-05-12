@@ -46,7 +46,10 @@
         url: '/random',
         templateUrl: 'chooser/random-chooser.template.html',
         controller: 'RandomChooserController',
-        controllerAs: 'random'
+        controllerAs: 'random',
+        params: {
+          filteredCollection: []
+        }
       });
   }
 

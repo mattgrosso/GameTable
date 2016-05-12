@@ -46,7 +46,10 @@
         url: '/random',
         templateUrl: 'chooser/random-chooser.template.html',
         controller: 'RandomChooserController',
-        controllerAs: 'random'
+        controllerAs: 'random',
+        params: {
+          filteredCollection: []
+        }
       });
   }
 
@@ -105,7 +108,7 @@
 
   ChooserController.$inject = ['GameFactory', '$localStorage', '$state'];
 
-  function ChooserController(GameFactory, $localStorage) {
+  function ChooserController(GameFactory, $localStorage, $state) {
     var that = this;
 
     this.collection = [];
@@ -120,10 +123,25 @@
       that.collection = collection;
     });
 
-    this.goToChooser = function () {
-      // $state.go('random');
+    this.goToChooser = function (filtered) {
+      $state.go('random', {filteredCollection: filtered});
     };
   }
+})();
+
+(function() {
+  'use strict';
+
+  angular
+    .module('game')
+    .controller('RandomChooserController', RandomChooserController);
+
+  RandomChooserController.$inject = ['$stateProvider'];
+
+  function RandomChooserController($stateProvider) {
+    this.collection = $stateProvider.filteredCollection;
+  }
+
 })();
 
 (function() {
