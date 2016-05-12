@@ -18,10 +18,10 @@
     function getUserCollection(username) {
       if ($localStorage.collection){
         var def = $q.defer();
-        def.resolve($localStorage.collection);
-        buildGenreArray($localStorage.collection);
-        console.log($localStorage.genreArray);
-        console.log($localStorage.collection);
+        var collection = angular.copy($localStorage.collection);
+        def.resolve(collection);
+        buildGenreArray(collection);
+        console.log(collection);
         return def.promise;
       } else {
         return $http({
@@ -83,7 +83,7 @@
       gameArray.forEach(function (each) {
         each.genres.forEach(function (genre) {
           if($localStorage.genreArray.indexOf(genre) < 0){
-            
+
             $localStorage.genreArray.push(genre);
           }
         });

@@ -50,6 +50,15 @@
         params: {
           filteredCollection: []
         }
+      })
+      .state('nominate-random', {
+        url: '/nomrand',
+        templateUrl: 'chooser/nominate-random-chooser.template.html',
+        controller: 'NomRandChooserController',
+        controllerAs: 'nomrand',
+        params: {
+          filteredCollection: []
+        }
       });
   }
 

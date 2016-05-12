@@ -1,0 +1,10 @@
+<button ng-show="nomrand.nomineesArray.length > 0" ng-click="nomrand.doneNominating()" type="button">Done Nominating</button>
+
+<ul ng-hide="nomrand.randomGame">
+  <li ng-repeat="game in nomrand.collection">
+    {{game.name}}
+    <input ng-click="nomrand.addNominee()" ng-model="game.nominated" type="checkbox" value="nominated">
+  </li>
+</ul>
+
+<h2 ng-show="nomrand.randomGame">{{nomrand.randomGame.name}}</h2>

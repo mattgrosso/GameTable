@@ -16,14 +16,17 @@
     this.genre = "";
     this.genreArray = $localStorage.genreArray;
     this.chooser = "";
-    this.chooserArray = ['random'];
+    this.chooserArray = ['random', 'nominate-random'];
 
     GameFactory.getUserCollection().then(function (collection) {
       that.collection = collection;
     });
 
     this.goToChooser = function (filtered) {
-      $state.go('random', {filteredCollection: filtered});
+      $state.go(this.chooser, {filteredCollection: filtered});
+    };
+
+    this.tester = function () {
     };
   }
 })();

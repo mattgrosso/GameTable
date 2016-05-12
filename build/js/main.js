@@ -50,6 +50,15 @@
         params: {
           filteredCollection: []
         }
+      })
+      .state('nominate-random', {
+        url: '/nomrand',
+        templateUrl: 'chooser/nominate-random-chooser.template.html',
+        controller: 'NomRandChooserController',
+        controllerAs: 'nomrand',
+        params: {
+          filteredCollection: []
+        }
       });
   }
 
@@ -117,16 +126,54 @@
     this.genre = "";
     this.genreArray = $localStorage.genreArray;
     this.chooser = "";
-    this.chooserArray = ['random'];
+    this.chooserArray = ['random', 'nominate-random'];
 
     GameFactory.getUserCollection().then(function (collection) {
       that.collection = collection;
     });
 
     this.goToChooser = function (filtered) {
-      $state.go('random', {filteredCollection: filtered});
+      $state.go(this.chooser, {filteredCollection: filtered});
+    };
+
+    this.tester = function () {
     };
   }
+})();
+
+(function() {
+  'use strict';
+
+  angular
+    .module('game')
+    .controller('NomRandChooserController', NomRandChooserController);
+
+  NomRandChooserController.$inject = ['$stateParams'];
+
+  function NomRandChooserController($stateParams) {
+    this.collection = $stateParams.filteredCollection;
+    this.nomineesArray = [];
+    this.randomGame = null;
+
+    console.log(this.collection);
+
+    this.addNominee = function addNominee() {
+      this.nomineesArray = this.collection.filter(function (game) {
+        if(game.nominated){
+          return true;
+        } else{
+          return false;
+        }
+      });
+    };
+
+    this.doneNominating = function doneNominating() {
+      console.log(this.collection);
+      var randomNumber = Math.floor(Math.random() * this.nomineesArray.length);
+      this.randomGame = this.nomineesArray[randomNumber];
+    };
+  }
+
 })();
 
 (function() {
@@ -171,10 +218,10 @@
     function getUserCollection(username) {
       if ($localStorage.collection){
         var def = $q.defer();
-        def.resolve($localStorage.collection);
-        buildGenreArray($localStorage.collection);
-        console.log($localStorage.genreArray);
-        console.log($localStorage.collection);
+        var collection = angular.copy($localStorage.collection);
+        def.resolve(collection);
+        buildGenreArray(collection);
+        console.log(collection);
         return def.promise;
       } else {
         return $http({
@@ -236,7 +283,7 @@
       gameArray.forEach(function (each) {
         each.genres.forEach(function (genre) {
           if($localStorage.genreArray.indexOf(genre) < 0){
-            
+
             $localStorage.genreArray.push(genre);
           }
         });
