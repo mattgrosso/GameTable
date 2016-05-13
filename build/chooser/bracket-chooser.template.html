@@ -1,0 +1,14 @@
+<h2 ng-show="bracket.showStart">Bracket Tournament</h2>
+<button ng-show="bracket.showStart" ng-click="bracket.startTournament()" type="button">Start Tournament</button>
+<p ng-show="bracket.showStart">Some text about how this works</p>
+
+
+<h3 ng-show="bracket.showMatchUp" ng-click="bracket.pickWinner(1)">
+  {{bracket.firstContender}}
+</h3>
+<p ng-show="bracket.showMatchUp">
+  vs.
+</p>
+<h3 ng-show="bracket.showMatchUp" ng-click="bracket.pickWinner(2)">
+  {{bracket.secondContender}}
+</h3>

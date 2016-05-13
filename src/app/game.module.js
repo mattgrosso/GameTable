@@ -119,6 +119,15 @@
           winner: null,
           showWinner: null
         }
+      })
+      .state('bracket', {
+        url: '/bracket',
+        templateUrl: 'chooser/bracket-chooser.template.html',
+        controller: 'BracketChooserController',
+        controllerAs: 'bracket',
+        params: {
+          nominatedCollection: []
+        }
       });
   }
 
