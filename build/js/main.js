@@ -188,11 +188,9 @@
 
   function BracketChooserController($stateParams) {
 
-    var that = this;
-
     this.collection = $stateParams.filteredCollection;
     this.arrayToBeRandomized = this.collection;
-    this.randomizedArray = [];
+    this.entrantArray = [];
     this.winnersArray = [];
     this.numberOfEntrants = this.seededCollection.length;
     this.currentSeedMatchup = 0;
@@ -200,23 +198,37 @@
     this.secondContender = null;
     this.showStart = true;
     this.showMatchUp = false;
+    this.showWinner = false;
 
     this.startTournament = function startTournament() {
       if(this.arrayToBeRandomized.length > 0){
-        var randomIndex = Math.floor((Math.random() * that.arrayToBeRandomized.length));
-        that.randomizedArray.push(that.arrayToBeRandomized[randomIndex]);
-        that.arrayToBeRandomized.splice(randomIndex, 1);
-        that.startTournament();
+        var randomIndex = Math.floor((Math.random() * this.arrayToBeRandomized.length));
+        this.entrantArray.push(this.arrayToBeRandomized[randomIndex]);
+        this.arrayToBeRandomized.splice(randomIndex, 1);
+        this.startTournament();
       } else {
-        that.nextMatchup();
+        this.nextMatchup();
       }
     };
 
     this.nextMatchup = function nextMatchup() {
-      this.firstContender = this.seededCollection[this.currentSeedMatchup];
-      this.secondContender = this.seededCollection[(this.numberOfEntrants - this.currentSeedMatchup) - 1];
-      console.log('firstContender: ', this.firstContender);
-      console.log('secondContender: ', this.secondContender);
+      if(this.entrantArray.length === 0) {
+        this.entrantArray = this.winnersArray;
+        this.winnersArray = [];
+      }
+      if(this.entrantArray.length === 1){
+        this.winner = this.entrantArray[0];
+        this.showWinner = true;
+        return;
+      }
+      if((this.entrantArray.length % 2) > 0){
+        var randomIndex = Math.floor((Math.random() * this.entrantArray.length));
+        this.winnersArray.push(this.entrantArray[randomIndex]);
+        this.entrantArray.splice(randomIndex, 1);
+      }
+      this.firstContender = this.entrantArray[0];
+      this.secondContender = this.entrantArray[1];
+
       this.showStart = false;
       this.showMatchUp = true;
     };
@@ -224,9 +236,13 @@
     this.pickWinner = function pickWinner(number) {
       if(number === 1){
         this.winnersArray.push(this.firstContender);
+        this.entrantArray.splice(0, 2);
+        this.nextMatchup();
       }
       else if(number === 2){
         this.winnersArray.push(this.secondContender);
+        this.entrantArray.splice(0, 2);
+        this.nextMatchup();
       }
     };
   }
