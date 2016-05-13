@@ -126,7 +126,7 @@
         controller: 'BracketChooserController',
         controllerAs: 'bracket',
         params: {
-          nominatedCollection: []
+          filteredCollection: []
         }
       });
   }
@@ -188,12 +188,9 @@
 
   function BracketChooserController($stateParams) {
 
-    this.collection = $stateParams.filteredCollection;
-    this.arrayToBeRandomized = this.collection;
+    this.arrayToBeRandomized = $stateParams.filteredCollection;
     this.entrantArray = [];
     this.winnersArray = [];
-    this.numberOfEntrants = this.seededCollection.length;
-    this.currentSeedMatchup = 0;
     this.firstContender = null;
     this.secondContender = null;
     this.showStart = true;
@@ -218,6 +215,8 @@
       }
       if(this.entrantArray.length === 1){
         this.winner = this.entrantArray[0];
+        this.showMatchUp = false;
+        this.showStart = false;
         this.showWinner = true;
         return;
       }
@@ -267,7 +266,11 @@
     this.genre = "";
     this.genreArray = $localStorage.genreArray;
     this.chooser = "";
-    this.chooserArray = ['random', 'nominate-random', 'eliminate', 'vote', 'nominate-rank'];
+    this.addGameTitle = "";
+    this.chooserArray = ['random', 'nominate-random', 'eliminate', 'vote', 'nominate-rank', 'bracket'];
+
+    this.showFilters = true;
+    this.showAddGame = false;
 
     GameFactory.getUserCollection().then(function (collection) {
       that.collection = collection;
@@ -277,7 +280,14 @@
       $state.go(this.chooser, {filteredCollection: filtered});
     };
 
-    this.tester = function () {
+    this.showAddGameForm = function showAddGameForm() {
+      this.showAddGame = true;
+    };
+
+    this.findGameToAdd = function findGameToAdd(title) {
+      GameFactory.getSingleGame(title).then(function (response) {
+        console.log(response.data);
+      });
     };
   }
 })();
@@ -547,6 +557,7 @@
 
     return {
       getUserCollection: getUserCollection,
+      getSingleGame: getSingleGame
     };
 
     function getUserCollection(username) {
@@ -612,6 +623,29 @@
       }
     }
 
+    function getSingleGame(title) {
+      var cleanTitle = title.replace(/\s/,'+');
+      return $http({
+        method: 'GET',
+        url: 'http://mattgrosso.herokuapp.com/api/v1/search?query=' + cleanTitle + '&exact=1',
+        // transformResponse: function prettifySingleGameResponse(response) {
+        //   var parsedResponse = JSON.parse(response);
+        //   var prettySingleGameObject = {};
+        //   var highestRated = {
+        //     rank: 1000000
+        //   };
+        //   parsedResponse.items.item.forEach(function (each) {
+        //     if()
+        //
+        //
+        //   });
+        // }
+      }).then(function (response) {
+        console.log(response);
+      });
+    }
+
+
     function buildGenreArray(gameArray) {
       $localStorage.genreArray = [];
       gameArray.forEach(function (each) {
@@ -626,8 +660,6 @@
     }
 
   }
-
-
 })();
 
 (function() {

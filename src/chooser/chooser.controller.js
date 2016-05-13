@@ -16,7 +16,11 @@
     this.genre = "";
     this.genreArray = $localStorage.genreArray;
     this.chooser = "";
-    this.chooserArray = ['random', 'nominate-random', 'eliminate', 'vote', 'nominate-rank'];
+    this.addGameTitle = "";
+    this.chooserArray = ['random', 'nominate-random', 'eliminate', 'vote', 'nominate-rank', 'bracket'];
+
+    this.showFilters = true;
+    this.showAddGame = false;
 
     GameFactory.getUserCollection().then(function (collection) {
       that.collection = collection;
@@ -26,7 +30,14 @@
       $state.go(this.chooser, {filteredCollection: filtered});
     };
 
-    this.tester = function () {
+    this.showAddGameForm = function showAddGameForm() {
+      this.showAddGame = true;
+    };
+
+    this.findGameToAdd = function findGameToAdd(title) {
+      GameFactory.getSingleGame(title).then(function (response) {
+        console.log(response.data);
+      });
     };
   }
 })();

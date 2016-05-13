@@ -13,6 +13,7 @@
 
     return {
       getUserCollection: getUserCollection,
+      getSingleGame: getSingleGame
     };
 
     function getUserCollection(username) {
@@ -78,6 +79,29 @@
       }
     }
 
+    function getSingleGame(title) {
+      var cleanTitle = title.replace(/\s/,'+');
+      return $http({
+        method: 'GET',
+        url: 'http://mattgrosso.herokuapp.com/api/v1/search?query=' + cleanTitle + '&exact=1',
+        // transformResponse: function prettifySingleGameResponse(response) {
+        //   var parsedResponse = JSON.parse(response);
+        //   var prettySingleGameObject = {};
+        //   var highestRated = {
+        //     rank: 1000000
+        //   };
+        //   parsedResponse.items.item.forEach(function (each) {
+        //     if()
+        //
+        //
+        //   });
+        // }
+      }).then(function (response) {
+        console.log(response);
+      });
+    }
+
+
     function buildGenreArray(gameArray) {
       $localStorage.genreArray = [];
       gameArray.forEach(function (each) {
@@ -92,6 +116,4 @@
     }
 
   }
-
-
 })();

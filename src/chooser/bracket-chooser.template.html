@@ -4,11 +4,13 @@
 
 
 <h3 ng-show="bracket.showMatchUp" ng-click="bracket.pickWinner(1)">
-  {{bracket.firstContender}}
+  {{bracket.firstContender.name}}
 </h3>
 <p ng-show="bracket.showMatchUp">
   vs.
 </p>
 <h3 ng-show="bracket.showMatchUp" ng-click="bracket.pickWinner(2)">
-  {{bracket.secondContender}}
+  {{bracket.secondContender.name}}
 </h3>
+
+<h2 ng-show="bracket.showWinner">{{bracket.winner.name}}</h2>

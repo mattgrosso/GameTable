@@ -1,5 +1,8 @@
 <h2>Choose a game</h2>
+<button ng-click="choose.showAddGameForm()" type="button">Add A Game To The List</button>
+
 <form>
+  <h3>Narrow your choices with these filters</h3>
   <fieldset>
     <label for="player-count">Players</label>
     <input ng-model="choose.players" type="text" name="player-count" placeholder="player count">
@@ -23,7 +26,11 @@
   <button ng-click="choose.goToChooser(filteredCollection)" type="button" name="choose-button">Choose</button>
 </form>
 
-<button ng-click="choose.tester()" type="button">test</button>
+<form ng-show="choose.showAddGame">
+  <h3>Add a game by title</h3>
+  <input ng-model="choose.addGameTitle" type="text" name="game-name" placeholder="Game Title">
+  <button ng-click="choose.findGameToAdd(choose.addGameTitle)" type="button">Add Game</button>
+</form>
 
 <p>numgames = {{filteredCollection.length}}</p>
 <ul>

@@ -126,7 +126,7 @@
         controller: 'BracketChooserController',
         controllerAs: 'bracket',
         params: {
-          nominatedCollection: []
+          filteredCollection: []
         }
       });
   }

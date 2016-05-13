@@ -9,12 +9,9 @@
 
   function BracketChooserController($stateParams) {
 
-    this.collection = $stateParams.filteredCollection;
-    this.arrayToBeRandomized = this.collection;
+    this.arrayToBeRandomized = $stateParams.filteredCollection;
     this.entrantArray = [];
     this.winnersArray = [];
-    this.numberOfEntrants = this.seededCollection.length;
-    this.currentSeedMatchup = 0;
     this.firstContender = null;
     this.secondContender = null;
     this.showStart = true;
@@ -39,6 +36,8 @@
       }
       if(this.entrantArray.length === 1){
         this.winner = this.entrantArray[0];
+        this.showMatchUp = false;
+        this.showStart = false;
         this.showWinner = true;
         return;
       }
