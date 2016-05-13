@@ -10,9 +10,16 @@
   function NomRankChooserController($stateParams, $state) {
 
     this.collection = $stateParams.filteredCollection;
-    this.nomineesArray = [];
-    this.currentValueOfVotes = 0;
-    this.winner = null;
+    this.showStartScreen = true;
+    this.nomineesArray = $stateParams.nominatedCollection || [];
+    this.currentValueOfVotes = $stateParams.currentValueOfVotes || 0;
+    this.winner = $stateParams.winner || null;
+    this.showWinner = $stateParams.showWinner || false;
+
+    this.startProcess = function startProcess() {
+      this.showStartScreen = false;
+      $state.go('nominate-rank.nominate');
+    };
 
     this.addNominee = function addNominee() {
       this.nomineesArray = this.collection.filter(function (game) {
@@ -27,9 +34,19 @@
     this.goToValueVoting = function goToValueVoting() {
       if(this.currentValueOfVotes < 3){
         this.currentValueOfVotes++;
-        $state.go('nominate-rank.value');
+        $state.go('nominate-rank.value', {
+          nominatedCollection: this.nomineesArray,
+          currentValueOfVotes: this.currentValueOfVotes,
+          winner: this.winner,
+          showWinner: this.showWinner
+        });
       } else {
-        $state.go('nominate-rank.results');
+        $state.go('nominate-rank.results', {
+          nominatedCollection: this.nomineesArray,
+          currentValueOfVotes: this.currentValueOfVotes,
+          winner: this.winner,
+          showWinner: this.showWinner
+        });
       }
     };
 
@@ -40,7 +57,12 @@
 
     this.goToResults = function goToResults() {
       if(this.currentValueOfVotes < 3){
-        $state.go('nominate-rank.results');
+        $state.go('nominate-rank.results', {
+          nominatedCollection: this.nomineesArray,
+          currentValueOfVotes: this.currentValueOfVotes,
+          winner: this.winner,
+          showWinner: this.showWinner
+        });
       } else {
         var mostValue = {
           value: 0,
@@ -59,6 +81,14 @@
           }
         });
         this.winner = mostValue;
+        this.showWinner = true;
+        console.log('this.showWinner: ', this.showWinner);
+        $state.go('nominate-rank.results', {
+          nominatedCollection: this.nomineesArray,
+          currentValueOfVotes: this.currentValueOfVotes,
+          winner: this.winner,
+          showWinner: this.showWinner
+        });
       }
     };
 

@@ -97,21 +97,27 @@
         }
       })
       .state('nominate-rank.value', {
-        url: '/nomrank/value1',
+        url: '/nomrank/value',
         templateUrl: 'chooser/nomrank-value.template.html',
         controller: 'NomRankChooserController',
         controllerAs: 'nomrank',
         params: {
-          filteredCollection: []
+          nominatedCollection: [],
+          currentValueOfVotes: 0,
+          winner: null,
+          showWinner: null
         }
       })
       .state('nominate-rank.results', {
-        url: '/nomrank/value1-results',
+        url: '/nomrank/value-results',
         templateUrl: 'chooser/nomrank-results.template.html',
         controller: 'NomRankChooserController',
         controllerAs: 'nomrank',
         params: {
-          filteredCollection: []
+          nominatedCollection: [],
+          currentValueOfVotes: 0,
+          winner: null,
+          showWinner: null
         }
       });
   }

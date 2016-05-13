@@ -1,7 +1,9 @@
-<button ng-show="{{nomrank.currentValueOfVotes}} < 3" ng-click="nomrank.goToValueVoting()" type="button"></button>
+<button ng-show="{{nomrank.currentValueOfVotes}} < 3" ng-hide="{{nomrank.showWinner}}" ng-click="nomrank.goToValueVoting()" type="button">
+  Next Round
+</button>
 
-<ul ng-show="{{nomrank.currentValueOfVotes}} < 3">
+<ul ng-show="{{nomrank.currentValueOfVotes}} < 3" ng-hide="{{nomrank.showWinner}}">
   <li ng-repeat="game in nomrank.nomineesArray">{{game.name}} ({{game.value}}pts)</li>
 </ul>
 
-<h2 ng-hide="{{nomrank.currentValueOfVotes}} < 3">{{nomrank.winner.name}} with {{nomrank.winner.value}}pts</h2>
+<h2 ng-show="{{nomrank.showWinner}}">{{nomrank.winner.name}} with {{nomrank.winner.value}}pts</h2>
