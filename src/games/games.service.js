@@ -49,15 +49,18 @@
               };
               gameObject.year = each.yearpublished[0];
               gameObject.playerCount = {
-                max: each.stats[0].$.maxplayers,
-                min: each.stats[0].$.minplayers
+                max: parseInt(each.stats[0].$.maxplayers),
+                min: parseInt(each.stats[0].$.minplayers)
               };
-              gameObject.playTime = each.stats[0].$.playingtime;
+              gameObject.playTime = {
+                max: parseInt(each.stats[0].$.maxplaytime),
+                min: parseInt(each.stats[0].$.minplaytime)
+              };
               gameObject.rating = {
-                myRating: each.stats[0].rating[0].$.value,
-                userAverage: each.stats[0].rating[0].average[0].$.value,
-                userRatings: each.stats[0].rating[0].usersrated[0].$.value,
-                geekRating: each.stats[0].rating[0].bayesaverage[0].$.value,
+                myRating: parseInt(each.stats[0].rating[0].$.value),
+                userAverage: parseInt(each.stats[0].rating[0].average[0].$.value),
+                userRatings: parseInt(each.stats[0].rating[0].usersrated[0].$.value),
+                geekRating: parseInt(each.stats[0].rating[0].bayesaverage[0].$.value),
               };
               gameObject.rank = {};
               gameObject.genres = [];
