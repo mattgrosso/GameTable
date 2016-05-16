@@ -668,10 +668,13 @@
               prettyFullSearchItem.objectID = each.$.id;
               prettyFullSearchItem.name = each.name[0].$.value;
               prettyFullSearchItem.type = each.$.type;
-              prettyFullSearchItem.image = {
-                // imageURL: each.image[0],
-                // thumbnailURL: each.thumbnail[0]
-              };
+              prettyFullSearchItem.image = {};
+              if (each.image) {
+                prettyFullSearchItem.image.imageURL = each.image[0];
+              }
+              if (each.thumbnail) {
+                prettyFullSearchItem.image.thumbnailURL = each.thumbnail[0];
+              }
               prettyFullSearchItem.status = {
                 forTrade: 0,
                 own: 1,
@@ -729,7 +732,7 @@
           } else if (each.numberOwned > mostPopular[2].numberOwned) {
             mostPopular[2] = each;
           }
-        }  
+        }
       });
       return mostPopular;
     }
