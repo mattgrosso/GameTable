@@ -289,8 +289,8 @@
     };
 
     this.findGameToAdd = function findGameToAdd(title) {
-      GameFactory.getSingleGame(title).then(function (response) {
-        console.log(response.data);
+      GameFactory.searchForGame(title).then(function (response) {
+        console.log(response);
       });
     };
   }
@@ -561,7 +561,8 @@
 
     return {
       getUserCollection: getUserCollection,
-      getSingleGame: getSingleGame
+      searchForGame: searchForGame,
+      // getSingleGame: getSingleGame
     };
 
     function getUserCollection(username) {
@@ -578,7 +579,6 @@
           url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username + '&stats=1&excludesubtype=boardgameexpansion&own=1',
           transformResponse: function prettifyCollectionArray(response) {
             var parsedResponse = JSON.parse(response);
-            console.log(parsedResponse);
             var prettyCollectionArray = [];
             parsedResponse.items.item.forEach(function (each) {
               var gameObject = {};
@@ -595,7 +595,7 @@
                 previouslyOwn: each.status[0].$.prevowned,
                 wantInTrade: each.status[0].$.want
               };
-              gameObject.year = each.yearpublished[0];
+              gameObject.year = parseInt(each.yearpublished[0]);
               gameObject.playerCount = {
                 max: parseInt(each.stats[0].$.maxplayers),
                 min: parseInt(each.stats[0].$.minplayers)
@@ -608,7 +608,7 @@
                 myRating: parseInt(each.stats[0].rating[0].$.value),
                 userAverage: parseInt(each.stats[0].rating[0].average[0].$.value),
                 userRatings: parseInt(each.stats[0].rating[0].usersrated[0].$.value),
-                geekRating: parseInt(each.stats[0].rating[0].bayesaverage[0].$.value),
+                geekRating: parseInt(each.stats[0].rating[0].bayesaverage[0].$.value)
               };
               gameObject.rank = {};
               gameObject.genres = [];
@@ -623,34 +623,99 @@
         }).then(function successGetUserCollection(response) {
           buildGenreArray(response.data);
           $localStorage.collection = response.data;
-          console.log(response.data);
-          console.log($localStorage.genreArray);
+            console.log(response.data);
           return response.data;
         });
       }
     }
 
-    function getSingleGame(title) {
+    function searchForGame(title) {
       var cleanTitle = title.replace(/\s/,'+');
       return $http({
         method: 'GET',
-        url: 'http://mattgrosso.herokuapp.com/api/v1/search?query=' + cleanTitle + '&exact=1',
-        // transformResponse: function prettifySingleGameResponse(response) {
-        //   var parsedResponse = JSON.parse(response);
-        //   var prettySingleGameObject = {};
-        //   var highestRated = {
-        //     rank: 1000000
-        //   };
-        //   parsedResponse.items.item.forEach(function (each) {
-        //     if()
-        //
-        //
-        //   });
-        // }
+        url: 'http://mattgrosso.herokuapp.com/api/v1/search?query=' + cleanTitle,
+        transformResponse: function prettifySearchResults(response) {
+          var parsedResponse = JSON.parse(response);
+          var prettySearchArray = [];
+          parsedResponse.items.item.forEach(function (each) {
+            var prettySearchItem = {};
+            if(each.$.type === 'boardgame'){
+              prettySearchItem.id = each.$.id;
+              prettySearchArray.push(prettySearchItem);
+            }
+          });
+          return prettySearchArray;
+        }
+      }).then(function (response) {
+        var listOfIds = "";
+        response.data.forEach(function createCommaSeperatedListOfIds(each) {
+          if (!listOfIds) {
+            listOfIds = each.id;
+          } else {
+            listOfIds = listOfIds + "," + each.id;
+          }
+        });
+        return $http({
+          method: 'GET',
+          url: 'http://mattgrosso.herokuapp.com/api/v1/thing?id=' + listOfIds + '&stats=1',
+          transformResponse: function prettifyFullSearchResults(response) {
+            var parsedResponse = JSON.parse(response);
+            var prettyFullSearchArray = [];
+            parsedResponse.items.item.forEach(function (each) {
+              var prettyFullSearchItem = {};
+              prettyFullSearchItem.objectID = each.$.id;
+              prettyFullSearchItem.name = each.name[0].$.value;
+              prettyFullSearchItem.type = each.$.type;
+              prettyFullSearchItem.image = {
+                imageURL: each.image[0],
+                thumbnailURL: each.thumbnail[0]
+              };
+              prettyFullSearchItem.status = {
+                forTrade: 0,
+                own: 1,
+                previouslyOwn: 0,
+                wantInTrade: 0
+              };
+              prettyFullSearchItem.year = parseInt(each.yearpublished[0].$.value);
+              prettyFullSearchItem.playerCount = {
+                max: parseInt(each.maxplayers[0].$.value),
+                min: parseInt(each.minplayers[0].$.value)
+              };
+              prettyFullSearchItem.playTime = {
+                max: parseInt(each.maxplaytime[0].$.value),
+                min: parseInt(each.minplaytime[0].$.value)
+              };
+              prettyFullSearchItem.rating = {
+                myRating: 10,
+                userAverage: parseInt(each.statistics[0].ratings[0].average[0].$.value),
+                userRatings: parseInt(each.statistics[0].ratings[0].usersrated[0].$.value),
+                geekRating: parseInt(each.statistics[0].ratings[0].bayesaverage[0].$.value)
+              };
+              prettyFullSearchItem.numberOwned = each.statistics[0].ratings[0].owned[0].$.value;
+              prettyFullSearchItem.rank = {};
+              prettyFullSearchItem.genres = [];
+              each.statistics[0].ratings[0].ranks[0].rank.forEach(function (rank) {
+                prettyFullSearchItem.rank[rank.$.name] = rank.$.value;
+                prettyFullSearchItem.genres.push(rank.$.name);
+              });
+              prettyFullSearchArray.push(prettyFullSearchItem);
+            });
+            return prettyFullSearchArray;
+          }
+        });
       }).then(function (response) {
         console.log(response);
+        return response.data;
       });
     }
+
+    // function findThreeMostPopular(gameArray) {
+    //   var mostPopular = [
+    //     {},
+    //     {},
+    //     {}
+    //   ];
+    // }
 
 
     function buildGenreArray(gameArray) {
@@ -658,7 +723,6 @@
       gameArray.forEach(function (each) {
         each.genres.forEach(function (genre) {
           if($localStorage.genreArray.indexOf(genre) < 0){
-
             $localStorage.genreArray.push(genre);
           }
         });

@@ -35,8 +35,8 @@
     };
 
     this.findGameToAdd = function findGameToAdd(title) {
-      GameFactory.getSingleGame(title).then(function (response) {
-        console.log(response.data);
+      GameFactory.searchForGame(title).then(function (response) {
+        console.log(response);
       });
     };
   }
