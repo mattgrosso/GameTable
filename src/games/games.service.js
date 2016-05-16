@@ -112,7 +112,6 @@
           url: 'http://mattgrosso.herokuapp.com/api/v1/thing?id=' + listOfIds + '&stats=1',
           transformResponse: function prettifyFullSearchResults(response) {
             var parsedResponse = JSON.parse(response);
-            console.log(parsedResponse);
             var prettyFullSearchArray = [];
             parsedResponse.items.item.forEach(function (each) {
               var prettyFullSearchItem = {};
@@ -160,17 +159,17 @@
           }
         });
       }).then(function (response) {
-        console.log(response);
         return response.data;
       });
     }
 
     function findThreeMostPopular(gameArray) {
       var mostPopular = [
-        {numberOwned: 3},
-        {numberOwned: 2},
-        {numberOwned: 1}
+        {numberOwned: 0},
+        {numberOwned: 0},
+        {numberOwned: 0}
       ];
+      var trimmedMostPopular = [];
       gameArray.forEach(function (each) {
         if (each.type === 'boardgame') {
           if(each.numberOwned > mostPopular[0].numberOwned){
@@ -185,7 +184,12 @@
           }
         }
       });
-      return mostPopular;
+      mostPopular.forEach(function (each) {
+        if (each.numberOwned > 0) {
+          trimmedMostPopular.push(each);
+        }
+      });
+      return trimmedMostPopular;
     }
 
 

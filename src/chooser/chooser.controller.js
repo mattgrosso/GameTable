@@ -19,8 +19,13 @@
     this.addGameTitle = "";
     this.chooserArray = ['random', 'nominate-random', 'eliminate', 'vote', 'nominate-rank', 'bracket'];
 
+    this.firstGameToAdd = null;
+    this.secondGameToAdd = null;
+    this.thirdGameToAdd = null;
+
     this.showFilters = true;
     this.showAddGame = false;
+    this.showGamesToAdd = false;
 
     GameFactory.getUserCollection().then(function (collection) {
       that.collection = collection;
@@ -38,6 +43,9 @@
       GameFactory.searchForGame(title).then(function (response) {
         var mostPopular = GameFactory.findThreeMostPopular(response);
         console.log(mostPopular);
+        that.firstGameToAdd = mostPopular[0];
+        that.secondGameToAdd = mostPopular[1];
+        that.thirdGameToAdd = mostPopular[2];
       });
     };
   }

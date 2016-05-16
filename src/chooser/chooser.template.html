@@ -31,6 +31,11 @@
   <input ng-model="choose.addGameTitle" type="text" name="game-name" placeholder="Game Title">
   <button ng-click="choose.findGameToAdd(choose.addGameTitle)" type="button">Add Game</button>
 </form>
+<ul ng-show="choose.firstGameToAdd">
+  <li>{{choose.firstGameToAdd.name}}</li>
+  <li ng-show="choose.secondGameToAdd">{{choose.secondGameToAdd.name}}</li>
+  <li ng-show="choose.thirdGameToAdd">{{choose.thirdGameToAdd.name}}</li>
+</ul>
 
 <p>numgames = {{filteredCollection.length}}</p>
 <ul>
