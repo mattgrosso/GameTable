@@ -36,7 +36,8 @@
 
     this.findGameToAdd = function findGameToAdd(title) {
       GameFactory.searchForGame(title).then(function (response) {
-        console.log(response);
+        var mostPopular = GameFactory.findThreeMostPopular(response);
+        console.log(mostPopular);
       });
     };
   }

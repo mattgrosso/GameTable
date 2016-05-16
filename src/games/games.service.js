@@ -14,7 +14,7 @@
     return {
       getUserCollection: getUserCollection,
       searchForGame: searchForGame,
-      // getSingleGame: getSingleGame
+      findThreeMostPopular: findThreeMostPopular
     };
 
     function getUserCollection(username) {
@@ -112,6 +112,7 @@
           url: 'http://mattgrosso.herokuapp.com/api/v1/thing?id=' + listOfIds + '&stats=1',
           transformResponse: function prettifyFullSearchResults(response) {
             var parsedResponse = JSON.parse(response);
+            console.log(parsedResponse);
             var prettyFullSearchArray = [];
             parsedResponse.items.item.forEach(function (each) {
               var prettyFullSearchItem = {};
@@ -119,8 +120,8 @@
               prettyFullSearchItem.name = each.name[0].$.value;
               prettyFullSearchItem.type = each.$.type;
               prettyFullSearchItem.image = {
-                imageURL: each.image[0],
-                thumbnailURL: each.thumbnail[0]
+                // imageURL: each.image[0],
+                // thumbnailURL: each.thumbnail[0]
               };
               prettyFullSearchItem.status = {
                 forTrade: 0,
@@ -143,7 +144,7 @@
                 userRatings: parseInt(each.statistics[0].ratings[0].usersrated[0].$.value),
                 geekRating: parseInt(each.statistics[0].ratings[0].bayesaverage[0].$.value)
               };
-              prettyFullSearchItem.numberOwned = each.statistics[0].ratings[0].owned[0].$.value;
+              prettyFullSearchItem.numberOwned = parseInt(each.statistics[0].ratings[0].owned[0].$.value);
               prettyFullSearchItem.rank = {};
               prettyFullSearchItem.genres = [];
               each.statistics[0].ratings[0].ranks[0].rank.forEach(function (rank) {
@@ -161,13 +162,28 @@
       });
     }
 
-    // function findThreeMostPopular(gameArray) {
-    //   var mostPopular = [
-    //     {},
-    //     {},
-    //     {}
-    //   ];
-    // }
+    function findThreeMostPopular(gameArray) {
+      var mostPopular = [
+        {numberOwned: 3},
+        {numberOwned: 2},
+        {numberOwned: 1}
+      ];
+      gameArray.forEach(function (each) {
+        if (each.type === 'boardgame') {
+          if(each.numberOwned > mostPopular[0].numberOwned){
+            mostPopular[2] = mostPopular[1];
+            mostPopular[1] = mostPopular[0];
+            mostPopular[0] = each;
+          } else if (each.numberOwned > mostPopular[1].numberOwned) {
+            mostPopular[2] = mostPopular[1];
+            mostPopular[1] = each;
+          } else if (each.numberOwned > mostPopular[2].numberOwned) {
+            mostPopular[2] = each;
+          }
+        }  
+      });
+      return mostPopular;
+    }
 
 
     function buildGenreArray(gameArray) {
