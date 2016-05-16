@@ -12,5 +12,6 @@
 <h3 ng-show="bracket.showMatchUp" ng-click="bracket.pickWinner(2)">
   {{bracket.secondContender.name}}
 </h3>
+<button ng-show="bracket.showMatchUp" ng-click="bracket.pickWinner('random')" type="button">Choose Randomly</button>
 
 <h2 ng-show="bracket.showWinner">{{bracket.winner.name}}</h2>

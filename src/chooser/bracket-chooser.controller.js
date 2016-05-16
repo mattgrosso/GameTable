@@ -54,6 +54,7 @@
     };
 
     this.pickWinner = function pickWinner(number) {
+      console.log(number);
       if(number === 1){
         this.winnersArray.push(this.firstContender);
         this.entrantArray.splice(0, 2);
@@ -63,6 +64,9 @@
         this.winnersArray.push(this.secondContender);
         this.entrantArray.splice(0, 2);
         this.nextMatchup();
+      }
+      else if (number === 'random') {
+        this.pickWinner( Math.floor((Math.random() * 2)) + 1 );
       }
     };
   }
