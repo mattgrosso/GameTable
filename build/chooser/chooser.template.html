@@ -19,7 +19,8 @@
   <fieldset>
     <label for="chooser">How to choose</label>
     <select ng-model="choose.chooser">
-      <option ng-repeat="chooser in choose.chooserArray">{{chooser}}</option>
+      <option value="" disabled selected>Choose a method for choosing</option>
+      <option ng-repeat="chooser in choose.chooserArray" value="{{chooser}}">{{chooser | titleCase}}</option>
     </select>
   </fieldset>
   <button ng-click="choose.goToChooser(filteredCollection)" type="button" name="choose-button">Choose</button>
