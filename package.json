@@ -32,6 +32,7 @@
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-karma": "^1.0.0",
+    "grunt-notify": "^0.4.5",
     "karma": "^0.13.22",
     "karma-chai": "^0.1.0",
     "karma-coverage": "^1.0.0",

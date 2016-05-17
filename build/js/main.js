@@ -130,6 +130,7 @@
         }
       });
   }
+  
 
 })();
 
@@ -844,6 +845,7 @@ LoginController.$inject = ['GameFactory', '$localStorage'];
           that.loggedIn = true;
           that.message = "You are now logged in.";
           that.username = "";
+          that.storedUsername = $localStorage.username;
         })
         .catch(function () {
           that.message = "Log in failed. Please check your username.";
