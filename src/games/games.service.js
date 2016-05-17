@@ -14,7 +14,9 @@
     return {
       getUserCollection: getUserCollection,
       searchForGame: searchForGame,
-      findThreeMostPopular: findThreeMostPopular
+      findThreeMostPopular: findThreeMostPopular,
+      amILoggedIn: amILoggedIn,
+      logOut: logOut
     };
 
     function getUserCollection(username) {
@@ -75,7 +77,7 @@
         }).then(function successGetUserCollection(response) {
           buildGenreArray(response.data);
           $localStorage.collection = response.data;
-            console.log(response.data);
+          console.log(response.data);
           return response.data;
         });
       }
@@ -203,6 +205,15 @@
         });
       });
       return genreArray;
+    }
+
+    function amILoggedIn() {
+      return !!$localStorage.collection;
+    }
+
+    function logOut() {
+      $localStorage.username = null;
+      $localStorage.collection = null;
     }
 
   }

@@ -3,7 +3,8 @@
 
   angular
     .module('game', ['ui.router', 'ngStorage'])
-    .config(gameConfig);
+    .config(gameConfig)
+    .run(appStart);
 
   gameConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 
@@ -12,14 +13,8 @@
     $urlRouterProvider.otherwise('/');
 
     $stateProvider
-      .state('home', {
-        url: '/',
-        templateUrl: 'home/home.template.html',
-        controller: 'HomeController',
-        controllerAs: 'home'
-      })
       .state('login', {
-        url: '/login',
+        url: '/',
         templateUrl: 'login/login.template.html',
         controller: 'LoginController',
         controllerAs: 'login'
@@ -28,18 +23,21 @@
         url: '/list',
         templateUrl: 'lists/game-list.template.html',
         controller: 'ListController',
+        secure: true,
         controllerAs: 'list'
       })
       .state('settings', {
         url: '/settings',
         templateUrl: 'settings/settings.template.html',
         controller: 'SettingsController',
+        secure: true,
         controllerAs: 'settings'
       })
       .state('choose', {
         url: '/choose',
         templateUrl: 'chooser/chooser.template.html',
         controller: 'ChooserController',
+        secure: true,
         controllerAs: 'choose'
       })
       .state('random', {
@@ -47,6 +45,7 @@
         templateUrl: 'chooser/random-chooser.template.html',
         controller: 'RandomChooserController',
         controllerAs: 'random',
+        secure: true,
         params: {
           filteredCollection: []
         }
@@ -56,6 +55,7 @@
         templateUrl: 'chooser/nominate-random-chooser.template.html',
         controller: 'NomRandChooserController',
         controllerAs: 'nomrand',
+        secure: true,
         params: {
           filteredCollection: []
         }
@@ -65,6 +65,7 @@
         templateUrl: 'chooser/eliminate-chooser.template.html',
         controller: 'EliminateChooserController',
         controllerAs: 'eliminate',
+        secure: true,
         params: {
           filteredCollection: []
         }
@@ -74,6 +75,7 @@
         templateUrl: 'chooser/vote-chooser.template.html',
         controller: 'VoteChooserController',
         controllerAs: 'vote',
+        secure: true,
         params: {
           filteredCollection: []
         }
@@ -83,6 +85,7 @@
         templateUrl: 'chooser/nominate-rank-chooser.template.html',
         controller: 'NomRankChooserController',
         controllerAs: 'nomrank',
+        secure: true,
         params: {
           filteredCollection: []
         }
@@ -92,6 +95,7 @@
         templateUrl: 'chooser/nomrank-nominate.template.html',
         controller: 'NomRankChooserController',
         controllerAs: 'nomrank',
+        secure: true,
         params: {
           filteredCollection: []
         }
@@ -101,6 +105,7 @@
         templateUrl: 'chooser/nomrank-value.template.html',
         controller: 'NomRankChooserController',
         controllerAs: 'nomrank',
+        secure: true,
         params: {
           nominatedCollection: [],
           currentValueOfVotes: 0,
@@ -113,6 +118,7 @@
         templateUrl: 'chooser/nomrank-results.template.html',
         controller: 'NomRankChooserController',
         controllerAs: 'nomrank',
+        secure: true,
         params: {
           nominatedCollection: [],
           currentValueOfVotes: 0,
@@ -125,12 +131,25 @@
         templateUrl: 'chooser/bracket-chooser.template.html',
         controller: 'BracketChooserController',
         controllerAs: 'bracket',
+        secure: true,
         params: {
           filteredCollection: []
         }
       });
   }
-  
+
+  appStart.$inject = ["$rootScope", "$state", "GameFactory"];
+
+  function appStart($rootScope, $state, GameFactory) {
+    $rootScope.$on('$stateChangeStart', function checkLoggedIn(event, toState) {
+      var isLoggedIn = GameFactory.amILoggedIn();
+
+      if (toState.secure && !isLoggedIn) {
+        event.preventDefault();
+        $state.go('login');
+      }
+    });
+  }
 
 })();
 
@@ -185,9 +204,11 @@
     .module('game')
     .controller('BracketChooserController', BracketChooserController);
 
-  BracketChooserController.$input = ['$stateParams'];
+  BracketChooserController.$input = ['$stateParams', '$localStorage', 'GameFactory'];
 
-  function BracketChooserController($stateParams) {
+  function BracketChooserController($stateParams, $localStorage, GameFactory) {
+
+    var that = this;
 
     this.arrayToBeRandomized = $stateParams.filteredCollection;
     this.entrantArray = [];
@@ -197,6 +218,13 @@
     this.showStart = true;
     this.showMatchUp = false;
     this.showWinner = false;
+
+    if (!this.collection || !this.collection.length) {
+      GameFactory.getUserCollection()
+        .then(function () {
+          that.collection = $localStorage.collection;
+        });
+    }
 
     this.startTournament = function startTournament() {
       if(this.arrayToBeRandomized.length > 0){
@@ -321,12 +349,21 @@
     .module('game')
     .controller('EliminateChooserController', EliminateChooserController);
 
-  EliminateChooserController.$inject = ['$stateParams'];
+  EliminateChooserController.$inject = ['$stateParams', '$localStorage', 'GameFactory'];
 
-  function EliminateChooserController($stateParams) {
+  function EliminateChooserController($stateParams, $localStorage, GameFactory) {
+
+    var that = this;
 
     this.collection = $stateParams.filteredCollection;
     this.downToOne = false;
+
+    if (!this.collection || !this.collection.length) {
+      GameFactory.getUserCollection()
+        .then(function () {
+          that.collection = $localStorage.collection;
+        });
+    }
 
     this.eliminateGame = function eliminateGame(game) {
       game.eliminated = true;
@@ -356,12 +393,22 @@
     .module('game')
     .controller('NomRandChooserController', NomRandChooserController);
 
-  NomRandChooserController.$inject = ['$stateParams'];
+  NomRandChooserController.$inject = ['$stateParams', '$localStorage', 'GameFactory'];
 
-  function NomRandChooserController($stateParams) {
+  function NomRandChooserController($stateParams, $localStorage, GameFactory) {
+
+    var that = this;
+
     this.collection = $stateParams.filteredCollection;
     this.nomineesArray = [];
     this.randomGame = null;
+
+    if (!this.collection || !this.collection.length) {
+      GameFactory.getUserCollection()
+        .then(function () {
+          that.collection = $localStorage.collection;
+        });
+    }
 
     this.addNominee = function addNominee() {
       this.nomineesArray = this.collection.filter(function (game) {
@@ -389,9 +436,11 @@
     .module('game')
     .controller('NomRankChooserController', NomRankChooserController);
 
-  NomRankChooserController.$inject = ['$stateParams', '$state'];
+  NomRankChooserController.$inject = ['$stateParams', '$state', '$localStorage', 'GameFactory'];
 
-  function NomRankChooserController($stateParams, $state) {
+  function NomRankChooserController($stateParams, $state, $localStorage, GameFactory) {
+
+    var that = this;
 
     this.collection = $stateParams.filteredCollection;
     this.showStartScreen = true;
@@ -399,6 +448,14 @@
     this.currentValueOfVotes = $stateParams.currentValueOfVotes || 0;
     this.winner = $stateParams.winner || null;
     this.showWinner = $stateParams.showWinner || false;
+
+
+    if (!this.collection || !this.collection.length) {
+      GameFactory.getUserCollection()
+        .then(function () {
+          that.collection = $localStorage.collection;
+        });
+    }
 
     this.startProcess = function startProcess() {
       this.showStartScreen = false;
@@ -487,12 +544,21 @@
     .module('game')
     .controller('RandomChooserController', RandomChooserController);
 
-  RandomChooserController.$inject = ['$stateParams'];
+  RandomChooserController.$inject = ['$stateParams', '$localStorage', 'GameFactory'];
 
-  function RandomChooserController($stateParams) {
+  function RandomChooserController($stateParams, $localStorage, GameFactory) {
+
+    var that = this;
 
     this.collection = $stateParams.filteredCollection;
     this.randomGame = null;
+
+    if (!this.collection || !this.collection.length) {
+      GameFactory.getUserCollection()
+        .then(function () {
+          that.collection = $localStorage.collection;
+        });
+    }
 
     this.chooseRandomGame = function chooseRandomGame() {
       var randomNumber = Math.floor(Math.random() * this.collection.length);
@@ -509,15 +575,24 @@
     .module('game')
     .controller('VoteChooserController', VoteChooserController);
 
-  VoteChooserController.$inject = ['$stateParams'];
+  VoteChooserController.$inject = ['$stateParams', '$localStorage', 'GameFactory'];
 
-  function VoteChooserController($stateParams) {
+  function VoteChooserController($stateParams, $localStorage, GameFactory) {
+
+    var that = this;
 
     this.collection = $stateParams.filteredCollection;
     this.nomineesArray = [];
     this.showCollection = true;
     this.showNominees = false;
     this.winner = null;
+
+    if (!this.collection || !this.collection.length) {
+      GameFactory.getUserCollection()
+        .then(function () {
+          that.collection = $localStorage.collection;
+        });
+    }
 
     this.addNominee = function addNominee() {
       this.nomineesArray = this.collection.filter(function (game) {
@@ -580,7 +655,9 @@
     return {
       getUserCollection: getUserCollection,
       searchForGame: searchForGame,
-      findThreeMostPopular: findThreeMostPopular
+      findThreeMostPopular: findThreeMostPopular,
+      amILoggedIn: amILoggedIn,
+      logOut: logOut
     };
 
     function getUserCollection(username) {
@@ -641,7 +718,7 @@
         }).then(function successGetUserCollection(response) {
           buildGenreArray(response.data);
           $localStorage.collection = response.data;
-            console.log(response.data);
+          console.log(response.data);
           return response.data;
         });
       }
@@ -769,6 +846,15 @@
         });
       });
       return genreArray;
+    }
+
+    function amILoggedIn() {
+      return !!$localStorage.collection;
+    }
+
+    function logOut() {
+      $localStorage.username = null;
+      $localStorage.collection = null;
     }
 
   }

@@ -5,9 +5,11 @@
     .module('game')
     .controller('NomRankChooserController', NomRankChooserController);
 
-  NomRankChooserController.$inject = ['$stateParams', '$state'];
+  NomRankChooserController.$inject = ['$stateParams', '$state', '$localStorage', 'GameFactory'];
 
-  function NomRankChooserController($stateParams, $state) {
+  function NomRankChooserController($stateParams, $state, $localStorage, GameFactory) {
+
+    var that = this;
 
     this.collection = $stateParams.filteredCollection;
     this.showStartScreen = true;
@@ -15,6 +17,14 @@
     this.currentValueOfVotes = $stateParams.currentValueOfVotes || 0;
     this.winner = $stateParams.winner || null;
     this.showWinner = $stateParams.showWinner || false;
+
+
+    if (!this.collection || !this.collection.length) {
+      GameFactory.getUserCollection()
+        .then(function () {
+          that.collection = $localStorage.collection;
+        });
+    }
 
     this.startProcess = function startProcess() {
       this.showStartScreen = false;

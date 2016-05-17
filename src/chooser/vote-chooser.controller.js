@@ -5,15 +5,24 @@
     .module('game')
     .controller('VoteChooserController', VoteChooserController);
 
-  VoteChooserController.$inject = ['$stateParams'];
+  VoteChooserController.$inject = ['$stateParams', '$localStorage', 'GameFactory'];
 
-  function VoteChooserController($stateParams) {
+  function VoteChooserController($stateParams, $localStorage, GameFactory) {
+
+    var that = this;
 
     this.collection = $stateParams.filteredCollection;
     this.nomineesArray = [];
     this.showCollection = true;
     this.showNominees = false;
     this.winner = null;
+
+    if (!this.collection || !this.collection.length) {
+      GameFactory.getUserCollection()
+        .then(function () {
+          that.collection = $localStorage.collection;
+        });
+    }
 
     this.addNominee = function addNominee() {
       this.nomineesArray = this.collection.filter(function (game) {

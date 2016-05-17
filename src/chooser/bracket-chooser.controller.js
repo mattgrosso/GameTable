@@ -5,9 +5,11 @@
     .module('game')
     .controller('BracketChooserController', BracketChooserController);
 
-  BracketChooserController.$input = ['$stateParams'];
+  BracketChooserController.$input = ['$stateParams', '$localStorage', 'GameFactory'];
 
-  function BracketChooserController($stateParams) {
+  function BracketChooserController($stateParams, $localStorage, GameFactory) {
+
+    var that = this;
 
     this.arrayToBeRandomized = $stateParams.filteredCollection;
     this.entrantArray = [];
@@ -17,6 +19,13 @@
     this.showStart = true;
     this.showMatchUp = false;
     this.showWinner = false;
+
+    if (!this.collection || !this.collection.length) {
+      GameFactory.getUserCollection()
+        .then(function () {
+          that.collection = $localStorage.collection;
+        });
+    }
 
     this.startTournament = function startTournament() {
       if(this.arrayToBeRandomized.length > 0){

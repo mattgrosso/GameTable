@@ -5,12 +5,21 @@
     .module('game')
     .controller('EliminateChooserController', EliminateChooserController);
 
-  EliminateChooserController.$inject = ['$stateParams'];
+  EliminateChooserController.$inject = ['$stateParams', '$localStorage', 'GameFactory'];
 
-  function EliminateChooserController($stateParams) {
+  function EliminateChooserController($stateParams, $localStorage, GameFactory) {
+
+    var that = this;
 
     this.collection = $stateParams.filteredCollection;
     this.downToOne = false;
+
+    if (!this.collection || !this.collection.length) {
+      GameFactory.getUserCollection()
+        .then(function () {
+          that.collection = $localStorage.collection;
+        });
+    }
 
     this.eliminateGame = function eliminateGame(game) {
       game.eliminated = true;
