@@ -1,8 +1,9 @@
+<p ng-hide="login.loggedIn">
+  You are not currently logged in. Please enter your BGG username below.
+</p>
+
 <form ng-submit="login.login()" class="login-form">
   <input ng-model="login.username" type="text" placeholder="BGG username">
   <input type="submit" value="login">
 </form>
 <p ng-show="login.message">{{login.message}}</p>
-<p>
-  You are loggin is as {{login.storedUsername}}
-</p>
