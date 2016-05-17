@@ -297,10 +297,16 @@
       GameFactory.searchForGame(title).then(function (response) {
         var mostPopular = GameFactory.findThreeMostPopular(response);
         console.log(mostPopular);
+        that.showGamesToAdd = true;
         that.firstGameToAdd = mostPopular[0];
         that.secondGameToAdd = mostPopular[1];
         that.thirdGameToAdd = mostPopular[2];
       });
+    };
+
+    this.addGameToList = function addGameToList(game) {
+      this.collection.push(game);
+      this.showGamesToAdd = false;
     };
   }
 })();

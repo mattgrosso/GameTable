@@ -31,11 +31,13 @@
   <input ng-model="choose.addGameTitle" type="text" name="game-name" placeholder="Game Title">
   <button ng-click="choose.findGameToAdd(choose.addGameTitle)" type="button">Add Game</button>
 </form>
-<ul ng-show="choose.firstGameToAdd">
-  <li>{{choose.firstGameToAdd.name}}</li>
-  <li ng-show="choose.secondGameToAdd">{{choose.secondGameToAdd.name}}</li>
-  <li ng-show="choose.thirdGameToAdd">{{choose.thirdGameToAdd.name}}</li>
+
+<ul ng-show="choose.showGamesToAdd">
+  <li ng-click="choose.addGameToList(choose.firstGameToAdd)" ng-show="choose.firstGameToAdd">{{choose.firstGameToAdd.name}}</li>
+  <li ng-click="choose.addGameToList(choose.secondGameToAdd)" ng-show="choose.secondGameToAdd">{{choose.secondGameToAdd.name}}</li>
+  <li ng-click="choose.addGameToList(choose.thirdGameToAdd)" ng-show="choose.thirdGameToAdd">{{choose.thirdGameToAdd.name}}</li>
 </ul>
+
 
 <p>numgames = {{filteredCollection.length}}</p>
 <ul>
