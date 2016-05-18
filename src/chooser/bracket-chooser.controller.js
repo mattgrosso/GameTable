@@ -20,10 +20,10 @@
     this.showMatchUp = false;
     this.showWinner = false;
 
-    if (!this.collection || !this.collection.length) {
+    if (!this.arrayToBeRandomized || !this.arrayToBeRandomized.length) {
       GameFactory.getUserCollection()
         .then(function () {
-          that.collection = $localStorage.collection;
+          that.arrayToBeRandomized = $localStorage.collection;
         });
     }
 

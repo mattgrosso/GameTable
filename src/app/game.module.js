@@ -143,7 +143,6 @@
   function appStart($rootScope, $state, GameFactory) {
     $rootScope.$on('$stateChangeStart', function checkLoggedIn(event, toState) {
       var isLoggedIn = GameFactory.amILoggedIn();
-
       if (toState.secure && !isLoggedIn) {
         event.preventDefault();
         $state.go('login');

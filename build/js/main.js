@@ -143,7 +143,6 @@
   function appStart($rootScope, $state, GameFactory) {
     $rootScope.$on('$stateChangeStart', function checkLoggedIn(event, toState) {
       var isLoggedIn = GameFactory.amILoggedIn();
-
       if (toState.secure && !isLoggedIn) {
         event.preventDefault();
         $state.go('login');
@@ -219,10 +218,10 @@
     this.showMatchUp = false;
     this.showWinner = false;
 
-    if (!this.collection || !this.collection.length) {
+    if (!this.arrayToBeRandomized || !this.arrayToBeRandomized.length) {
       GameFactory.getUserCollection()
         .then(function () {
-          that.collection = $localStorage.collection;
+          that.arrayToBeRandomized = $localStorage.collection;
         });
     }
 
@@ -358,10 +357,16 @@
     this.collection = $stateParams.filteredCollection;
     this.downToOne = false;
 
+    console.log('this.collection: ', this.collection);
+
     if (!this.collection || !this.collection.length) {
+      console.log('in the if statement');
       GameFactory.getUserCollection()
         .then(function () {
+          console.log('then triggered');
           that.collection = $localStorage.collection;
+          console.log($localStorage.collection);
+          console.log('that.collection: ', that.collection);
         });
     }
 
