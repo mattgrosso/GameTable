@@ -14,11 +14,15 @@
     this.arrayToBeRandomized = $stateParams.filteredCollection;
     this.entrantArray = [];
     this.winnersArray = [];
+    this.numberOfRounds = null;
+    this.currentRound = null;
     this.firstContender = null;
     this.secondContender = null;
+
     this.showStart = true;
     this.showMatchUp = false;
     this.showWinner = false;
+    this.showRoundCounter = false;
 
     if (!this.arrayToBeRandomized || !this.arrayToBeRandomized.length) {
       GameFactory.getUserCollection()
@@ -34,6 +38,9 @@
         this.arrayToBeRandomized.splice(randomIndex, 1);
         this.startTournament();
       } else {
+        this.countRounds(this.entrantArray.length);
+        this.currentRound = 1;
+        this.showRoundCounter = true;
         this.nextMatchup();
       }
     };
@@ -42,11 +49,13 @@
       if(this.entrantArray.length === 0) {
         this.entrantArray = this.winnersArray;
         this.winnersArray = [];
+        this.currentRound++;
       }
       if(this.entrantArray.length === 1){
         this.winner = this.entrantArray[0];
         this.showMatchUp = false;
         this.showStart = false;
+        this.showRoundCounter = false;
         this.showWinner = true;
         return;
       }
@@ -76,6 +85,19 @@
       }
       else if (number === 'random') {
         this.pickWinner( Math.floor((Math.random() * 2)) + 1 );
+      }
+    };
+
+    this.countRounds = function countRounds(entrants, roundCount) {
+      var runningTotal = entrants;
+      var roundCounter = roundCount || 0;
+      console.log(roundCounter);
+      if (runningTotal/2 > 1) {
+        roundCounter++;
+        this.countRounds(runningTotal/2, roundCounter);
+      } else {
+        roundCounter++;
+        this.numberOfRounds = roundCounter;
       }
     };
   }

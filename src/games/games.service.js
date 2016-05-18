@@ -33,6 +33,11 @@
           url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username + '&stats=1&excludesubtype=boardgameexpansion&own=1',
           transformResponse: function prettifyCollectionArray(response) {
             var parsedResponse = JSON.parse(response);
+            console.log(parsedResponse);
+            console.log(typeof parsedResponse.message);
+            if (typeof parsedResponse.message === 'string') {
+              return 'in queue';
+            }
             var prettyCollectionArray = [];
             parsedResponse.items.item.forEach(function (each) {
               var gameObject = {};
@@ -75,9 +80,18 @@
             return prettyCollectionArray;
           }
         }).then(function successGetUserCollection(response) {
+          console.log('then function raw response: ',response);
+          if (response.data === 'in queue') {
+            var def = $q.defer();
+            var status = {
+              status: "in queue",
+              message: "BGG is working on it"
+            };
+            def.reject(status);
+            return def.promise;
+          }
           buildGenreArray(response.data);
           $localStorage.collection = response.data;
-          console.log(response.data);
           return response.data;
         });
       }

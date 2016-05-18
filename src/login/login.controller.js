@@ -32,8 +32,14 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
           that.storedUsername = $localStorage.username;
           $state.go('choose');
         })
-        .catch(function () {
-          that.message = "Log in failed. Please check your username.";
+        .catch(function (response) {
+          if (response.status === 'in queue') {
+            // that.message = "BGG is working on getting your collection but they are very slow about it. Sit tight, we'll keep bugging them until they do it.";
+            setTimeout(that.login, 1000);
+          } else {
+            console.log('response in the catch function: ',response);
+            that.message = "Log in failed. Please check your username.";
+          }
         });
         that.message = "Please hold, BGG is slow.";
     };

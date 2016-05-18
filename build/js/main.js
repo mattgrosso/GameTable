@@ -166,7 +166,7 @@
           if(players && (players < each.playerCount.min || players > each.playerCount.max)){
             include = false;
           }
-          if(duration && duration > each.playTime.max){
+          if(duration && duration < each.playTime.min){
             include = false;
           }
           if(include && genre){
@@ -212,11 +212,15 @@
     this.arrayToBeRandomized = $stateParams.filteredCollection;
     this.entrantArray = [];
     this.winnersArray = [];
+    this.numberOfRounds = null;
+    this.currentRound = null;
     this.firstContender = null;
     this.secondContender = null;
+
     this.showStart = true;
     this.showMatchUp = false;
     this.showWinner = false;
+    this.showRoundCounter = false;
 
     if (!this.arrayToBeRandomized || !this.arrayToBeRandomized.length) {
       GameFactory.getUserCollection()
@@ -232,6 +236,9 @@
         this.arrayToBeRandomized.splice(randomIndex, 1);
         this.startTournament();
       } else {
+        this.countRounds(this.entrantArray.length);
+        this.currentRound = 1;
+        this.showRoundCounter = true;
         this.nextMatchup();
       }
     };
@@ -240,11 +247,13 @@
       if(this.entrantArray.length === 0) {
         this.entrantArray = this.winnersArray;
         this.winnersArray = [];
+        this.currentRound++;
       }
       if(this.entrantArray.length === 1){
         this.winner = this.entrantArray[0];
         this.showMatchUp = false;
         this.showStart = false;
+        this.showRoundCounter = false;
         this.showWinner = true;
         return;
       }
@@ -274,6 +283,19 @@
       }
       else if (number === 'random') {
         this.pickWinner( Math.floor((Math.random() * 2)) + 1 );
+      }
+    };
+
+    this.countRounds = function countRounds(entrants, roundCount) {
+      var runningTotal = entrants;
+      var roundCounter = roundCount || 0;
+      console.log(roundCounter);
+      if (runningTotal/2 > 1) {
+        roundCounter++;
+        this.countRounds(runningTotal/2, roundCounter);
+      } else {
+        roundCounter++;
+        this.numberOfRounds = roundCounter;
       }
     };
   }
@@ -673,6 +695,11 @@
           url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username + '&stats=1&excludesubtype=boardgameexpansion&own=1',
           transformResponse: function prettifyCollectionArray(response) {
             var parsedResponse = JSON.parse(response);
+            console.log(parsedResponse);
+            console.log(typeof parsedResponse.message);
+            if (typeof parsedResponse.message === 'string') {
+              return 'in queue';
+            }
             var prettyCollectionArray = [];
             parsedResponse.items.item.forEach(function (each) {
               var gameObject = {};
@@ -715,9 +742,18 @@
             return prettyCollectionArray;
           }
         }).then(function successGetUserCollection(response) {
+          console.log('then function raw response: ',response);
+          if (response.data === 'in queue') {
+            var def = $q.defer();
+            var status = {
+              status: "in queue",
+              message: "BGG is working on it"
+            };
+            def.reject(status);
+            return def.promise;
+          }
           buildGenreArray(response.data);
           $localStorage.collection = response.data;
-          console.log(response.data);
           return response.data;
         });
       }
@@ -931,8 +967,14 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
           that.storedUsername = $localStorage.username;
           $state.go('choose');
         })
-        .catch(function () {
-          that.message = "Log in failed. Please check your username.";
+        .catch(function (response) {
+          if (response.status === 'in queue') {
+            // that.message = "BGG is working on getting your collection but they are very slow about it. Sit tight, we'll keep bugging them until they do it.";
+            setTimeout(that.login, 1000);
+          } else {
+            console.log('response in the catch function: ',response);
+            that.message = "Log in failed. Please check your username.";
+          }
         });
         that.message = "Please hold, BGG is slow.";
     };
