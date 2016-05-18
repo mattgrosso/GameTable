@@ -357,16 +357,10 @@
     this.collection = $stateParams.filteredCollection;
     this.downToOne = false;
 
-    console.log('this.collection: ', this.collection);
-
     if (!this.collection || !this.collection.length) {
-      console.log('in the if statement');
       GameFactory.getUserCollection()
         .then(function () {
-          console.log('then triggered');
           that.collection = $localStorage.collection;
-          console.log($localStorage.collection);
-          console.log('that.collection: ', that.collection);
         });
     }
 
@@ -910,9 +904,9 @@
     .module('game')
     .controller('LoginController', LoginController);
 
-LoginController.$inject = ['GameFactory', '$localStorage'];
+LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
 
-  function LoginController(GameFactory, $localStorage) {
+  function LoginController($localStorage, $state, GameFactory) {
 
     var that = this;
 
@@ -922,9 +916,7 @@ LoginController.$inject = ['GameFactory', '$localStorage'];
 
     this.loggedIn = false;
 
-    console.log('This is $localStorage.username: ',$localStorage.username);
-    if ($localStorage.username) {
-      console.log('Were inside of the if statement');
+    if (GameFactory.amILoggedIn()) {
       this.loggedIn = true;
     }
 
@@ -937,12 +929,19 @@ LoginController.$inject = ['GameFactory', '$localStorage'];
           that.message = "You are now logged in.";
           that.username = "";
           that.storedUsername = $localStorage.username;
+          $state.go('choose');
         })
         .catch(function () {
           that.message = "Log in failed. Please check your username.";
         });
         that.message = "Please hold, BGG is slow.";
+    };
 
+    this.logOut = function logOut() {
+      console.log('logout function is running');
+      GameFactory.logOut();
+      this.loggedIn = true;
+      $state.go('login');
     };
   }
 

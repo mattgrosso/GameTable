@@ -4,18 +4,17 @@
     <meta charset="utf-8">
     <title>Game Chooser</title>
 
-    <link rel='stylesheet' type='text/css' href='css/main.css'>
+    <!-- <link rel='stylesheet' type='text/css' href='css/main.css'> -->
 
   </head>
   <body>
     <h1>Game Chooser</h1>
 
-    <nav>
+    <nav ng-controller="LoginController as login">
       <ul>
-        <li><a ui-sref="choose">Choose a Game</a></li>
-        <li><a ui-sref="login">Login</a></li>
-        <li><a ui-sref="list">List My Games</a></li>
-        <li><a ui-sref="settings">Settings</a></li>
+        <li ng-show="login.loggedIn"><a ui-sref="choose">Choose a Game</a></li>
+        <li ng-hide="login.loggedIn"><a ui-sref="login">Login</a></li>
+        <li ng-show="login.loggedIn"><a ng-click="login.logOut()">Logout</a></li>
       </ul>
     </nav>
 

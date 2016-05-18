@@ -44,10 +44,6 @@
 <ul>
   <li ng-repeat="game in choose.collection | gameFilter:choose.players:choose.duration:choose.genre as filteredCollection">
     <img ng-src="{{game.image.thumbnailURL}}"/>
-    {{game.name}},
-    {{game.playTime}},
-    {{game.genres[0]}},
-    {{game.genres[1]}},
-    {{game.genres[2]}},
+    {{game.name}}
   </li>
 </ul>
