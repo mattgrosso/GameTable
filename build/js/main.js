@@ -79,8 +79,6 @@
       .state('nominate-rank.nominate', {
         url: '/nomrank/nominate',
         templateUrl: 'chooser/nomrank-nominate.template.html',
-        controller: 'NomRankChooserController',
-        controllerAs: 'nomrank',
         secure: true,
         params: {
           filteredCollection: []
@@ -89,8 +87,6 @@
       .state('nominate-rank.value', {
         url: '/nomrank/value',
         templateUrl: 'chooser/nomrank-value.template.html',
-        controller: 'NomRankChooserController',
-        controllerAs: 'nomrank',
         secure: true,
         params: {
           nominatedCollection: [],
@@ -102,8 +98,6 @@
       .state('nominate-rank.results', {
         url: '/nomrank/value-results',
         templateUrl: 'chooser/nomrank-results.template.html',
-        controller: 'NomRankChooserController',
-        controllerAs: 'nomrank',
         secure: true,
         params: {
           nominatedCollection: [],
@@ -162,6 +156,30 @@
         });
       };
     });
+
+})();
+
+(function() {
+  'use strict';
+
+  angular
+    .module('game')
+    .directive('popUpNote', popUpNote);
+
+  function popUpNote() {
+    return {
+      restrict: 'A',
+      template: '',
+      link: function renderPopUp(scope, element) {
+        element.click(function() {
+          element.after('<aside class="vote-popup">voted!</aside>');
+          setTimeout(function () {
+            $('.vote-popup').remove();
+          }, 500);
+        });
+      }
+    };
+  }
 
 })();
 
@@ -447,6 +465,8 @@
 
   function NomRankChooserController($stateParams, $state, $localStorage, GameFactory) {
 
+    console.log('refreshing NomRankChooserController');
+
     var that = this;
 
     this.collection = $stateParams.filteredCollection;
@@ -472,6 +492,7 @@
     this.addNominee = function addNominee() {
       this.nomineesArray = this.collection.filter(function (game) {
         if(game.nominated){
+          game.value = 0;
           return true;
         } else{
           return false;
@@ -480,6 +501,7 @@
     };
 
     this.goToValueVoting = function goToValueVoting() {
+      this.showStartScreen = false;
       if(this.currentValueOfVotes < 3){
         this.currentValueOfVotes++;
         $state.go('nominate-rank.value', {
@@ -499,6 +521,8 @@
     };
 
     this.addValue = function addValue(game) {
+      console.log(game);
+      console.log(game.value);
       game.value = game.value || 0;
       game.value = game.value + this.currentValueOfVotes;
     };
@@ -619,6 +643,11 @@
     this.voteForGame = function voteForGame(game) {
       game.votes = game.votes || 0;
       game.votes = game.votes + 1;
+      // game.verify = true;
+      // setTimeout(function () {
+      //   console.log('running!');
+      //   game.verify = false;
+      // }, 500);
     };
 
     this.showWinner = function showWinner() {
@@ -681,8 +710,6 @@
           url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username + '&stats=1&excludesubtype=boardgameexpansion&own=1',
           transformResponse: function prettifyCollectionArray(response) {
             var parsedResponse = JSON.parse(response);
-            console.log(parsedResponse);
-            console.log(typeof parsedResponse.message);
             if (typeof parsedResponse.message === 'string') {
               return 'in queue';
             }
@@ -728,7 +755,6 @@
             return prettyCollectionArray;
           }
         }).then(function successGetUserCollection(response) {
-          console.log('then function raw response: ',response);
           if (response.data === 'in queue') {
             var def = $q.defer();
             var status = {
@@ -898,18 +924,13 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
     this.storedUsername = $localStorage.username;
     this.message = "";
 
-    this.loggedIn = false;
-
-    if (GameFactory.amILoggedIn()) {
-      this.loggedIn = true;
-    }
+    this.loggedIn = GameFactory.amILoggedIn;
 
     this.login = function login() {
       $localStorage.collection = null;
       GameFactory.getUserCollection(that.username)
         .then(function () {
           $localStorage.username = that.username;
-          that.loggedIn = true;
           that.message = "You are now logged in.";
           that.username = "";
           that.storedUsername = $localStorage.username;
@@ -930,7 +951,6 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
     this.logOut = function logOut() {
       console.log('logout function is running');
       GameFactory.logOut();
-      this.loggedIn = true;
       $state.go('login');
     };
   }

@@ -79,8 +79,6 @@
       .state('nominate-rank.nominate', {
         url: '/nomrank/nominate',
         templateUrl: 'chooser/nomrank-nominate.template.html',
-        controller: 'NomRankChooserController',
-        controllerAs: 'nomrank',
         secure: true,
         params: {
           filteredCollection: []
@@ -89,8 +87,6 @@
       .state('nominate-rank.value', {
         url: '/nomrank/value',
         templateUrl: 'chooser/nomrank-value.template.html',
-        controller: 'NomRankChooserController',
-        controllerAs: 'nomrank',
         secure: true,
         params: {
           nominatedCollection: [],
@@ -102,8 +98,6 @@
       .state('nominate-rank.results', {
         url: '/nomrank/value-results',
         templateUrl: 'chooser/nomrank-results.template.html',
-        controller: 'NomRankChooserController',
-        controllerAs: 'nomrank',
         secure: true,
         params: {
           nominatedCollection: [],

@@ -17,8 +17,8 @@
 <ul ng-show="vote.showNominees">
   <li ng-repeat="game in vote.nomineesArray">
     {{game.name}}
-    <button ng-click="vote.voteForGame(game)" type="button">+</button>
-    {{game.votes}}
+    <button ng-click="vote.voteForGame(game)" pop-up-note="voted!" type="button">+</button>
+    <!-- <aside ng-show="game.verify">voted!</aside> -->
   </li>
 </ul>
 

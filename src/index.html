@@ -12,9 +12,9 @@
 
     <nav ng-controller="LoginController as login">
       <ul>
-        <li><a ui-sref="choose">Choose a Game</a></li>
-        <li><a ui-sref="login">Login</a></li>
-        <li><a ng-click="login.logOut()">Logout</a></li>
+        <li ng-show="login.loggedIn()"><a ui-sref="choose">Choose a Game</a></li>
+        <li ng-hide="login.loggedIn()"><a ui-sref="login">Login</a></li>
+        <li ng-show="login.loggedIn()"><a href="#" ng-click="login.logOut()">Logout</a></li>
       </ul>
     </nav>
 
