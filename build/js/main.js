@@ -172,10 +172,14 @@
       template: '',
       link: function renderPopUp(scope, element, attrs) {
         element.click(function() {
-          element.after('<aside class="vote-popup">' + attrs + '</aside>');
-          setTimeout(function () {
-            $('.vote-popup').remove();
-          }, 500);
+          if(attrs.popUpNote === 'voted!'){
+            element.after('<aside class="vote-popup">' + attrs.popUpNote + '</aside>');
+            setTimeout(function () {
+              $('.vote-popup').remove();
+            }, 500);
+          } else {
+            element.after('<aside class="vote-popup">' + attrs.popUpNote + '</aside>');
+          }
         });
       }
     };
@@ -364,6 +368,8 @@
       this.showGamesToAdd = false;
       this.showAddGame = false;
     };
+
+    this.methodDescriptions = "Random: Choose a game randomly.<br>Nominate-Random: Choose a game randomly from a list of games you nominate.<br>Eliminate: Choose a game by taking turns eliminating games from a list.<br>Vote: Choose a game by voting on games in a list of games you nominate.<br>Nominate-Rank: Choose a game through a series of votes of increasing value.<br>Bracket: Choose a game by going though a tournament of head-to-head matchups";
   }
 })();
 
