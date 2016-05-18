@@ -19,20 +19,6 @@
         controller: 'LoginController',
         controllerAs: 'login'
       })
-      .state('list', {
-        url: '/list',
-        templateUrl: 'lists/game-list.template.html',
-        controller: 'ListController',
-        secure: true,
-        controllerAs: 'list'
-      })
-      .state('settings', {
-        url: '/settings',
-        templateUrl: 'settings/settings.template.html',
-        controller: 'SettingsController',
-        secure: true,
-        controllerAs: 'settings'
-      })
       .state('choose', {
         url: '/choose',
         templateUrl: 'chooser/chooser.template.html',
@@ -900,44 +886,6 @@
 
   angular
     .module('game')
-    .controller('HomeController', HomeController);
-
-  HomeController.$inject = ['GameFactory', '$localStorage'];
-
-  function HomeController() {
-
-  }
-
-})();
-
-(function() {
-  'use strict';
-
-  angular
-    .module('game')
-    .controller('ListController', ListController);
-
-  ListController.$inject = ['GameFactory', '$localStorage'];
-
-  function ListController(GameFactory) {
-
-    var that = this;
-
-    this.collection = [];
-
-    GameFactory.getUserCollection().then(function (collection) {
-      that.collection = collection;
-    });
-
-  }
-
-})();
-
-(function() {
-  'use strict';
-
-  angular
-    .module('game')
     .controller('LoginController', LoginController);
 
 LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
@@ -987,23 +935,6 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
     };
   }
 
-})();
-
-(function() {
-  'use strict';
-
-  angular
-    .module('game')
-    .controller('SettingsController', SettingsController);
-
-  SettingsController.$inject = ['$localStorage'];
-
-  function SettingsController($localStorage) {
-    this.logout = function logout() {
-      $localStorage.username = null;
-      $localStorage.collection = null;
-    };
-  }
 })();
 
 //# sourceMappingURL=main.js.map
