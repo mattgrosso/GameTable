@@ -22,6 +22,14 @@
       <option value="" disabled selected>Choose a method for choosing</option>
       <option ng-repeat="chooser in choose.chooserArray" value="{{chooser}}">{{chooser | titleCase}}</option>
     </select>
+    <aside>
+      Random: Choose a game randomly<br>
+      Nominate-Random: Choose a game randomly from a list of games you nominate<br>
+      Eliminate: Choose a game by taking turns eliminating games from a list<br>
+      Vote: Choose a game by voting on games in a list of games you nominate<br>
+      Nominate-Rank: Choose a game through a series of votes of increasing value<br>
+      Bracket: Choose a game by going though a tournament of head-to-head matchups<br>
+    </aside>
   </fieldset>
   <button ng-click="choose.goToChooser(filteredCollection)" type="button" name="choose-button">Choose</button>
 </form>
@@ -45,5 +53,7 @@
   <li ng-repeat="game in choose.collection | gameFilter:choose.players:choose.duration:choose.genre as filteredCollection">
     <img ng-src="{{game.image.thumbnailURL}}"/>
     {{game.name}}
+    max: {{game.playTime.max}}
+    min: {{game.playTime.min}}
   </li>
 </ul>
