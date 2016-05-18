@@ -19,20 +19,6 @@
         controller: 'LoginController',
         controllerAs: 'login'
       })
-      .state('list', {
-        url: '/list',
-        templateUrl: 'lists/game-list.template.html',
-        controller: 'ListController',
-        secure: true,
-        controllerAs: 'list'
-      })
-      .state('settings', {
-        url: '/settings',
-        templateUrl: 'settings/settings.template.html',
-        controller: 'SettingsController',
-        secure: true,
-        controllerAs: 'settings'
-      })
       .state('choose', {
         url: '/choose',
         templateUrl: 'chooser/chooser.template.html',
