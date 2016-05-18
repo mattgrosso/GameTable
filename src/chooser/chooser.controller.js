@@ -17,7 +17,32 @@
     this.genreArray = $localStorage.genreArray;
     this.chooser = "";
     this.addGameTitle = "";
-    this.chooserArray = ['random', 'nominate-random', 'eliminate', 'vote', 'nominate-rank', 'bracket'];
+    this.chooserArray = [
+      {
+        menuName: 'Random',
+        stateName: 'random'
+      },
+      {
+        menuName: 'Nominate-Random',
+        stateName: 'nominate-random'
+      },
+      {
+        menuName: 'Eliminate',
+        stateName: 'eliminate'
+      },
+      {
+        menuName: 'Vote',
+        stateName: 'vote'
+      },
+      {
+        menuName: 'Nominate-Rank',
+        stateName: 'nominate-rank.start'
+      },
+      {
+        menuName: 'Bracket',
+        stateName: 'bracket'
+      }
+    ];
 
     this.firstGameToAdd = null;
     this.secondGameToAdd = null;

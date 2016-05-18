@@ -76,6 +76,14 @@
           filteredCollection: []
         }
       })
+      .state('nominate-rank.start', {
+        url: '/nomrank/start',
+        templateUrl: 'chooser/nomrank-start.template.html',
+        secure: true,
+        params: {
+          filteredCollection: []
+        }
+      })
       .state('nominate-rank.nominate', {
         url: '/nomrank/nominate',
         templateUrl: 'chooser/nomrank-nominate.template.html',
@@ -172,14 +180,10 @@
       template: '',
       link: function renderPopUp(scope, element, attrs) {
         element.click(function() {
-          if(attrs.popUpNote === 'voted!'){
-            element.after('<aside class="vote-popup">' + attrs.popUpNote + '</aside>');
-            setTimeout(function () {
-              $('.vote-popup').remove();
-            }, 500);
-          } else {
-            element.after('<aside class="vote-popup">' + attrs.popUpNote + '</aside>');
-          }
+          element.after('<aside class="vote-popup">' + attrs.popUpNote + '</aside>');
+          setTimeout(function () {
+            $('.vote-popup').remove();
+          }, 500);
         });
       }
     };
@@ -329,7 +333,32 @@
     this.genreArray = $localStorage.genreArray;
     this.chooser = "";
     this.addGameTitle = "";
-    this.chooserArray = ['random', 'nominate-random', 'eliminate', 'vote', 'nominate-rank', 'bracket'];
+    this.chooserArray = [
+      {
+        menuName: 'Random',
+        stateName: 'random'
+      },
+      {
+        menuName: 'Nominate-Random',
+        stateName: 'nominate-random'
+      },
+      {
+        menuName: 'Eliminate',
+        stateName: 'eliminate'
+      },
+      {
+        menuName: 'Vote',
+        stateName: 'vote'
+      },
+      {
+        menuName: 'Nominate-Rank',
+        stateName: 'nominate-rank.start'
+      },
+      {
+        menuName: 'Bracket',
+        stateName: 'bracket'
+      }
+    ];
 
     this.firstGameToAdd = null;
     this.secondGameToAdd = null;

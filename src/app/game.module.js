@@ -76,6 +76,14 @@
           filteredCollection: []
         }
       })
+      .state('nominate-rank.start', {
+        url: '/nomrank/start',
+        templateUrl: 'chooser/nomrank-start.template.html',
+        secure: true,
+        params: {
+          filteredCollection: []
+        }
+      })
       .state('nominate-rank.nominate', {
         url: '/nomrank/nominate',
         templateUrl: 'chooser/nomrank-nominate.template.html',
