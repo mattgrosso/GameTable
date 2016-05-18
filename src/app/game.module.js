@@ -10,11 +10,11 @@
 
   function gameConfig($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/choose');
 
     $stateProvider
       .state('login', {
-        url: '/',
+        url: '/login',
         templateUrl: 'login/login.template.html',
         controller: 'LoginController',
         controllerAs: 'login'
