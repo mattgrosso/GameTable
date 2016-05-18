@@ -9,6 +9,8 @@
 
   function NomRankChooserController($stateParams, $state, $localStorage, GameFactory) {
 
+    console.log('refreshing NomRankChooserController');
+
     var that = this;
 
     this.collection = $stateParams.filteredCollection;
@@ -34,6 +36,7 @@
     this.addNominee = function addNominee() {
       this.nomineesArray = this.collection.filter(function (game) {
         if(game.nominated){
+          game.value = 0;
           return true;
         } else{
           return false;
@@ -42,6 +45,7 @@
     };
 
     this.goToValueVoting = function goToValueVoting() {
+      this.showStartScreen = false;
       if(this.currentValueOfVotes < 3){
         this.currentValueOfVotes++;
         $state.go('nominate-rank.value', {
@@ -61,6 +65,8 @@
     };
 
     this.addValue = function addValue(game) {
+      console.log(game);
+      console.log(game.value);
       game.value = game.value || 0;
       game.value = game.value + this.currentValueOfVotes;
     };

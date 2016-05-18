@@ -2,8 +2,12 @@
   Next Round
 </button>
 
+<p>
+  These are the scores so far. Click 'next round' when you're ready to move to the next round.
+</p>
+
 <ul ng-show="{{nomrank.currentValueOfVotes}} < 3" ng-hide="{{nomrank.showWinner}}">
-  <li ng-repeat="game in nomrank.nomineesArray">{{game.name}} ({{game.value || 0}}pts)</li>
+  <li ng-repeat="game in nomrank.nomineesArray | orderBy: '-value'">{{game.name}} ({{game.value || 0}}pts)</li>
 </ul>
 
 <h2 ng-show="{{nomrank.showWinner}}">{{nomrank.winner.name}} with {{nomrank.winner.value}}pts</h2>
