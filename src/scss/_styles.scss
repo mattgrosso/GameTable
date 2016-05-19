@@ -1,5 +1,18 @@
 body{
-  width: 95%;
+  width: 100%;
+}
+
+button{
+  display: block;
+    margin: auto;
+    width: 60%;
+    background-color: #015C35;
+    font-size: 3em;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .main-content{
@@ -120,28 +133,68 @@ body{
 .chooser-form{
   clear: both;
   margin: auto;
-  width: 85%;
-  padding-top: 15px;
+  width: 100%;
+  padding-top: 25px;
   padding-bottom: 15px;
+  border-bottom: solid #015C35 5px;
   label{
     font-size: 3em;
     padding-right: 10%;
 
   }
   input{
-    font-size: 3em;
-    position: relative;
-    right: -17%;
-    width: 500px;
+    font-size: 2.5em;
+    width: 80%;
     border: solid grey 1px;
     text-align: center;
-    margin: 10px;
+    margin: auto;
+    display: block;
+    margin-bottom: 30px;
+    box-shadow: grey 5px 5px 25px;
+    height: 80px;
+    font-family: 'Libre Baskerville', serif;
   }
   select{
-    font-size: 3em;
+    font-size: 2.5em;
+    width: 80%;
+    border: solid grey 1px;
+    text-align: center;
+    margin: auto;
+    display: block;
+    margin-bottom: 30px;
+    box-shadow: grey 5px 5px 25px;
+    height: 80px;
+    background-color: white;
+    padding-left: 26%;
+    color: #A9A9A9;
+    font-family: 'Libre Baskerville', serif;
+    .select-selector{
+      padding-left: 24%;
+    }
   }
 }
 
 .chooser-info{
+  display: none;
+}
+
+.chooser-button{
+  margin: auto;
+  display: block;
+  font-size: 3em;
+  color: white;
+  background-color: #015C35;
+  border: 1px solid grey;
+  padding: 15px;
+  padding-left: 55px;
+  padding-right: 55px;
+  border-radius: 5px;
+  box-shadow: grey 5px 5px 25px;
+  margin-top: 55px;
+  margin-bottom: 35px;
+  font-family: 'Libre Baskerville', serif;
+}
+
+.add-game-button{
   display: none;
 }

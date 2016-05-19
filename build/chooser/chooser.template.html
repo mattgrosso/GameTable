@@ -1,35 +1,23 @@
 <h2 class="chooser-header">Choose a game</h2>
 
 <form class="chooser-form">
-  <fieldset>
-    <label for="player-count">Players</label>
-    <input ng-model="choose.players" type="text" name="player-count" placeholder="player count">
-  </fieldset>
-  <fieldset>
-    <label for="duration">Duration</label>
-    <input ng-model="choose.duration" type="text" name="duration" placeholder="duration (min)">
-  </fieldset>
-  <fieldset>
-    <label for="genre">Genre</label>
-    <select ng-model="choose.genre" name="genre">
-      <option value="" disabled selected>all genres</option>
-      <option ng-repeat="genre in choose.genreArray">{{genre | titleCase}}</option>
-    </select>
-  </fieldset>
-  <fieldset>
-    <label for="chooser">How to choose</label>
-    <select ng-model="choose.chooser" >
-      <option value="" disabled selected>selector</option>
-      <option ng-repeat="chooser in choose.chooserArray" value="{{chooser.stateName}}">{{chooser.menuName}}</option>
-    </select>
-    <aside class="chooser-info">
-      Random: Choose a game randomly.<br>Nominate-Random: Choose a game randomly from a list of games you nominate.<br>Eliminate: Choose a game by taking turns eliminating games from a list.<br>Vote: Choose a game by voting on games in a list of games you nominate.<br>Nominate-Rank: Choose a game through a series of votes of increasing value.<br>Bracket: Choose a game by going though a tournament of head-to-head matchups
-    </aside>
-  </fieldset>
-  <button ng-click="choose.goToChooser(filteredCollection)" type="button" name="choose-button">Choose</button>
+  <input ng-model="choose.players" type="text" name="player-count" placeholder="player count">
+  <input ng-model="choose.duration" type="text" name="duration" placeholder="duration (min)">
+  <select ng-model="choose.genre" name="genre">
+    <option value="" disabled selected>select genre</option>
+    <option ng-repeat="genre in choose.genreArray">{{genre | titleCase}}</option>
+  </select>
+  <select class="select-selector"ng-model="choose.chooser" >
+    <option value="" disabled selected>select selector</option>
+    <option ng-repeat="chooser in choose.chooserArray" value="{{chooser.stateName}}">{{chooser.menuName}}</option>
+  </select>
+  <aside class="chooser-info">
+    Random: Choose a game randomly.<br>Nominate-Random: Choose a game randomly from a list of games you nominate.<br>Eliminate: Choose a game by taking turns eliminating games from a list.<br>Vote: Choose a game by voting on games in a list of games you nominate.<br>Nominate-Rank: Choose a game through a series of votes of increasing value.<br>Bracket: Choose a game by going though a tournament of head-to-head matchups
+  </aside>
+  <button class="chooser-button" ng-click="choose.goToChooser(filteredCollection)" type="button" name="choose-button">Choose</button>
 </form>
 
-<button ng-click="choose.showAddGameForm()" type="button">Add A Game To The List</button>
+<button class="add-game-button" ng-click="choose.showAddGameForm()" type="button">Add A Game</button>
 <form ng-show="choose.showAddGame">
   <h3>Add a game by title</h3>
   <input ng-model="choose.addGameTitle" type="text" name="game-name" placeholder="Game Title">
@@ -43,7 +31,7 @@
 </ul>
 
 
-<p>numgames = {{filteredCollection.length}}</p>
+<p>{{filteredCollection.length}} games</p>
 <ul>
   <li ng-repeat="game in choose.collection | gameFilter:choose.players:choose.duration:choose.genre as filteredCollection">
     <img ng-src="{{game.image.thumbnailURL}}"/>
