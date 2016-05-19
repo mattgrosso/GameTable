@@ -12,14 +12,18 @@
   </head>
   <body>
 
-    <img class="login-page-logo" src="/images/gametable.png" alt="gametable logo" />
+    <header ng-class="{headerlarge: !header.loggedIn(), headersmall: header.loggedIn()}" ng-controller="HeaderController as header">
+      <img class="logo" ng-class="{logolarge: !header.loggedIn(), logosmall: header.loggedIn()}" src="/images/gametable.png" alt="gametable logo" />
+      <a class="logout-button" ng-hide="!header.loggedIn()" ng-click="header.logOut()" href="#">logout</a>
+      <aside class="header-username" ng-hide="!header.loggedIn()">{{header.username()}}</aside>
+    </header>
 
-    <nav class="main-nav" ng-controller="LoginController as login" ng-show="login.loggedIn()">
+    <!-- <nav class="main-nav" ng-controller="LoginController as login" ng-show="login.loggedIn()">
       <ul>
         <li><a class="nav-link" ui-sref="choose">Choose a Game</a></li>
         <li><a class="nav-link" href="#" ng-click="login.logOut()">Logout</a></li>
       </ul>
-    </nav>
+    </nav> -->
 
     <section class="main-content" ui-view class="main-content"></section>
 

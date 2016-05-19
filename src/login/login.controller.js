@@ -38,12 +38,6 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
         });
         that.message = "Please hold, BGG is slow.";
     };
-
-    this.logOut = function logOut() {
-      console.log('logout function is running');
-      GameFactory.logOut();
-      $state.go('login');
-    };
   }
 
 })();

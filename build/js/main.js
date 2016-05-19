@@ -942,6 +942,33 @@
 
   angular
     .module('game')
+    .controller('HeaderController', HeaderController);
+
+  HeaderController.$inject = ['$state', '$localStorage', 'GameFactory'];
+
+  function HeaderController($state, $localStorage, GameFactory) {
+    console.log('Inside of HeaderController');
+
+    this.loggedIn = GameFactory.amILoggedIn;
+
+    this.username = function getUsername() {
+      return $localStorage.username;
+    };
+
+    this.logOut = function logOut() {
+      console.log('logout function is running');
+      GameFactory.logOut();
+      $state.go('login');
+    };
+  }
+
+})();
+
+(function() {
+  'use strict';
+
+  angular
+    .module('game')
     .controller('LoginController', LoginController);
 
 LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
@@ -976,12 +1003,6 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
           }
         });
         that.message = "Please hold, BGG is slow.";
-    };
-
-    this.logOut = function logOut() {
-      console.log('logout function is running');
-      GameFactory.logOut();
-      $state.go('login');
     };
   }
 

@@ -1,31 +1,31 @@
 body{
-  width: 95%;
+  width: 100%;
 }
 
 .main-content{
   width: 100%;
 }
 
-.main-nav{
-  background-color: #015C35;
-  width: 100%;
-  font-size: 2em;
-  padding: 10px;
-  text-align: center;
-  position: fixed;
-  bottom: 0px;
-  .nav-link{
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
-  }
+.headersmall{
+  border-bottom: 8px solid #015C35;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 3%;
+  padding-right: 3%;
 }
 
-.login-page-logo{
+.logolarge{
   width: 70%;
   margin-top: 25%;
   margin-left: 19%;
   margin-bottom: 10%;
+}
+
+.logosmall{
+  width: 20%;
+  margin-left: 2%;
+  margin-top: 2%;
+  transition: all 0.5s ease-in;
 }
 
 .login-input{
@@ -46,7 +46,7 @@ body{
 
 .login-button{
   margin-left: 17%;
-  margin-top: 85px;
+  margin-top: 95px;
   padding: 15px;
   width: 70%;
   font-size: 2.75em;
@@ -59,6 +59,35 @@ body{
   &:focus{
     outline: none;
   }
+}
+
+.header-username{
+  float: right;
+  font-size: 5em;
+  margin-top: 4.5%;
+  padding: 12px;
+  color: black;
+  margin-right: 8%;
+  font-weight: bold;
+  text-shadow: #bfbfbf 5px 5px 25px;
+  -webkit-text-stroke: 1px black;
+}
+
+.logout-button{
+  float: right;
+  font-size: 3em;
+  text-decoration: none;
+  margin-top: 7.5%;
+  margin-right: 0%;
+  color: white;
+  font-weight: bold;
+  background-color: #015C35;
+  padding: 12px;
+  border-radius: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  transition: all 0.5s ease-in;
+  box-shadow: #bfbfbf 5px 5px 25px;
 }
 
 .login-message{
