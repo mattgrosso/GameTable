@@ -119,15 +119,23 @@ body{
 
 .chooser-form{
   clear: both;
-  h3{
-    font-size: 5em;
-  }
+  margin: auto;
+  width: 85%;
+  padding-top: 15px;
+  padding-bottom: 15px;
   label{
     font-size: 3em;
+    padding-right: 10%;
+
   }
   input{
     font-size: 3em;
-    width: 25%;
+    position: relative;
+    right: -17%;
+    width: 500px;
+    border: solid grey 1px;
+    text-align: center;
+    margin: 10px;
   }
   select{
     font-size: 3em;

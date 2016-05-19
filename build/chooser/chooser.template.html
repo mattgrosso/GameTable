@@ -1,7 +1,6 @@
 <h2 class="chooser-header">Choose a game</h2>
 
 <form class="chooser-form">
-  <h3>Narrow your choices with these filters</h3>
   <fieldset>
     <label for="player-count">Players</label>
     <input ng-model="choose.players" type="text" name="player-count" placeholder="player count">
@@ -13,13 +12,14 @@
   <fieldset>
     <label for="genre">Genre</label>
     <select ng-model="choose.genre" name="genre">
+      <option value="" disabled selected>all genres</option>
       <option ng-repeat="genre in choose.genreArray">{{genre | titleCase}}</option>
     </select>
   </fieldset>
   <fieldset>
     <label for="chooser">How to choose</label>
     <select ng-model="choose.chooser" >
-      <option value="" disabled selected>Choose a method for choosing</option>
+      <option value="" disabled selected>selector</option>
       <option ng-repeat="chooser in choose.chooserArray" value="{{chooser.stateName}}">{{chooser.menuName}}</option>
     </select>
     <aside class="chooser-info">

@@ -152,14 +152,22 @@ body {
   margin-top: -1px; }
 
 .chooser-form {
-  clear: both; }
-  .chooser-form h3 {
-    font-size: 5em; }
+  clear: both;
+  margin: auto;
+  width: 85%;
+  padding-top: 15px;
+  padding-bottom: 15px; }
   .chooser-form label {
-    font-size: 3em; }
+    font-size: 3em;
+    padding-right: 10%; }
   .chooser-form input {
     font-size: 3em;
-    width: 25%; }
+    position: relative;
+    right: -17%;
+    width: 500px;
+    border: solid grey 1px;
+    text-align: center;
+    margin: 10px; }
   .chooser-form select {
     font-size: 3em; }
 
