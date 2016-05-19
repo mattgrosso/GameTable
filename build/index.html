@@ -14,11 +14,10 @@
 
     <img class="login-page-logo" src="/images/gametable.png" alt="gametable logo" />
 
-    <nav class="main-nav" ng-controller="LoginController as login">
+    <nav class="main-nav" ng-controller="LoginController as login" ng-show="login.loggedIn()">
       <ul>
-        <li ng-show="login.loggedIn()"><a class="nav-link" ui-sref="choose">Choose a Game</a></li>
-        <li ng-hide="login.loggedIn()"><a class="nav-link" ui-sref="login">Login</a></li>
-        <li ng-show="login.loggedIn()"><a class="nav-link" href="#" ng-click="login.logOut()">Logout</a></li>
+        <li><a class="nav-link" ui-sref="choose">Choose a Game</a></li>
+        <li><a class="nav-link" href="#" ng-click="login.logOut()">Logout</a></li>
       </ul>
     </nav>
 
