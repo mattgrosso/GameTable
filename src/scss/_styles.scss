@@ -102,3 +102,38 @@ body{
   border-radius: 5px;
   box-shadow: grey 5px 5px 25px;
 }
+
+.chooser-header{
+  width: 50%;
+  font-size: 3.5em;
+  text-align: center;
+  float: right;
+  background-color: #015C35;
+  color: white;
+  padding: 10px;
+  border-bottom-left-radius: 59px;
+  padding-bottom: 20px;
+  padding-right: 0px;
+  margin-top: -1px;
+}
+
+.chooser-form{
+  clear: both;
+  h3{
+    font-size: 5em;
+  }
+  label{
+    font-size: 3em;
+  }
+  input{
+    font-size: 3em;
+    width: 25%;
+  }
+  select{
+    font-size: 3em;
+  }
+}
+
+.chooser-info{
+  display: none;
+}

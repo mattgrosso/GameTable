@@ -1,6 +1,6 @@
-<h2>Choose a game</h2>
+<h2 class="chooser-header">Choose a game</h2>
 
-<form>
+<form class="chooser-form">
   <h3>Narrow your choices with these filters</h3>
   <fieldset>
     <label for="player-count">Players</label>
@@ -22,7 +22,7 @@
       <option value="" disabled selected>Choose a method for choosing</option>
       <option ng-repeat="chooser in choose.chooserArray" value="{{chooser.stateName}}">{{chooser.menuName}}</option>
     </select>
-    <aside>
+    <aside class="chooser-info">
       Random: Choose a game randomly.<br>Nominate-Random: Choose a game randomly from a list of games you nominate.<br>Eliminate: Choose a game by taking turns eliminating games from a list.<br>Vote: Choose a game by voting on games in a list of games you nominate.<br>Nominate-Rank: Choose a game through a series of votes of increasing value.<br>Bracket: Choose a game by going though a tournament of head-to-head matchups
     </aside>
   </fieldset>
