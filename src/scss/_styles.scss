@@ -231,3 +231,24 @@ button{
   font-family: 'Libre Baskerville', serif;
   float: right;
 }
+
+.add-games-popup-background{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #bfbfbf;
+  opacity: 0.7;
+}
+
+.add-games-popup{
+  position: absolute;
+  background-color: white;
+  width: 75%;
+  border: solid 1px black;
+  border-radius: 5px;
+  top: 40%;
+  left: 12%;
+  transition: all 0.5s ease-in;
+}

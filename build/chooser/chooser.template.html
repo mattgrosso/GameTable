@@ -19,7 +19,8 @@
   <div class="clearfix"></div>
 </form>
 
-<form ng-class="{add-game-popup-view: choose.showAddGame, add-game-popup-hide: !choose.showAddGame}" ng-show="choose.showAddGame">
+<div class="add-games-popup-background" ng-show="choose.showAddGame"></div>
+<form class="add-games-popup" ng-show="choose.showAddGame">
   <h3>Add a game by title</h3>
   <input ng-model="choose.addGameTitle" type="text" name="game-name" placeholder="Game Title">
   <button ng-click="choose.findGameToAdd(choose.addGameTitle)" type="button">Add Game</button>
