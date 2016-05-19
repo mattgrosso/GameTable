@@ -1,0 +1,98 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+body {
+  width: 95%; }
+
+.main-content {
+  width: 100%; }
+
+.main-nav {
+  background-color: #015C35;
+  width: 100%;
+  font-size: 2em;
+  padding: 10px;
+  text-align: center;
+  position: fixed;
+  bottom: 0px; }
+  .main-nav .nav-link {
+    color: white;
+    text-decoration: none;
+    cursor: pointer; }
+
+.login-page-logo {
+  width: 70%;
+  margin-top: 25%;
+  margin-left: 19%;
+  margin-bottom: 10%; }
+
+.login-input {
+  font-size: 1.25em;
+  font-family: 'Libre Baskerville', serif;
+  margin-left: 4%;
+  margin-top: 10%;
+  width: 95%;
+  height: 55px;
+  border-radius: 5px;
+  border: 1px solid #bfbfbf;
+  text-align: center;
+  box-shadow: #bfbfbf 5px 5px 25px; }
+
+.login-button {
+  margin-left: 17%;
+  margin-top: 25px;
+  padding: 5px;
+  width: 70%;
+  font-size: 1.75em;
+  font-family: 'Libre Baskerville', serif;
+  color: white;
+  background-color: #015C35;
+  border-radius: 5px;
+  border: none;
+  box-shadow: #bfbfbf 5px 5px 25px; }
+
+/*# sourceMappingURL=main.css.map */

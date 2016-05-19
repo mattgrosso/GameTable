@@ -80,7 +80,7 @@ module.exports = function(grunt) {
 
     require('load-grunt-tasks')(grunt);
 
-    grunt.registerTask('js-build', ['concat:js']);
+    grunt.registerTask('js-build', ['concat:js', 'jshint']);
     grunt.registerTask('css-build', ['sass']);
     grunt.registerTask('default', ['clean', 'copy', 'concat', 'jshint']);
 

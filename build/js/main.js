@@ -678,11 +678,6 @@
     this.voteForGame = function voteForGame(game) {
       game.votes = game.votes || 0;
       game.votes = game.votes + 1;
-      // game.verify = true;
-      // setTimeout(function () {
-      //   console.log('running!');
-      //   game.verify = false;
-      // }, 500);
     };
 
     this.showWinner = function showWinner() {
