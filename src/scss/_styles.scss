@@ -20,7 +20,7 @@ button{
 }
 
 .headersmall{
-  border-bottom: 8px solid #015C35;
+  border-bottom: 4px solid #015C35;
   padding-top: 1%;
   padding-bottom: 1%;
   padding-left: 3%;
@@ -28,10 +28,11 @@ button{
 }
 
 .logolarge{
+  display: block;
   width: 70%;
+  margin: auto;
   margin-top: 25%;
-  margin-left: 19%;
-  margin-bottom: 10%;
+  margin-bottom: 20%;
 }
 
 .logosmall{
@@ -42,33 +43,36 @@ button{
 }
 
 .login-input{
-  font-size: 2.25em;
+  margin: auto;
+  font-size: 1em;
   font-family: 'Libre Baskerville', serif;
-  margin-left: 4%;
   margin-top: 10%;
-  width: 95%;
-  height: 100px;
+  width: 90%;
+  height: 40px;
   border-radius: 5px;
   border: 1px solid #bfbfbf;
   text-align: center;
   box-shadow: #bfbfbf 5px 5px 25px;
+  display: block;
   &:focus{
-    outline-color: invert;
+    outline-color: white;
+    border: solid black 2px
   }
 }
 
 .login-button{
-  margin-left: 17%;
-  margin-top: 95px;
-  padding: 15px;
+  margin: auto;
+  margin-top: 45px;
+  padding: 7px;
   width: 70%;
-  font-size: 2.75em;
+  font-size: 1.25em;
   font-family: 'Libre Baskerville', serif;
   color: white;
   background-color: #015C35;
   border-radius: 5px;
   border: none;
   box-shadow: #bfbfbf 5px 5px 25px;
+  display: block;
   &:focus{
     outline: none;
   }
@@ -76,11 +80,11 @@ button{
 
 .header-username{
   float: right;
-  font-size: 5em;
+  font-size: 1.6em;
   margin-top: 4.5%;
-  padding: 12px;
+  padding: 10px;
   color: black;
-  margin-right: 8%;
+  margin-right: 6%;
   font-weight: bold;
   text-shadow: #bfbfbf 5px 5px 25px;
   -webkit-text-stroke: 1px black;
@@ -88,45 +92,47 @@ button{
 
 .logout-button{
   float: right;
-  font-size: 3em;
+  font-size: 1em;
   text-decoration: none;
   margin-top: 7.5%;
   margin-right: 0%;
   color: white;
   font-weight: bold;
   background-color: #015C35;
-  padding: 12px;
+  padding: 8px;
   border-radius: 5px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 15px;
+  padding-right: 15px;
   transition: all 0.5s ease-in;
   box-shadow: #bfbfbf 5px 5px 25px;
 }
 
 .login-message{
-  font-size: 3em;
+  display: block;
+  margin: auto;
+  font-size: 1.25em;
   background-color: #015C35;
-  margin-top: 90px;
+  margin-top: 30px;
   color: white;
   text-align: center;
-  width: 80%;
-  margin-left: 70px;
-  padding: 40px;
+  width: 70%;
+  padding: 20px;
   border-radius: 5px;
   box-shadow: grey 5px 5px 25px;
 }
 
 .chooser-header{
-  width: 50%;
-  font-size: 3.5em;
+  font-size: 1.4em;
   text-align: center;
   float: right;
   background-color: #015C35;
   color: white;
-  padding: 10px;
+  padding: 0px;
   border-bottom-left-radius: 59px;
-  padding-bottom: 20px;
-  padding-right: 0px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  padding-right: 14px;
+  padding-left: 24px;
   margin-top: -1px;
 }
 
@@ -134,42 +140,41 @@ button{
   clear: both;
   margin: auto;
   width: 100%;
-  padding-top: 25px;
-  padding-bottom: 15px;
+  padding-top: 12px;
   border-bottom: solid #015C35 5px;
   label{
     font-size: 3em;
     padding-right: 10%;
-
   }
   input{
-    font-size: 2.5em;
-    width: 80%;
-    border: solid grey 1px;
-    text-align: center;
-    margin: auto;
-    display: block;
-    margin-bottom: 30px;
-    box-shadow: grey 5px 5px 25px;
-    height: 80px;
+    font-size: 1.15em;
     font-family: 'Libre Baskerville', serif;
+    width: 90%;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid #bfbfbf;
+    text-align: center;
+    box-shadow: #bfbfbf 5px 5px 25px;
+    margin: auto;
+    margin-bottom: 10px;
+    display: block;
   }
   select{
-    font-size: 2.5em;
+    font-size: 1.15em;
     width: 80%;
     border: solid grey 1px;
     text-align: center;
     margin: auto;
     display: block;
-    margin-bottom: 30px;
-    box-shadow: grey 5px 5px 25px;
-    height: 80px;
+    margin-bottom: 10px;
+    box-shadow: #bfbfbf 5px 5px 25px;
+    height: 35px;
     background-color: white;
-    padding-left: 26%;
+    padding-left: 22%;
     color: #A9A9A9;
     font-family: 'Libre Baskerville', serif;
     .select-selector{
-      padding-left: 24%;
+      padding-left: 19%;
     }
   }
 }
@@ -181,17 +186,17 @@ button{
 .chooser-button{
   margin: auto;
   display: block;
-  font-size: 3em;
+  font-size: 1em;
   color: white;
   background-color: #015C35;
   border: 1px solid grey;
-  padding: 15px;
-  padding-left: 55px;
-  padding-right: 55px;
+  padding: 8px;
+  padding-left: 15px;
+  padding-right: 15px;
   border-radius: 5px;
-  box-shadow: grey 5px 5px 25px;
-  margin-top: 55px;
-  margin-bottom: 35px;
+  box-shadow: #bfbfbf 5px 5px 25px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   font-family: 'Libre Baskerville', serif;
 }
 
