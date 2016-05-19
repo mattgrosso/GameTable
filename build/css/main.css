@@ -48,17 +48,21 @@ table {
 body {
   width: 100%; }
 
+.clearfix {
+  clear: both; }
+
 button {
   display: block;
   margin: auto;
   width: 60%;
   background-color: #015C35;
-  font-size: 3em;
+  font-size: 1.25em;
   color: white;
   padding: 10px;
   border-radius: 5px;
   margin-top: 25px;
-  margin-bottom: 25px; }
+  margin-bottom: 25px;
+  font-family: 'Libre Baskerville', serif; }
 
 .main-content {
   width: 100%; }
@@ -181,29 +185,33 @@ button {
   .chooser-form input {
     font-size: 1.15em;
     font-family: 'Libre Baskerville', serif;
-    width: 90%;
+    width: 80%;
     height: 35px;
-    border-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     border: 1px solid #bfbfbf;
     text-align: center;
     box-shadow: #bfbfbf 5px 5px 25px;
-    margin: auto;
     margin-bottom: 10px;
+    margin-left: -3px;
     display: block; }
   .chooser-form select {
     font-size: 1.15em;
     width: 80%;
     border: solid grey 1px;
     text-align: center;
-    margin: auto;
     display: block;
     margin-bottom: 10px;
+    margin-left: -1px;
     box-shadow: #bfbfbf 5px 5px 25px;
     height: 35px;
     background-color: white;
     padding-left: 22%;
     color: #A9A9A9;
-    font-family: 'Libre Baskerville', serif; }
+    font-family: 'Libre Baskerville', serif;
+    border-radius: 0px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px; }
     .chooser-form select .select-selector {
       padding-left: 19%; }
 
@@ -212,21 +220,40 @@ button {
 
 .chooser-button {
   margin: auto;
+  width: 35%;
+  margin-right: 3%;
   display: block;
   font-size: 1em;
   color: white;
   background-color: #015C35;
   border: 1px solid grey;
   padding: 8px;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 0px;
+  padding-right: 0px;
   border-radius: 5px;
   box-shadow: #bfbfbf 5px 5px 25px;
   margin-top: 20px;
   margin-bottom: 20px;
-  font-family: 'Libre Baskerville', serif; }
+  font-family: 'Libre Baskerville', serif;
+  float: right; }
 
 .add-game-button {
-  display: none; }
+  margin: auto;
+  width: 25%;
+  margin-right: 3%;
+  display: block;
+  font-size: 0.65em;
+  color: white;
+  background-color: #015C35;
+  border: 1px solid grey;
+  padding: 5px;
+  padding-left: 0px;
+  padding-right: 0px;
+  border-radius: 5px;
+  box-shadow: #bfbfbf 5px 5px 25px;
+  margin-top: 27px;
+  margin-bottom: 20px;
+  font-family: 'Libre Baskerville', serif;
+  float: right; }
 
 /*# sourceMappingURL=main.css.map */

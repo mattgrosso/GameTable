@@ -15,10 +15,11 @@
     Random: Choose a game randomly.<br>Nominate-Random: Choose a game randomly from a list of games you nominate.<br>Eliminate: Choose a game by taking turns eliminating games from a list.<br>Vote: Choose a game by voting on games in a list of games you nominate.<br>Nominate-Rank: Choose a game through a series of votes of increasing value.<br>Bracket: Choose a game by going though a tournament of head-to-head matchups
   </aside>
   <button class="chooser-button" ng-click="choose.goToChooser(filteredCollection)" type="button" name="choose-button">Choose</button>
+  <button class="add-game-button" ng-click="choose.showAddGameForm()" type="button">Add A Game</button>
+  <div class="clearfix"></div>
 </form>
 
-<button class="add-game-button" ng-click="choose.showAddGameForm()" type="button">Add A Game</button>
-<form ng-show="choose.showAddGame">
+<form ng-class="{add-game-popup-view: choose.showAddGame, add-game-popup-hide: !choose.showAddGame}" ng-show="choose.showAddGame">
   <h3>Add a game by title</h3>
   <input ng-model="choose.addGameTitle" type="text" name="game-name" placeholder="Game Title">
   <button ng-click="choose.findGameToAdd(choose.addGameTitle)" type="button">Add Game</button>
