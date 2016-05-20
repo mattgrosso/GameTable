@@ -2,6 +2,10 @@ body{
   width: 100%;
 }
 
+.freeze-scrolling{
+  overflow: hidden;
+}
+
 .clearfix{
   clear: both;
 }

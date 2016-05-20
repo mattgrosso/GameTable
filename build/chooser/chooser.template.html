@@ -19,13 +19,9 @@
   <div class="clearfix"></div>
 </form>
 
-<div class="add-games-popup-background" ng-show="choose.showAddGame"></div>
-
-<div class="add-games-popup" ng-show="choose.showAddGame">
+<modal show="choose.showAddGame" close="choose.showAddGame = false">
 
   <form>
-    <h3>add a game by title</h3>
-    <button class="hide-add-games" type="button" ng-click="choose.hideAddGame()">x</button>
     <input ng-model="choose.addGameTitle" type="text" name="game-name" placeholder="Game Title" autocomplete="off">
     <button class="find-game-button" ng-click="choose.findGameToAdd(choose.addGameTitle)" type="submit">find game</button>
   </form>
@@ -56,7 +52,7 @@
     </li>
   </ul>
 
-</div>
+</modal>
 
 <p>{{filteredCollection.length}} games</p>
 <ul>
