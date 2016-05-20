@@ -1,13 +1,13 @@
-<h2 class="chooser-header ribbon right-ribbon">choose a game</h2>
+<!-- <h2 class="chooser-header ribbon right-ribbon">choose a game</h2> -->
 
 <form class="chooser-form">
   <input class="input-ribbon left-ribbon" ng-model="choose.players" type="text" name="player-count" placeholder="player count" autocomplete="off">
   <input class="input-ribbon left-ribbon" ng-model="choose.duration" type="text" name="duration" placeholder="duration (min)"autocomplete="off">
-  <select class="input-ribbon left-ribbon" ng-model="choose.genre" name="genre">
+  <select class="input-ribbon select-ribbon left-ribbon" ng-model="choose.genre" name="genre">
     <option value="" selected>select genre</option>
     <option ng-repeat="genre in choose.genreArray">{{genre | titleCase}}</option>
   </select>
-  <select class="select-selector input-ribbon left-ribbon" ng-model="choose.chooser" ng-change="choose.goToChooser(filteredCollection)">
+  <select class="input-ribbon select-ribbon left-ribbon" ng-model="choose.chooser" ng-change="choose.goToChooser(filteredCollection)">
     <option value="" selected>select selector</option>
     <option ng-repeat="chooser in choose.chooserArray" value="{{chooser.stateName}}">{{chooser.menuName}}</option>
   </select>
@@ -26,27 +26,27 @@
     <button class="find-game-button" ng-click="choose.findGameToAdd(choose.addGameTitle)" type="submit">find game</button>
   </form>
 
-  <h3 class="add-games-popup-message" ng-show="choose.addGamesPopupMessage">{{choose.addGamesPopupMessage}}</h3>
+  <h3 class="ribbon right-ribbon" ng-show="choose.addGamesPopupMessage">{{choose.addGamesPopupMessage}}</h3>
 
   <ul ng-show="choose.showGamesToAdd">
-    <li ng-click="choose.addGameToList(choose.firstGameToAdd)" ng-show="choose.firstGameToAdd">
+    <li class="ribbon gamelist-ribbon right-ribbon" ng-click="choose.addGameToList(choose.firstGameToAdd)" ng-show="choose.firstGameToAdd">
       <img ng-src="{{choose.firstGameToAdd.image.thumbnailURL}}"/>
       <div class="aside-wrapper">
-        <aside>{{choose.firstGameToAdd.name}}</aside>
+        <h3>{{choose.firstGameToAdd.name}}</h3>
         <aside>{{choose.firstGameToAdd.year}}</aside>
       </div>
     </li>
-    <li ng-click="choose.addGameToList(choose.secondGameToAdd)" ng-show="choose.secondGameToAdd">
+    <li class="ribbon gamelist-ribbon right-ribbon" ng-click="choose.addGameToList(choose.secondGameToAdd)" ng-show="choose.secondGameToAdd">
       <img ng-src="{{choose.secondGameToAdd.image.thumbnailURL}}"/>
       <div class="aside-wrapper">
-        <aside>{{choose.secondGameToAdd.name}}</aside>
+        <h3>{{choose.secondGameToAdd.name}}</h3>
         <aside>{{choose.secondGameToAdd.year}}</aside>
       </div>
     </li>
-    <li ng-click="choose.addGameToList(choose.thirdGameToAdd)" ng-show="choose.thirdGameToAdd">
+    <li class="ribbon gamelist-ribbon right-ribbon" ng-click="choose.addGameToList(choose.thirdGameToAdd)" ng-show="choose.thirdGameToAdd">
       <img ng-src="{{choose.thirdGameToAdd.image.thumbnailURL}}"/>
       <div class="aside-wrapper">
-        <aside>{{choose.thirdGameToAdd.name}}</aside>
+        <h3>{{choose.thirdGameToAdd.name}}</h3>
         <aside>{{choose.thirdGameToAdd.year}}</aside>
       </div>
     </li>
@@ -56,10 +56,12 @@
 
 
 <ul>
-  <li ng-repeat="game in choose.collection | gameFilter:choose.players:choose.duration:choose.genre as filteredCollection">
+  <li class="ribbon gamelist-ribbon right-ribbon" ng-repeat="game in choose.collection | gameFilter:choose.players:choose.duration:choose.genre as filteredCollection">
     <img ng-src="{{game.image.thumbnailURL}}"/>
-    {{game.name}}
-    max: {{game.playTime.max}}
-    min: {{game.playTime.min}}
+    <div class="aside-wrapper">
+      <h3>{{game.name}}</h3>
+      <aside>{{game.playerCount.min}} to {{game.playerCount.max}} players</aside>
+      <aside>{{game.playTime.max}} minutes</aside>
+    </div>
   </li>
 </ul>
