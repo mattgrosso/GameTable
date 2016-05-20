@@ -1,8 +1,8 @@
 <h2 class="chooser-header">choose a game</h2>
 
 <form class="chooser-form">
-  <input ng-model="choose.players" type="text" name="player-count" placeholder="player count">
-  <input ng-model="choose.duration" type="text" name="duration" placeholder="duration (min)">
+  <input ng-model="choose.players" type="text" name="player-count" placeholder="player count" autocomplete="off">
+  <input ng-model="choose.duration" type="text" name="duration" placeholder="duration (min)"autocomplete="off">
   <select ng-model="choose.genre" name="genre">
     <option value="" disabled selected>select genre</option>
     <option ng-repeat="genre in choose.genreArray">{{genre | titleCase}}</option>
@@ -26,7 +26,7 @@
   <form>
     <h3>add a game by title</h3>
     <button class="hide-add-games" type="button" ng-click="choose.hideAddGame()">x</button>
-    <input ng-model="choose.addGameTitle" type="text" name="game-name" placeholder="Game Title">
+    <input ng-model="choose.addGameTitle" type="text" name="game-name" placeholder="Game Title" autocomplete="off">
     <button class="find-game-button" ng-click="choose.findGameToAdd(choose.addGameTitle)" type="submit">find game</button>
   </form>
 

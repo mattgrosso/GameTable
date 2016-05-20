@@ -168,7 +168,7 @@ button{
   select{
     font-size: 1.15em;
     width: 80%;
-    border: solid grey 1px;
+    border: solid #bfbfbf 1px;
     text-align: center;
     display: block;
     margin-bottom: 10px;
@@ -284,8 +284,10 @@ button{
     width: 45%;
     margin-top: 15px;
     margin-bottom: 15px;
+    margin-right: 4%;
     border: 1px solid #bfbfbf;
     box-shadow: #bfbfbf 5px 5px 25px;
+    float: right;
   }
   .hide-add-games{
     font-size: 0.7em;
@@ -296,7 +298,7 @@ button{
     top: 0%;
     margin-top: 6px;
     margin-bottom: 5px;
-    margin-left: 89%;
+    margin-left: 88%;
     border: 1px solid #bfbfbf;
     box-shadow: #bfbfbf 5px 5px 25px;
   }
@@ -344,5 +346,7 @@ button{
     padding-right: 15px;
     margin-bottom: 20px;
     margin-top: 20px;
-    box-shadow: #bfbfbf 5px 5px 25px;  }
+    box-shadow: #bfbfbf 5px 5px 25px;
+    clear: both;
+  }
 }
