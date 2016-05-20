@@ -400,6 +400,7 @@
 
     this.hideAddGame = function hideAddGame() {
       this.showGamesToAdd = false;
+      this.showAddGame = false;
     };
 
   }

@@ -246,11 +246,12 @@ button{
   position: absolute;
   background-color: white;
   width: 75%;
-  border: solid 1px black;
+  border: solid 1px #015C35;
   border-radius: 5px;
-  top: 40%;
+  top: 15%;
   left: 12%;
   transition: all 0.5s ease-in;
+  padding-bottom: 8px;
   h3{
     font-size: 0.9em;
     margin-left: 0%;
@@ -263,6 +264,8 @@ button{
     font-family: 'Libre Baskerville', serif;
     border-bottom-right-radius: 59px;
     float: left;
+    margin-top: -6px;
+    border-top-left-radius: 5px;
   }
   input{
     display: block;
@@ -296,5 +299,34 @@ button{
     margin-left: 89%;
     border: 1px solid #bfbfbf;
     box-shadow: #bfbfbf 5px 5px 25px;
+  }
+  li{
+    background-color: #015C35;
+    color: white;
+    width: 90%;
+    height: 71px;
+    float: right;
+    padding: 6px;
+    padding-bottom: 0px;
+    margin-bottom: 9px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    box-shadow: #bfbfbf 5px 5px 25px;
+  }
+  img{
+    height: 65px;
+    float: left;
+  }
+  .aside-wrapper{
+    width: 60%;
+    float: right;
+    height: 90%;
+  }
+  aside{
+    font-size: 1em;
+    float: right;
+    clear: right;
+    margin: 3px;
+    text-align: right;
   }
 }

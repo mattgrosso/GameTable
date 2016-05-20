@@ -20,19 +20,41 @@
 </form>
 
 <div class="add-games-popup-background" ng-show="choose.showAddGame"></div>
-<form class="add-games-popup" ng-show="choose.showAddGame">
-  <h3>add a game by title</h3>
-  <button class="hide-add-games" type="button" ng-click="choose.hideAddGame()">x</button>
-  <input ng-model="choose.addGameTitle" type="text" name="game-name" placeholder="Game Title">
-  <button class="find-game-button" ng-click="choose.findGameToAdd(choose.addGameTitle)" type="button">find game</button>
-</form>
 
-<ul ng-show="choose.showGamesToAdd">
-  <li ng-click="choose.addGameToList(choose.firstGameToAdd)" ng-show="choose.firstGameToAdd">{{choose.firstGameToAdd.name}}</li>
-  <li ng-click="choose.addGameToList(choose.secondGameToAdd)" ng-show="choose.secondGameToAdd">{{choose.secondGameToAdd.name}}</li>
-  <li ng-click="choose.addGameToList(choose.thirdGameToAdd)" ng-show="choose.thirdGameToAdd">{{choose.thirdGameToAdd.name}}</li>
-</ul>
+<div class="add-games-popup" ng-show="choose.showAddGame">
 
+  <form>
+    <h3>add a game by title</h3>
+    <button class="hide-add-games" type="button" ng-click="choose.hideAddGame()">x</button>
+    <input ng-model="choose.addGameTitle" type="text" name="game-name" placeholder="Game Title">
+    <button class="find-game-button" ng-click="choose.findGameToAdd(choose.addGameTitle)" type="button">find game</button>
+  </form>
+
+  <ul ng-show="choose.showGamesToAdd">
+    <li ng-click="choose.addGameToList(choose.firstGameToAdd)" ng-show="choose.firstGameToAdd">
+      <img ng-src="{{choose.firstGameToAdd.image.thumbnailURL}}"/>
+      <div class="aside-wrapper">
+        <aside>{{choose.firstGameToAdd.name}}</aside>
+        <aside>{{choose.firstGameToAdd.year}}</aside>
+      </div>
+    </li>
+    <li ng-click="choose.addGameToList(choose.secondGameToAdd)" ng-show="choose.secondGameToAdd">
+      <img ng-src="{{choose.secondGameToAdd.image.thumbnailURL}}"/>
+      <div class="aside-wrapper">
+        <aside>{{choose.secondGameToAdd.name}}</aside>
+        <aside>{{choose.secondGameToAdd.year}}</aside>
+      </div>
+    </li>
+    <li ng-click="choose.addGameToList(choose.thirdGameToAdd)" ng-show="choose.thirdGameToAdd">
+      <img ng-src="{{choose.thirdGameToAdd.image.thumbnailURL}}"/>
+      <div class="aside-wrapper">
+        <aside>{{choose.thirdGameToAdd.name}}</aside>
+        <aside>{{choose.thirdGameToAdd.year}}</aside>
+      </div>
+    </li>
+  </ul>
+
+</div>
 
 <p>{{filteredCollection.length}} games</p>
 <ul>
