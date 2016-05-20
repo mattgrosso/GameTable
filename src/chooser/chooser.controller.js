@@ -82,5 +82,9 @@
       this.showAddGame = false;
     };
 
+    this.hideAddGame = function hideAddGame() {
+      this.showGamesToAdd = false;
+    };
+
   }
 })();
