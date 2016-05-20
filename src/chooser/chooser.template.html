@@ -30,6 +30,8 @@
     <button class="find-game-button" ng-click="choose.findGameToAdd(choose.addGameTitle)" type="button">find game</button>
   </form>
 
+  <h3 class="add-games-popup-message" ng-show="choose.addGamesPopupMessage">{{choose.addGamesPopupMessage}}</h3>
+
   <ul ng-show="choose.showGamesToAdd">
     <li ng-click="choose.addGameToList(choose.firstGameToAdd)" ng-show="choose.firstGameToAdd">
       <img ng-src="{{choose.firstGameToAdd.image.thumbnailURL}}"/>

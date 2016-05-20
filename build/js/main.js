@@ -359,7 +359,7 @@
         stateName: 'bracket'
       }
     ];
-
+    this.addGamesPopupMessage = "";
     this.firstGameToAdd = null;
     this.secondGameToAdd = null;
     this.thirdGameToAdd = null;
@@ -381,9 +381,11 @@
     };
 
     this.findGameToAdd = function findGameToAdd(title) {
+      this.addGamesPopupMessage = "please hold. BGG is working on it.";
       GameFactory.searchForGame(title).then(function (response) {
         var mostPopular = GameFactory.findThreeMostPopular(response);
         console.log(mostPopular);
+        that.addGamesPopupMessage = "click a game to add";
         that.showGamesToAdd = true;
         that.addGameTitle = "";
         that.firstGameToAdd = mostPopular[0];

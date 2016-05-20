@@ -250,8 +250,8 @@ button{
   border-radius: 5px;
   top: 15%;
   left: 12%;
-  transition: all 0.5s ease-in;
   padding-bottom: 8px;
+  box-shadow: black 5px 5px 25px;
   h3{
     font-size: 0.9em;
     margin-left: 0%;
@@ -316,6 +316,7 @@ button{
   img{
     height: 65px;
     float: left;
+    max-width: 100px;
   }
   .aside-wrapper{
     width: 60%;
@@ -329,4 +330,19 @@ button{
     margin: 3px;
     text-align: right;
   }
+  .add-games-popup-message{
+    display: block;
+    float: none;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    text-align: left;
+    font-size: 0.75em;
+    padding: 11px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    box-shadow: #bfbfbf 5px 5px 25px;  }
 }
