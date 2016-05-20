@@ -137,7 +137,7 @@ button{
   background-color: #015C35;
   color: white;
   padding: 0px;
-  border-bottom-left-radius: 59px;
+  border-bottom-left-radius: 5px;
   padding-top: 5px;
   padding-bottom: 10px;
   padding-right: 14px;
@@ -190,6 +190,19 @@ button{
       padding-left: 19%;
     }
   }
+  .game-count{
+    background-color: #015C35;
+    color: white;
+    text-align: center;
+    font-family: 'Libre Baskerville', serif;
+    max-width: 25%;
+    padding: 9px;
+    padding-left: 20px;
+    padding-right: 0px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 1em;
+  }
 }
 
 .chooser-info{
@@ -236,7 +249,7 @@ button{
   float: right;
 }
 
-.add-games-popup-background{
+.modal-background{
   position: absolute;
   top: 0;
   bottom: 0;
@@ -246,7 +259,7 @@ button{
   opacity: 0.7;
 }
 
-.add-games-popup{
+.modal{
   position: absolute;
   background-color: white;
   width: 75%;
@@ -268,7 +281,6 @@ button{
     font-family: 'Libre Baskerville', serif;
     border-bottom-right-radius: 59px;
     float: left;
-    margin-top: -6px;
     border-top-left-radius: 5px;
   }
   input{
@@ -293,7 +305,7 @@ button{
     box-shadow: #bfbfbf 5px 5px 25px;
     float: right;
   }
-  .hide-add-games{
+  .cancel-modal{
     font-size: 0.7em;
     width: 8%;
     height: 21px;

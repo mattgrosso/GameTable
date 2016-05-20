@@ -169,7 +169,7 @@ button {
   background-color: #015C35;
   color: white;
   padding: 0px;
-  border-bottom-left-radius: 59px;
+  border-bottom-left-radius: 5px;
   padding-top: 5px;
   padding-bottom: 10px;
   padding-right: 14px;
@@ -217,6 +217,18 @@ button {
     border-bottom-right-radius: 5px; }
     .chooser-form select .select-selector {
       padding-left: 19%; }
+  .chooser-form .game-count {
+    background-color: #015C35;
+    color: white;
+    text-align: center;
+    font-family: 'Libre Baskerville', serif;
+    max-width: 25%;
+    padding: 9px;
+    padding-left: 20px;
+    padding-right: 0px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 1em; }
 
 .chooser-info {
   display: none; }
@@ -259,7 +271,7 @@ button {
   font-family: 'Libre Baskerville', serif;
   float: right; }
 
-.add-games-popup-background {
+.modal-background {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -268,7 +280,7 @@ button {
   background-color: #bfbfbf;
   opacity: 0.7; }
 
-.add-games-popup {
+.modal {
   position: absolute;
   background-color: white;
   width: 75%;
@@ -278,7 +290,7 @@ button {
   left: 12%;
   padding-bottom: 8px;
   box-shadow: black 5px 5px 25px; }
-  .add-games-popup h3 {
+  .modal h3 {
     font-size: 0.9em;
     margin-left: 0%;
     background-color: #015C35;
@@ -290,9 +302,8 @@ button {
     font-family: 'Libre Baskerville', serif;
     border-bottom-right-radius: 59px;
     float: left;
-    margin-top: -6px;
     border-top-left-radius: 5px; }
-  .add-games-popup input {
+  .modal input {
     display: block;
     border: 1px solid #bfbfbf;
     width: 70%;
@@ -302,7 +313,7 @@ button {
     margin-top: 18px;
     padding: 7px;
     box-shadow: #bfbfbf 5px 5px 25px; }
-  .add-games-popup .find-game-button {
+  .modal .find-game-button {
     font-size: 0.8em;
     padding: 5px;
     width: 45%;
@@ -312,7 +323,7 @@ button {
     border: 1px solid #bfbfbf;
     box-shadow: #bfbfbf 5px 5px 25px;
     float: right; }
-  .add-games-popup .hide-add-games {
+  .modal .cancel-modal {
     font-size: 0.7em;
     width: 8%;
     height: 21px;
@@ -324,7 +335,7 @@ button {
     margin-left: 88%;
     border: 1px solid #bfbfbf;
     box-shadow: #bfbfbf 5px 5px 25px; }
-  .add-games-popup li {
+  .modal li {
     background-color: #015C35;
     color: white;
     width: 90%;
@@ -336,21 +347,21 @@ button {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     box-shadow: #bfbfbf 5px 5px 25px; }
-  .add-games-popup img {
+  .modal img {
     height: 65px;
     float: left;
     max-width: 100px; }
-  .add-games-popup .aside-wrapper {
+  .modal .aside-wrapper {
     width: 60%;
     float: right;
     height: 90%; }
-  .add-games-popup aside {
+  .modal aside {
     font-size: 1em;
     float: right;
     clear: right;
     margin: 3px;
     text-align: right; }
-  .add-games-popup .add-games-popup-message {
+  .modal .add-games-popup-message {
     display: block;
     float: none;
     border-top-right-radius: 5px;
