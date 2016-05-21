@@ -53,7 +53,7 @@ button{
 .gamelist-ribbon{
   width: 85%;
   height: 71px;
-  padding-bottom: 0px;
+  padding-bottom: 4px;
   img{
     height: 65px;
     float: left;
@@ -65,6 +65,7 @@ button{
     clear: right;
     margin: 3px;
     text-align: right;
+    max-width: 60%;
   }
   aside{
     font-size: 0.7em;
