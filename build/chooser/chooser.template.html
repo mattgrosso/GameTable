@@ -3,11 +3,11 @@
 <form class="chooser-form">
   <input class="input-ribbon left-ribbon" ng-model="choose.players" type="text" name="player-count" placeholder="player count" autocomplete="off">
   <input class="input-ribbon left-ribbon" ng-model="choose.duration" type="text" name="duration" placeholder="duration (min)"autocomplete="off">
-  <select class="input-ribbon select-ribbon left-ribbon" ng-model="choose.genre" name="genre">
+  <select id="genre-selector" class="input-ribbon select-ribbon left-ribbon" ng-model="choose.genre" name="genre">
     <option value="" selected>select genre</option>
     <option ng-repeat="genre in choose.genreArray">{{genre | titleCase}}</option>
   </select>
-  <select class="input-ribbon select-ribbon left-ribbon" ng-model="choose.chooser" ng-change="choose.goToChooser(filteredCollection)">
+  <select id="select-selector" class="input-ribbon select-ribbon left-ribbon" ng-model="choose.chooser" ng-change="choose.goToChooser(filteredCollection)">
     <option value="" selected>select selector</option>
     <option ng-repeat="chooser in choose.chooserArray" value="{{chooser.stateName}}">{{chooser.menuName}}</option>
   </select>
@@ -15,18 +15,20 @@
     Random: Choose a game randomly.<br>Nominate-Random: Choose a game randomly from a list of games you nominate.<br>Eliminate: Choose a game by taking turns eliminating games from a list.<br>Vote: Choose a game by voting on games in a list of games you nominate.<br>Nominate-Rank: Choose a game through a series of votes of increasing value.<br>Bracket: Choose a game by going though a tournament of head-to-head matchups
   </aside>
   <aside class="game-count ribbon right-ribbon">{{filteredCollection.length}} games</aside>
-  <aside class="add-game-button ribbon right-ribbon" ng-click="choose.showAddGameForm()">add a game</aside>
+  <aside class="add-game-button ribbon right-ribbon" ng-click="choose.showAddGameForm()">+</aside>
   <div class="clearfix"></div>
 </form>
 
 <modal show="choose.showAddGame" close="choose.showAddGame = false">
 
   <form>
-    <input ng-model="choose.addGameTitle" type="text" name="game-name" placeholder="Game Title" autocomplete="off">
-    <button class="find-game-button" ng-click="choose.findGameToAdd(choose.addGameTitle)" type="submit">find game</button>
+    <input class="ribbon input-ribbon left-ribbon" ng-model="choose.addGameTitle" type="text" name="game-name" placeholder="search for games" autocomplete="off">
+    <button class="ribbon right-ribbon" ng-click="choose.findGameToAdd(choose.addGameTitle)" type="submit">find game</button>
   </form>
 
   <h3 class="ribbon right-ribbon" ng-show="choose.addGamesPopupMessage">{{choose.addGamesPopupMessage}}</h3>
+
+  <div class="clearfix"></div>
 
   <ul ng-show="choose.showGamesToAdd">
     <li class="ribbon gamelist-ribbon right-ribbon" ng-click="choose.addGameToList(choose.firstGameToAdd)" ng-show="choose.firstGameToAdd">

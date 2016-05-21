@@ -46,10 +46,6 @@ button{
   }
 }
 
-.select-ribbon{
-  width: 78%;
-}
-
 .gamelist-ribbon{
   width: 85%;
   height: 71px;
@@ -80,6 +76,7 @@ button{
   text-align: left;
   font-family: 'Libre Baskerville', serif;
   padding-right: 5%;
+  padding-left: 12px;
   margin-bottom: 10px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -101,6 +98,7 @@ button{
 .left-ribbon{
   font-family: 'Libre Baskerville', serif;
   padding-left: 20%;
+  padding-right: 12px;
   margin-bottom: 10px;
   margin-left: -1px;
   border-top-right-radius: 5px;
@@ -121,6 +119,19 @@ button{
     color: black;
   }
 }
+
+.select-ribbon{
+  width: 78%;
+}
+
+#select-selector{
+  padding-left: 33%;
+}
+
+#genre-selector{
+  padding-left: 31%;
+}
+
 
 .main-content{
   width: 100%;
@@ -348,31 +359,19 @@ button{
   top: 15%;
   left: 12%;
   padding-bottom: 8px;
+  padding-top: 10px;
   box-shadow: black 5px 5px 25px;
-  h3{
-    // font-size: 0.9em;
-    // margin-left: 0%;
-    // background-color: #015C35;
-    // width: 54%;
-    // padding: 8px;
-    // padding-left: 8px;
-    // padding-right: 12px;
-    // color: white;
-    // font-family: 'Libre Baskerville', serif;
-    // border-bottom-right-radius: 59px;
-    // float: left;
-    // border-top-left-radius: 5px;
+  .left-ribbon{
+    border-left: solid 1px #015C35;
+    padding-left: 10%;
   }
-  input{
-    display: block;
-    border: 1px solid #bfbfbf;
-    width: 70%;
-    font-size: 0.8em;
-    text-align: center;
-    margin: auto;
-    margin-top: 18px;
-    padding: 7px;
-    box-shadow: #bfbfbf 5px 5px 25px;
+  h3{
+    margin-top: 10px;
+    max-width: 70%;
+  }
+  ul{
+    border-top: solid #015C35 5px;
+    padding-top: 10px;
   }
   .find-game-button{
     font-size: 0.8em;
@@ -398,51 +397,9 @@ button{
     border: 1px solid #bfbfbf;
     box-shadow: #bfbfbf 5px 5px 25px;
   }
-  li{
-    // background-color: #015C35;
-    // color: white;
-    // width: 90%;
-    // height: 71px;
-    // float: right;
-    // padding: 6px;
-    // padding-bottom: 0px;
-    // margin-bottom: 9px;
-    // border-top-left-radius: 5px;
-    // border-bottom-left-radius: 5px;
-    // box-shadow: #bfbfbf 5px 5px 25px;
-  }
-  img{
-    // height: 65px;
-    // float: left;
-    // max-width: 100px;
-  }
   .aside-wrapper{
     width: 60%;
     float: right;
     height: 90%;
-  }
-  aside{
-    // font-size: 1em;
-    // float: right;
-    // clear: right;
-    // margin: 3px;
-    // text-align: right;
-  }
-  .add-games-popup-message{
-    // display: block;
-    // float: none;
-    // border-top-right-radius: 5px;
-    // border-bottom-right-radius: 5px;
-    // border-top-left-radius: 0px;
-    // border-bottom-left-radius: 0px;
-    // text-align: left;
-    // font-size: 0.75em;
-    // padding: 11px;
-    // padding-left: 15px;
-    // padding-right: 15px;
-    // margin-bottom: 20px;
-    // margin-top: 20px;
-    // box-shadow: #bfbfbf 5px 5px 25px;
-    // clear: both;
   }
 }

@@ -73,9 +73,6 @@ body {
   .input-ribbon option:first-child {
     color: red; }
 
-.select-ribbon {
-  width: 78%; }
-
 .gamelist-ribbon {
   width: 85%;
   height: 71px;
@@ -102,6 +99,7 @@ body {
   text-align: left;
   font-family: 'Libre Baskerville', serif;
   padding-right: 5%;
+  padding-left: 12px;
   margin-bottom: 10px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -118,6 +116,7 @@ body {
 .left-ribbon {
   font-family: 'Libre Baskerville', serif;
   padding-left: 20%;
+  padding-right: 12px;
   margin-bottom: 10px;
   margin-left: -1px;
   border-top-right-radius: 5px;
@@ -133,6 +132,15 @@ body {
     color: black; }
   .left-ribbon:-moz-placeholder {
     color: black; }
+
+.select-ribbon {
+  width: 78%; }
+
+#select-selector {
+  padding-left: 33%; }
+
+#genre-selector {
+  padding-left: 31%; }
 
 .main-content {
   width: 100%; }
@@ -271,17 +279,17 @@ body {
   top: 15%;
   left: 12%;
   padding-bottom: 8px;
+  padding-top: 10px;
   box-shadow: black 5px 5px 25px; }
-  .modal input {
-    display: block;
-    border: 1px solid #bfbfbf;
-    width: 70%;
-    font-size: 0.8em;
-    text-align: center;
-    margin: auto;
-    margin-top: 18px;
-    padding: 7px;
-    box-shadow: #bfbfbf 5px 5px 25px; }
+  .modal .left-ribbon {
+    border-left: solid 1px #015C35;
+    padding-left: 10%; }
+  .modal h3 {
+    margin-top: 10px;
+    max-width: 70%; }
+  .modal ul {
+    border-top: solid #015C35 5px;
+    padding-top: 10px; }
   .modal .find-game-button {
     font-size: 0.8em;
     padding: 5px;

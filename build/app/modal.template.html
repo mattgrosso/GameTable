@@ -1,10 +1,10 @@
-<div class="modal-background" ng-show="show"></div>
+<div class="modal-background" ng-show="show" ng-click="close()"></div>
 
 <div class="modal" ng-show="show">
 
-<h3>add a game by title</h3>
-<button class="cancel-modal" type="button" ng-click="close()">x</button>
+  <!-- <h3 class="ribbon left-ribbon">add a game by title</h3> -->
+  <!-- <button class="cancel-modal" type="button" ng-click="close()">x</button> -->
 
-<section class="modal-content" ng-transclude></section>
+  <section class="modal-content" ng-transclude></section>
 
 </div>

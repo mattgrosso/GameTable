@@ -64,6 +64,7 @@
     this.showAddGameForm = function showAddGameForm() {
       this.showAddGame = true;
       this.freezeScrolling = true;
+      this.addGamesPopupMessage = "";
     };
 
     this.findGameToAdd = function findGameToAdd(title) {
