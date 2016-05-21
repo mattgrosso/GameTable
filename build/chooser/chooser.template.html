@@ -2,14 +2,14 @@
 
 <form class="chooser-form">
   <input class="input-ribbon left-ribbon" ng-model="choose.players" type="text" name="player-count" placeholder="player count" autocomplete="off">
-  <input class="input-ribbon left-ribbon" ng-model="choose.duration" type="text" name="duration" placeholder="duration (min)"autocomplete="off">
+  <input class="input-ribbon left-ribbon" ng-model="choose.duration" type="text" name="duration" placeholder="duration"autocomplete="off">
   <select id="genre-selector" class="input-ribbon select-ribbon left-ribbon" ng-model="choose.genre" name="genre">
-    <option value="" disabled selected>select genre</option>
+    <option value="" disabled selected>genre</option>
     <option ng-repeat="genre in choose.genreArray">{{genre | titleCase}}</option>
   </select>
   <div class="select-arrow"></div>
   <select id="select-selector" class="input-ribbon select-ribbon left-ribbon" ng-model="choose.chooser" ng-change="choose.goToChooser(filteredCollection)">
-    <option value="" disabled selected>how to choose</option>
+    <option value="" disabled selected>method</option>
     <option ng-repeat="chooser in choose.chooserArray" value="{{chooser.stateName}}">{{chooser.menuName}}</option>
   </select>
   <div class="select-arrow"></div>
@@ -68,4 +68,5 @@
       <aside>{{game.playTime.max}} minutes</aside>
     </div>
   </li>
+  <div class="clearfix"></div>
 </ul>
