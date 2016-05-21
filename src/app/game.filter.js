@@ -12,9 +12,16 @@
           if(players && (players < each.playerCount.min || players > each.playerCount.max)){
             include = false;
           }
-          if(duration && duration < (each.playTime.min + each.playTime.max)/2){
-            include = false;
+          if(duration && duration < 5){
+            if((duration*60) < ((each.playTime.min + each.playTime.max)/2)){
+              include = false;
+            }
           }
+          if(duration && duration >= 5){
+            if(duration < ((each.playTime.min + each.playTime.max)/2)){
+              include = false;
+            }
+          }          
           if(include && genre){
             include = each.genres.indexOf(genre.toLowerCase()) > -1;
           }
