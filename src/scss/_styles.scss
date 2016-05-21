@@ -210,9 +210,22 @@ button{
   text-align: center;
 }
 
-.logout-button{
-  margin-top: 33px;
-  text-decoration: none;
+.username-banner{
+  margin-top: 20px;
+  h4{
+    float: left;
+    font-size: 1.25em;
+  }
+  aside{
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  a{
+    text-decoration: none;
+    color: white;
+    font-size: 0.7em;
+  }
 }
 
 .login-message{

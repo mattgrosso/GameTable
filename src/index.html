@@ -15,8 +15,13 @@
 
     <header ng-class="{headerlarge: !header.loggedIn(), headersmall: header.loggedIn()}" ng-controller="HeaderController as header">
       <img class="logo" ng-class="{logolarge: !header.loggedIn(), logosmall: header.loggedIn()}" src="/images/gametable.png" alt="gametable logo" />
-      <a class="logout-button ribbon right-ribbon" ng-hide="!header.loggedIn()" ng-click="header.logOut()" href="#">logout</a>
-      <aside class="header-username" ng-hide="!header.loggedIn()">{{header.username()}}</aside>
+      <aside class="ribbon right-ribbon username-banner" ng-hide="!header.loggedIn()">
+        <h4>{{header.username()}}</h4>
+        <aside>|</aside>
+        <a ng-hide="!header.loggedIn()" ng-click="header.logOut()" href="#">
+          logout
+        </a>
+      </aside>
     </header>
 
     <!-- <nav class="main-nav" ng-controller="LoginController as login" ng-show="login.loggedIn()">
