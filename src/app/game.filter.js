@@ -12,7 +12,7 @@
           if(players && (players < each.playerCount.min || players > each.playerCount.max)){
             include = false;
           }
-          if(duration && duration < each.playTime.min){
+          if(duration && duration < (each.playTime.min + each.playTime.max)/2){
             include = false;
           }
           if(include && genre){
