@@ -54,7 +54,13 @@ body {
 .clearfix {
   clear: both; }
 
-.ribbon:focus {
+.right-ribbon:focus {
+  border: solid #015C35 2px;
+  border-right: none;
+  outline: none;
+  box-shadow: #015C35 0px 0px 5px; }
+
+.left-ribbon:focus {
   border: solid #015C35 2px;
   border-left: none;
   outline: none;
@@ -91,7 +97,8 @@ select:focus {
   font-size: 1em;
   clear: both;
   border: 2px solid #015C35;
-  max-width: 65%; }
+  max-width: 65%;
+  transition: all 0.5s ease-in; }
 
 .input-ribbon {
   background-color: white;
@@ -177,6 +184,21 @@ select:focus {
 .ribbon-noclick {
   background-color: #015C35;
   color: white; }
+
+.results {
+  max-width: 85%;
+  width: 85%; }
+  .results img {
+    margin: auto;
+    display: block;
+    width: 65%;
+    margin-bottom: 10px; }
+  .results div {
+    margin: auto;
+    width: 90%;
+    text-align: center; }
+  .results h3 {
+    font-size: 2em; }
 
 .main-content {
   width: 100%; }

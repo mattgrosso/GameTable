@@ -7,10 +7,26 @@
   <button class="ribbon right-ribbon"type="button" ng-click="random.chooseRandomGame()">Choose Random Game</button>
 
   <div class="clearfix"></div>
+
 </section>
 
 <ul class="gamelist gamelist-noclick" ng-hide="random.randomGame">
-  <li class="ribbon gamelist-ribbon right-ribbon ribbon-noclick" ng-repeat="game in random.collection">{{game.name}}</li>
+  <li class="ribbon gamelist-ribbon right-ribbon ribbon-noclick" ng-repeat="game in random.collection">
+    <img ng-src="{{game.image.thumbnailURL}}"/>
+    <div class="aside-wrapper">
+      <h3>{{game.name}}</h3>
+      <aside>{{game.playerCount.min}} to {{game.playerCount.max}} players</aside>
+      <aside>{{game.playTime.max}} minutes</aside>
+    </div>
+  </li>
+  <div class="clearfix"></div>
 </ul>
 
-<h2 ng-show="random.randomGame">{{random.randomGame.name}}</h2>
+<div class="gamelist">
+  <section class="ribbon right-ribbon ribbon-noclick results" ng-show="random.randomGame">
+    <img ng-src="{{random.randomGame.image.thumbnailURL}}"/>
+    <div class="aside-wrapper">
+      <h3>{{random.randomGame.name}}</h3>
+    </div>
+  </section>
+</div>
