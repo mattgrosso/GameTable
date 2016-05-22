@@ -1,24 +1,45 @@
-<p>
-  In this method you will nominate games and then taking turns voting on which game you want to play. Once everyone has voted, click on 'done voting' to see the results.
-</p>
+<section class="description-section">
 
-<button ng-show="vote.showCollection" ng-click="vote.doneNominating()" type="button">Done Nominating</button>
+  <p class="ribbon left-ribbon ribbon-noclick">
+    nominate games and then vote on them. the game with the most votes wins.
+  </p>
 
-<button ng-show="vote.showNominees" ng-click="vote.showWinner()" type="button">Done Voting</button>
+  <button class="ribbon right-ribbon" ng-class="{transparent: vote.nomineesArray.length < 1}" ng-show="vote.showCollection" ng-click="vote.doneNominating()" type="button">
+    done nominating
+  </button>
 
-<ul ng-show="vote.showCollection">
-  <li ng-repeat="game in vote.collection">
-    {{game.name}}
-    <input ng-click="vote.addNominee()" ng-model="game.nominated" type="checkbox" value="nominated">
+  <div class="clearfix"></div>
+
+</section>
+
+<ul class="gamelist" ng-show="vote.showCollection">
+  <li class="ribbon gamelist-ribbon right-ribbon" ng-repeat="game in vote.collection">
+    <div class="nominate-checkbox">
+      <input id="{{game.objectID}}" ng-click="vote.addNominee()" ng-model="game.nominated" type="checkbox" value="nominated">
+      <label for="{{game.objectID}}">
+        <div class="x-mark x-mark-front"></div>
+        <div class="x-mark x-mark-back"></div>
+      </label>
+    </div>
+    <img ng-src="{{game.image.thumbnailURL}}"/>
+    <div class="aside-wrapper">
+      <h3>{{game.name}}</h3>
+      <aside>{{game.playerCount.min}} to {{game.playerCount.max}} players</aside>
+      <aside>{{game.playTime.max}} minutes</aside>
+    </div>
   </li>
+  <div class="clearfix"></div>
 </ul>
 
-<h2 ng-show="vote.showNominees">Nominees</h2>
+<button ng-show="vote.showNominees" ng-click="vote.showWinner()" type="button">
+  done voting
+</button>
+
 <ul ng-show="vote.showNominees">
   <li ng-repeat="game in vote.nomineesArray">
     {{game.name}}
     <button ng-click="vote.voteForGame(game)" pop-up-note="voted!" type="button">+</button>
-    <!-- <aside ng-show="game.verify">voted!</aside> -->
+    <aside ng-show="game.verify">voted!</aside>
   </li>
 </ul>
 
