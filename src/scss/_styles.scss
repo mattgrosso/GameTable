@@ -10,14 +10,23 @@ body{
   clear: both;
 }
 
+.ribbon:focus{
+  border: solid #015C35 2px;
+  border-left: none;
+  outline: none;
+  box-shadow: #015C35 0px 0px 5px;
+}
+
 input:focus{
-  border: solid #015C35 1px;
+  border: solid #015C35 2px;
+  border-left: none;
   outline: none;
   box-shadow: #015C35 0px 0px 5px;
 }
 
 select:focus{
-  border: solid #015C35 1px;
+  border: solid #015C35 2px;
+  border-left: none;
   outline: none;
   box-shadow: #015C35 0px 0px 5px;
 }
@@ -32,32 +41,34 @@ select:focus{
   width: 10px;
   height: 10px;
   transform: rotate(45deg);
-  z-index: 3;
+  z-index: 1;
 }
 
 .ribbon{
-  background-color: #015C35;
-  color: white;
+  background-color: white;
+  color: #015C35;
   padding: 9px;
   font-size: 1em;
   clear: both;
-  border: none;
+  border: 2px solid #015C35;
+  max-width: 65%;
 }
 
 .input-ribbon{
   background-color: white;
-  border: 1px solid #015C35;
   color: #015C35;
   padding: 9px;
   font-size: 1em;
   text-align: center;
   clear: both;
+  border: 2px solid #015C35;
 }
 
 .gamelist-ribbon{
   width: 85%;
   height: 71px;
   padding-bottom: 4px;
+  max-width: 85%;
   img{
     height: 65px;
     float: left;
@@ -88,6 +99,7 @@ select:focus{
   margin-bottom: 10px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
+  border-right: none;
   float: right;
   &::-webkit-input-placeholder {
   color: #015C35;
@@ -114,6 +126,7 @@ select:focus{
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   float: left;
+  border-left: none;
   &::-webkit-input-placeholder {
   color: #015C35;
   }
@@ -140,6 +153,11 @@ select:focus{
   padding-left: 38%;
 }
 
+.ribbon-noclick{
+  background-color: #015C35;
+  color: white;
+}
+
 .main-content{
   width: 100%;
 }
@@ -148,6 +166,7 @@ select:focus{
   padding-top: 1%;
   padding-bottom: 1%;
   padding-left: 3%;
+  border-bottom: solid 5px #015C35;
 }
 
 .logolarge{
@@ -230,7 +249,7 @@ select:focus{
   }
   a{
     text-decoration: none;
-    color: white;
+    color: #015C35;
     font-size: 0.7em;
   }
 }
@@ -252,68 +271,9 @@ select:focus{
 .chooser-header{
 }
 
-.chooser-form{
+.description-section{
   clear: both;
-  margin: auto;
-  margin-bottom: 10px;
-  width: 100%;
-  padding-top: 12px;
-  border-bottom: solid #015C35 5px;
-  border-top: solid #015C35 5px;
-  label{
-    font-size: 3em;
-    padding-right: 10%;
-  }
-  input{
-    // font-size: 1.15em;
-    // font-family: 'Libre Baskerville', serif;
-    // width: 80%;
-    // height: 35px;
-    // border-top-right-radius: 5px;
-    // border-bottom-right-radius: 5px;
-    // border: 1px solid #bfbfbf;
-    // text-align: center;
-    // box-shadow: #bfbfbf 5px 5px 25px;
-    // margin-bottom: 10px;
-    // margin-left: -3px;
-    // display: block;
-  }
-  select{
-    // font-size: 1.15em;
-    // width: 80%;
-    // border: solid #bfbfbf 1px;
-    // text-align: center;
-    // display: block;
-    // margin-bottom: 10px;
-    // margin-left: -1px;
-    // box-shadow: #bfbfbf 5px 5px 25px;
-    // height: 35px;
-    // background-color: white;
-    // padding-left: 22%;
-    // color: #A9A9A9;
-    // font-family: 'Libre Baskerville', serif;
-    // border-radius: 0px;
-    // border-top-right-radius: 5px;
-    // border-bottom-right-radius: 5px;
-    // .select-selector{
-    //   padding-left: 19%;
-    // }
-  }
-  .game-count{
-    // background-color: #015C35;
-    // color: white;
-    // text-align: left;
-    // font-family: 'Libre Baskerville', serif;
-    // max-width: 25%;
-    // padding: 9px;
-    // padding-right: 20%;
-    // margin-bottom: 10px;
-    // border-top-left-radius: 5px;
-    // border-bottom-left-radius: 5px;
-    // font-size: 1em;
-    // float: right;
-    // clear: both;
-  }
+  padding-top: 10px;
 }
 
 .chooser-info{
@@ -381,6 +341,7 @@ select:focus{
   padding-bottom: 8px;
   padding-top: 10px;
   box-shadow: black 5px 5px 25px;
+  z-index: 2;
   .left-ribbon{
     border-left: solid 1px #015C35;
     padding-left: 10%;
@@ -422,4 +383,10 @@ select:focus{
     float: right;
     height: 90%;
   }
+}
+
+.gamelist{
+  list-style: none;
+  border-top: solid #015C35 5px;
+  padding-top: 10px;
 }

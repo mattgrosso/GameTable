@@ -54,13 +54,21 @@ body {
 .clearfix {
   clear: both; }
 
+.ribbon:focus {
+  border: solid #015C35 2px;
+  border-left: none;
+  outline: none;
+  box-shadow: #015C35 0px 0px 5px; }
+
 input:focus {
-  border: solid #015C35 1px;
+  border: solid #015C35 2px;
+  border-left: none;
   outline: none;
   box-shadow: #015C35 0px 0px 5px; }
 
 select:focus {
-  border: solid #015C35 1px;
+  border: solid #015C35 2px;
+  border-left: none;
   outline: none;
   box-shadow: #015C35 0px 0px 5px; }
 
@@ -74,29 +82,31 @@ select:focus {
   width: 10px;
   height: 10px;
   transform: rotate(45deg);
-  z-index: 3; }
+  z-index: 1; }
 
 .ribbon {
-  background-color: #015C35;
-  color: white;
+  background-color: white;
+  color: #015C35;
   padding: 9px;
   font-size: 1em;
   clear: both;
-  border: none; }
+  border: 2px solid #015C35;
+  max-width: 65%; }
 
 .input-ribbon {
   background-color: white;
-  border: 1px solid #015C35;
   color: #015C35;
   padding: 9px;
   font-size: 1em;
   text-align: center;
-  clear: both; }
+  clear: both;
+  border: 2px solid #015C35; }
 
 .gamelist-ribbon {
   width: 85%;
   height: 71px;
-  padding-bottom: 4px; }
+  padding-bottom: 4px;
+  max-width: 85%; }
   .gamelist-ribbon img {
     height: 65px;
     float: left;
@@ -123,6 +133,7 @@ select:focus {
   margin-bottom: 10px;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
+  border-right: none;
   float: right; }
   .right-ribbon::-webkit-input-placeholder {
     color: #015C35; }
@@ -143,7 +154,8 @@ select:focus {
   border-bottom-right-radius: 5px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
-  float: left; }
+  float: left;
+  border-left: none; }
   .left-ribbon::-webkit-input-placeholder {
     color: #015C35; }
   .left-ribbon::-moz-placeholder {
@@ -162,13 +174,18 @@ select:focus {
 #select-selector {
   padding-left: 38%; }
 
+.ribbon-noclick {
+  background-color: #015C35;
+  color: white; }
+
 .main-content {
   width: 100%; }
 
 .headersmall {
   padding-top: 1%;
   padding-bottom: 1%;
-  padding-left: 3%; }
+  padding-left: 3%;
+  border-bottom: solid 5px #015C35; }
 
 .logolarge {
   display: block;
@@ -241,7 +258,7 @@ select:focus {
     padding-right: 10px; }
   .username-banner a {
     text-decoration: none;
-    color: white;
+    color: #015C35;
     font-size: 0.7em; }
 
 .login-message {
@@ -257,17 +274,9 @@ select:focus {
   border-radius: 5px;
   box-shadow: grey 5px 5px 25px; }
 
-.chooser-form {
+.description-section {
   clear: both;
-  margin: auto;
-  margin-bottom: 10px;
-  width: 100%;
-  padding-top: 12px;
-  border-bottom: solid #015C35 5px;
-  border-top: solid #015C35 5px; }
-  .chooser-form label {
-    font-size: 3em;
-    padding-right: 10%; }
+  padding-top: 10px; }
 
 .chooser-info {
   display: none; }
@@ -310,7 +319,8 @@ select:focus {
   left: 12%;
   padding-bottom: 8px;
   padding-top: 10px;
-  box-shadow: black 5px 5px 25px; }
+  box-shadow: black 5px 5px 25px;
+  z-index: 2; }
   .modal .left-ribbon {
     border-left: solid 1px #015C35;
     padding-left: 10%; }
@@ -346,5 +356,10 @@ select:focus {
     width: 60%;
     float: right;
     height: 90%; }
+
+.gamelist {
+  list-style: none;
+  border-top: solid #015C35 5px;
+  padding-top: 10px; }
 
 /*# sourceMappingURL=main.css.map */
