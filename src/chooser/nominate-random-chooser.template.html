@@ -1,13 +1,43 @@
-<p>
-  In this method, you start by nominating games to play. Once you are finished nominating, click 'done nominating' and a random game will be selected from the ist of nominees.
-</p>
-<button ng-show="nomrand.nomineesArray.length > 0" ng-click="nomrand.doneNominating()" type="button">Done Nominating</button>
+<section class="description-section">
 
-<ul ng-hide="nomrand.randomGame">
-  <li ng-repeat="game in nomrand.collection">
-    {{game.name}}
-    <input ng-click="nomrand.addNominee()" ng-model="game.nominated" type="checkbox" value="nominated">
+  <p class="ribbon left-ribbon ribbon-noclick">
+    nominate some games and then have a random one chosen for you
+  </p>
+
+  <button class="ribbon right-ribbon" ng-class="{transparent: nomrand.nomineesArray.length < 1}" ng-click="nomrand.doneNominating()" type="button">
+    done nominating
+  </button>
+
+  <div class="clearfix"></div>
+
+</section>
+
+<ul class="gamelist gamelist-noclick" ng-hide="nomrand.randomGame">
+  <li class="ribbon gamelist-ribbon right-ribbon" ng-repeat="game in nomrand.collection">
+    <div class="nominate-checkbox">
+      <input id="{{game.objectID}}" ng-click="nomrand.addNominee()" ng-model="game.nominated" type="checkbox" value="nominated">
+      <label for="{{game.objectID}}">
+        <div class="x-mark x-mark-front"></div>
+        <div class="x-mark x-mark-back"></div>
+      </label>
+    </div>
+    <img ng-src="{{game.image.thumbnailURL}}"/>
+    <div class="aside-wrapper">
+      <h3>{{game.name}}</h3>
+      <aside>{{game.playerCount.min}} to {{game.playerCount.max}} players</aside>
+      <aside>{{game.playTime.max}} minutes</aside>
+    </div>
   </li>
+  <div class="clearfix"></div>
 </ul>
 
-<h2 ng-show="nomrand.randomGame">{{nomrand.randomGame.name}}</h2>
+<div class="gamelist">
+
+  <section class="ribbon right-ribbon ribbon-noclick results" ng-show="nomrand.randomGame">
+    <img ng-src="{{nomrand.randomGame.image.imageURL}}"/>
+    <div class="aside-wrapper">
+      <h3>{{nomrand.randomGame.name}}</h3>
+    </div>
+  </section>
+
+</div>
