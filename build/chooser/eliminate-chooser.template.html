@@ -1,11 +1,45 @@
-<p>
-  In this method, you simply take turns eliminating games from the list (one at a time or else multiples; that's up to you) until only one game remains on the list.
-</p>
-<ul ng-hide="eliminate.downToOne">
-  <li ng-repeat="game in eliminate.collection">
-    {{game.name}}
-    <button ng-click="eliminate.eliminateGame(game)" type="button">X</button>
+<section class="description-section">
+
+  <p class="ribbon left-ribbon ribbon-noclick">
+    take turns eliminating games from the list until only one game remains
+  </p>
+
+  <div class="clearfix"></div>
+
+</section>
+
+<ul class="gamelist" ng-hide="eliminate.downToOne">
+  <li class="ribbon gamelist-ribbon right-ribbon" ng-repeat="game in eliminate.collection">
+
+    <!-- <button ng-click="eliminate.eliminateGame(game)" type="button">X</button> -->
+
+    <div class="nominate-checkbox">
+      <input id="{{game.objectID}}" ng-click="eliminate.eliminateGame(game)" type="button">
+      <label for="{{game.objectID}}">
+        <div class="x-mark x-mark-front x-mark-eliminate"></div>
+        <div class="x-mark x-mark-back x-mark-eliminate"></div>
+      </label>
+    </div>
+
+    <img ng-src="{{game.image.thumbnailURL}}"/>
+
+    <div class="aside-wrapper">
+      <h3>{{game.name}}</h3>
+      <aside>{{game.playerCount.min}} to {{game.playerCount.max}} players</aside>
+      <aside>{{game.playTime.max}} minutes</aside>
+    </div>
+
   </li>
+  <div class="clearfix"></div>
 </ul>
 
-<h2 ng-show="eliminate.downToOne">{{eliminate.collection[0].name}}</h2>
+<div class="gamelist">
+
+  <section class="ribbon right-ribbon ribbon-noclick results" ng-show="eliminate.downToOne">
+    <img ng-src="{{eliminate.collection[0].image.imageURL}}"/>
+    <div class="aside-wrapper">
+      <h3>{{eliminate.collection[0].name}}</h3>
+    </div>
+  </section>
+
+</div>

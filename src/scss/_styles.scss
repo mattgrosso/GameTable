@@ -165,6 +165,7 @@ select:focus{
 .results{
   max-width: 85%;
   width: 85%;
+  padding-bottom: 30px;
   img{
     margin: auto;
     display: block;
@@ -339,7 +340,7 @@ input[type=checkbox]{
   top: 25%;
   border-radius: 3px;
   float: left;
-  margin-right: 10px;
+  margin-right: 12px;
   label{
     display: block;
     width: 24px;
@@ -367,6 +368,9 @@ input[type=checkbox]{
       top: -12px;
       left: -7px;
       border-right: solid 3px #015C35;
+    }
+    .x-mark-eliminate{
+      opacity: 1;
     }
   }
   input[type=checkbox]:checked + label{
