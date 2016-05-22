@@ -45,9 +45,6 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-body {
-  width: 100%; }
-
 .freeze-scrolling {
   overflow: hidden; }
 
@@ -78,6 +75,19 @@ select:focus {
   outline: none;
   box-shadow: #015C35 0px 0px 5px; }
 
+.ribbon {
+  background-color: white;
+  color: #015C35;
+  padding: 9px;
+  font-size: 1em;
+  clear: both;
+  border: 2px solid #015C35;
+  max-width: 65%;
+  transition: all 0.5s ease-in; }
+
+.select-ribbon {
+  width: 78%; }
+
 .select-arrow {
   position: relative;
   right: 26%;
@@ -90,15 +100,11 @@ select:focus {
   transform: rotate(45deg);
   z-index: 1; }
 
-.ribbon {
-  background-color: white;
-  color: #015C35;
-  padding: 9px;
-  font-size: 1em;
-  clear: both;
-  border: 2px solid #015C35;
-  max-width: 65%;
-  transition: all 0.5s ease-in; }
+#genre-selector {
+  padding-left: 40%; }
+
+#select-selector {
+  padding-left: 38%; }
 
 .input-ribbon {
   background-color: white;
@@ -172,15 +178,6 @@ select:focus {
   .left-ribbon:-moz-placeholder {
     color: #015C35; }
 
-.select-ribbon {
-  width: 78%; }
-
-#genre-selector {
-  padding-left: 40%; }
-
-#select-selector {
-  padding-left: 38%; }
-
 .ribbon-noclick {
   background-color: #015C35;
   color: white; }
@@ -199,9 +196,6 @@ select:focus {
     text-align: center; }
   .results h3 {
     font-size: 2em; }
-
-.main-content {
-  width: 100%; }
 
 .headersmall {
   padding-top: 1%;
@@ -254,21 +248,6 @@ select:focus {
   .login-button:focus {
     outline: none; }
 
-.header-username {
-  float: right;
-  font-size: 1.5em;
-  padding: 10px;
-  padding-top: 25px;
-  padding-bottom: 15px;
-  margin-top: -5px;
-  margin-right: 6%;
-  background-color: #015C35;
-  color: white;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  width: 40%;
-  text-align: center; }
-
 .username-banner {
   margin-top: 20px; }
   .username-banner h4 {
@@ -303,25 +282,6 @@ select:focus {
 .chooser-info {
   display: none; }
 
-.chooser-button {
-  margin: auto;
-  width: 35%;
-  margin-right: 3%;
-  display: block;
-  font-size: 1em;
-  color: white;
-  background-color: #015C35;
-  border: 1px solid grey;
-  padding: 8px;
-  padding-left: 0px;
-  padding-right: 0px;
-  border-radius: 5px;
-  box-shadow: #bfbfbf 5px 5px 25px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  font-family: 'Libre Baskerville', serif;
-  float: right; }
-
 .modal-background {
   position: absolute;
   top: 0;
@@ -336,44 +296,19 @@ select:focus {
   background-color: white;
   width: 75%;
   border: solid 1px #015C35;
-  border-radius: 5px;
+  border-radius: 2px;
   top: 15%;
   left: 12%;
   padding-bottom: 8px;
   padding-top: 10px;
-  box-shadow: black 5px 5px 25px;
+  box-shadow: #575757 5px 5px 25px;
   z-index: 2; }
-  .modal .left-ribbon {
-    border-left: solid 1px #015C35;
-    padding-left: 10%; }
   .modal h3 {
     margin-top: 10px;
     max-width: 70%; }
   .modal ul {
     border-top: solid #015C35 5px;
     padding-top: 10px; }
-  .modal .find-game-button {
-    font-size: 0.8em;
-    padding: 5px;
-    width: 45%;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-right: 4%;
-    border: 1px solid #bfbfbf;
-    box-shadow: #bfbfbf 5px 5px 25px;
-    float: right; }
-  .modal .cancel-modal {
-    font-size: 0.7em;
-    width: 8%;
-    height: 21px;
-    padding: 0;
-    position: relative;
-    top: 0%;
-    margin-top: 6px;
-    margin-bottom: 5px;
-    margin-left: 88%;
-    border: 1px solid #bfbfbf;
-    box-shadow: #bfbfbf 5px 5px 25px; }
   .modal .aside-wrapper {
     width: 60%;
     float: right;
