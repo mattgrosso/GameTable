@@ -224,7 +224,7 @@
       template: '',
       link: function renderPopUp(scope, element, attrs) {
         element.click(function() {
-          element.after('<aside class="vote-popup">' + attrs.popUpNote + '</aside>');
+          element.after('<div class="vote-popup"><div>' + attrs.popUpNote + '</div></div>');
           setTimeout(function () {
             $('.vote-popup').remove();
           }, 500);
@@ -721,6 +721,9 @@
         } else{
           return false;
         }
+      });
+      this.nomineesArray.forEach(function clearPreviousVotes(each) {
+        each.votes = 0;
       });
     };
 

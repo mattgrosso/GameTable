@@ -32,6 +32,9 @@
           return false;
         }
       });
+      this.nomineesArray.forEach(function clearPreviousVotes(each) {
+        each.votes = 0;
+      });
     };
 
     this.doneNominating = function doneNominating() {
