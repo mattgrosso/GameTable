@@ -8,6 +8,10 @@
     done nominating
   </button>
 
+  <button class="ribbon right-ribbon" ng-show="vote.showNominees" ng-click="vote.showWinner()" type="button">
+    done voting
+  </button>
+
   <div class="clearfix"></div>
 
 </section>
@@ -31,16 +35,32 @@
   <div class="clearfix"></div>
 </ul>
 
-<button ng-show="vote.showNominees" ng-click="vote.showWinner()" type="button">
-  done voting
-</button>
-
-<ul ng-show="vote.showNominees">
-  <li ng-repeat="game in vote.nomineesArray">
-    {{game.name}}
-    <button ng-click="vote.voteForGame(game)" pop-up-note="voted!" type="button">+</button>
-    <aside ng-show="game.verify">voted!</aside>
+<ul class="gamelist" ng-show="vote.showNominees">
+  <li class="ribbon gamelist-ribbon right-ribbon" ng-repeat="game in vote.nomineesArray">
+    <div class="vote-button">
+      <div class="vote-button-center">
+        <button class="" ng-click="vote.voteForGame(game)" pop-up-note="voted!" type="button">
+          +
+        </button>
+      </div>
+    </div>
+    <img ng-src="{{game.image.thumbnailURL}}"/>
+    <div class="aside-wrapper">
+      <h3>{{game.name}}</h3>
+      <aside>{{game.playerCount.min}} to {{game.playerCount.max}} players</aside>
+      <aside>{{game.playTime.max}} minutes</aside>
+    </div>
   </li>
+  <div class="clearfix"></div>
 </ul>
 
-<h2 ng-show="vote.winner">{{vote.winner.name}} (With {{vote.winner.votes}} votes)</h2>
+<div class="gamelist">
+
+  <section class="ribbon right-ribbon ribbon-noclick results" ng-show="vote.winner">
+    <img ng-src="{{vote.winner.games[0].image.imageURL}}"/>
+    <div class="aside-wrapper">
+      <h3>{{vote.winner.name}} (With {{vote.winner.votes}} votes)</h3>
+    </div>
+  </section>
+
+</div>

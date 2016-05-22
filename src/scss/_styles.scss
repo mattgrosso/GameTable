@@ -81,6 +81,7 @@ select:focus{
 }
 
 .gamelist-ribbon{
+  position: relative;
   width: 85%;
   height: 71px;
   padding-bottom: 4px;
@@ -324,10 +325,6 @@ select:focus{
   padding-top: 10px;
 }
 
-.transparent{
-  opacity: 0;
-}
-
 input[type=checkbox]{
   display: none;
 }
@@ -378,4 +375,55 @@ input[type=checkbox]{
       opacity: 1;
     }
   }
+}
+
+.vote-button{
+  width: 30px;
+  height: 30px;
+  background: #015C35;
+  position: relative;
+  top: 25%;
+  border-radius: 3px;
+  float: left;
+  margin-right: 12px;
+  .vote-button-center{
+    background-color: white;
+    width: 24px;
+    height: 24px;
+    border: none;
+    position: relative;
+    top: 3px;
+    left: 3px;
+    font-size: 2em;
+    color: #015C35;
+  }
+  button{
+    position: relative;
+    font-size: 29px;
+    color: #015C35;
+    top: -12px;
+    left: -4px;
+  }
+}
+
+.vote-popup{
+  position: absolute;
+  width: 1460%;
+  height: 360%;
+  background-color: #015C35;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  opacity: 0.7;
+  top: -132%;
+  left: -65%;
+  div{
+    color: white;
+    position: relative;
+    top: 28px;
+    left: 130px;
+  }
+}
+
+.transparent{
+  opacity: 0;
 }
