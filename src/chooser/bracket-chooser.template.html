@@ -1,19 +1,59 @@
-<h2 ng-show="bracket.showStart">Bracket Tournament</h2>
-<button ng-show="bracket.showStart" ng-click="bracket.startTournament()" type="button">Start Tournament</button>
-<p ng-show="bracket.showStart">In this method, all of the games that you filtered to on the last page have been entered into a single-elimination bracket tournament (like March Madness). Once you begin the tournament, you will be presented with each head to head matchup one at at time. Simply choose the game your prefer from the two listed. Once there is only one game remaining the winner will be displayed.</p>
+<section class="description-section">
 
+  <p class="ribbon left-ribbon ribbon-noclick" ng-show="bracket.showStart">
+    choose a winner from each matchup until only one game remains
+  </p>
 
-<h2 ng-show="bracket.showRoundCounter">Round {{bracket.currentRound}} of {{bracket.numberOfRounds}}</h2>
+  <button class="ribbon right-ribbon" ng-show="bracket.showStart" ng-click="bracket.startTournament()" type="button">
+    start tournament
+  </button>
 
-<h3 ng-show="bracket.showMatchUp" ng-click="bracket.pickWinner(1)">
-  {{bracket.firstContender.name}}
-</h3>
-<p ng-show="bracket.showMatchUp">
-  vs.
-</p>
-<h3 ng-show="bracket.showMatchUp" ng-click="bracket.pickWinner(2)">
-  {{bracket.secondContender.name}}
-</h3>
-<button ng-show="bracket.showMatchUp" ng-click="bracket.pickWinner('random')" type="button">Choose Randomly</button>
+  <h2 class="ribbon right-ribbon ribbon-noclick" ng-show="bracket.showRoundCounter">
+    round {{bracket.currentRound}} of {{bracket.numberOfRounds}}
+  </h2>
 
-<h2 ng-show="bracket.showWinner">{{bracket.winner.name}}</h2>
+  <div class="clearfix"></div>
+
+</section>
+
+<section class="gamelist">
+
+  <div class="ribbon gamelist-ribbon right-ribbon" ng-show="bracket.showMatchUp" ng-click="bracket.pickWinner(1)">
+    <img ng-src="{{bracket.firstContender.image.thumbnailURL}}"/>
+    <div class="aside-wrapper">
+      <h3>{{bracket.firstContender.name}}</h3>
+      <aside>{{bracket.firstContender.playerCount.min}} to {{bracket.firstContender.playerCount.max}} players</aside>
+      <aside>{{bracket.firstContender.playTime.max}} minutes</aside>
+    </div>
+  </div>
+
+  <p class="bracket-vs-label" ng-show="bracket.showMatchUp">
+    vs
+  </p>
+
+  <div class="ribbon gamelist-ribbon right-ribbon" ng-show="bracket.showMatchUp" ng-click="bracket.pickWinner(2)">
+    <img ng-src="{{bracket.secondContender.image.thumbnailURL}}"/>
+    <div class="aside-wrapper">
+      <h3>{{bracket.secondContender.name}}</h3>
+      <aside>{{bracket.secondContender.playerCount.min}} to {{bracket.secondContender.playerCount.max}} players</aside>
+      <aside>{{bracket.secondContender.playTime.max}} minutes</aside>
+    </div>
+  </div>
+
+  <button class="ribbon right-ribbon" ng-show="bracket.showMatchUp" ng-click="bracket.pickWinner('random')" type="button">
+    choose randomly
+  </button>
+
+  <div class="clearfix"></div>
+</section>
+
+<div class="gamelist" ng-show="bracket.showWinner">
+
+  <section class="ribbon right-ribbon ribbon-noclick results">
+    <img ng-src="{{bracket.winner.image.imageURL}}"/>
+    <div class="aside-wrapper">
+      <h3>{{bracket.winner.name}}</h3>
+    </div>
+  </section>
+
+</div>

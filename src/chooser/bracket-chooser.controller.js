@@ -66,6 +66,8 @@
       }
       this.firstContender = this.entrantArray[0];
       this.secondContender = this.entrantArray[1];
+      console.log(this.entrantArray);
+      console.log(this.firstContender);
 
       this.showStart = false;
       this.showMatchUp = true;
@@ -91,7 +93,6 @@
     this.countRounds = function countRounds(entrants, roundCount) {
       var runningTotal = entrants;
       var roundCounter = roundCount || 0;
-      console.log(roundCounter);
       if (runningTotal/2 > 1) {
         roundCounter++;
         this.countRounds(runningTotal/2, roundCounter);

@@ -118,8 +118,7 @@ select:focus {
 .gamelist-ribbon {
   position: relative;
   width: 85%;
-  height: 71px;
-  padding-bottom: 4px;
+  padding-bottom: 7px;
   max-width: 85%; }
   .gamelist-ribbon img {
     height: 65px;
@@ -407,5 +406,13 @@ input[type=checkbox] {
 
 .transparent {
   opacity: 0; }
+
+.bracket-vs-label {
+  clear: both;
+  position: relative;
+  font-size: 1.75em;
+  color: #015C35;
+  top: -8px;
+  left: 88%; }
 
 /*# sourceMappingURL=main.css.map */
