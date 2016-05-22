@@ -1,14 +1,32 @@
-<button ng-click="nomrank.goToResults()" type="button">
-   Done adding value {{nomrank.currentValueOfVotes}}s
-</button>
+<section class="description-section">
 
-<p>
-  Cast your vote and then pass to the next player so they can vote. Once everyone has voted, click 'Done adding value'.
-</p>
+  <p class="ribbon left-ribbon ribbon-noclick">
+    Cast your vote and then pass to the next player so they can vote. Once everyone has voted, click 'Done adding value'.
+  </p>
 
-<ul>
-  <li ng-repeat="game in nomrank.nomineesArray">
-    {{game.name}}
-    <button ng-click="nomrank.addValue(game)" type="button">Place Vote (value {{nomrank.currentValueOfVotes}})</button>
+  <button class="ribbon right-ribbon" ng-click="nomrank.goToResults()" type="button">
+     done adding value {{nomrank.currentValueOfVotes}}s
+  </button>
+
+  <div class="clearfix"></div>
+
+</section>
+
+<ul class="gamelist">
+  <li class="ribbon gamelist-ribbon right-ribbon" ng-repeat="game in nomrank.nomineesArray">
+    <div class="vote-button">
+      <div class="vote-button-center">
+        <button ng-click="nomrank.addValue(game)" pop-up-note="added {{nomrank.currentValueOfVotes}}pts" type="button">
+          +
+        </button>
+      </div>
+    </div>
+    <img ng-src="{{game.image.thumbnailURL}}"/>
+    <div class="aside-wrapper">
+      <h3>{{game.name}}</h3>
+      <aside>{{game.playerCount.min}} to {{game.playerCount.max}} players</aside>
+      <aside>{{game.playTime.max}} minutes</aside>
+    </div>
   </li>
+  <div class="clearfix"></div>
 </ul>

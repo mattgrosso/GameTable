@@ -1,13 +1,34 @@
-<button ng-show="{{nomrank.currentValueOfVotes}} < 3" ng-hide="{{nomrank.showWinner}}" ng-click="nomrank.goToValueVoting()" type="button">
-  Next Round
-</button>
+<section class="description-section">
 
-<p>
-  These are the scores so far. Click 'next round' when you're ready to move to the next round.
-</p>
+  <p class="ribbon left-ribbon ribbon-noclick">
+    These are the scores so far. Click 'next round' when you're ready to move to the next round.
+  </p>
 
-<ul ng-show="{{nomrank.currentValueOfVotes}} < 3" ng-hide="{{nomrank.showWinner}}">
-  <li ng-repeat="game in nomrank.nomineesArray | orderBy: '-value'">{{game.name}} ({{game.value || 0}}pts)</li>
+  <button class="ribbon right-ribbon" ng-show="{{nomrank.currentValueOfVotes}} < 3" ng-hide="{{nomrank.showWinner}}" ng-click="nomrank.goToValueVoting()" type="button">
+    Next Round
+  </button>
+
+  <div class="clearfix"></div>
+
+</section>
+
+
+<ul class="gamelist" ng-show="{{nomrank.currentValueOfVotes}} < 3" ng-hide="{{nomrank.showWinner}}">
+  <li class="ribbon gamelist-ribbon right-ribbon" ng-repeat="game in nomrank.nomineesArray | orderBy: '-value'">
+    <img ng-src="{{game.image.thumbnailURL}}"/>
+    <div class="aside-wrapper">
+      <h3>{{game.name}}</h3>
+      <aside>({{game.value || 0}}pts)</aside>
+    </div>
+  </li>
+  <div class="clearfix"></div>
 </ul>
 
-<h2 ng-show="{{nomrank.showWinner}}">{{nomrank.winner.name}} with {{nomrank.winner.value}}pts</h2>
+<div class="gamelist">
+  <section class="ribbon right-ribbon ribbon-noclick results" ng-show="{{nomrank.showWinner}}">
+    <img ng-src="{{nomrank.winner.games[0].image.imageURL}}"/>
+    <div class="aside-wrapper">
+      <h3>{{nomrank.winner.name}} with {{nomrank.winner.value}}pts</h3>
+    </div>
+  </section>
+</div>

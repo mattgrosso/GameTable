@@ -12,7 +12,7 @@
 
 </section>
 
-<ul class="gamelist gamelist-noclick" ng-hide="nomrand.randomGame">
+<ul class="gamelist" ng-hide="nomrand.randomGame">
   <li class="ribbon gamelist-ribbon right-ribbon" ng-repeat="game in nomrand.collection">
     <div class="nominate-checkbox">
       <input id="{{game.objectID}}" ng-click="nomrand.addNominee()" ng-model="game.nominated" type="checkbox" value="nominated">

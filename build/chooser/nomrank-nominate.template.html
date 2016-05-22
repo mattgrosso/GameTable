@@ -1,12 +1,32 @@
-<button ng-click="nomrank.goToValueVoting()" type="button">
-  Done Nominating
-</button>
+<section class="description-section">
 
-<p>Nominate games to be considered. We suggest that each player nominate one game but you can do it however you like.</p>
+  <p class="ribbon left-ribbon ribbon-noclick">
+    nominate games to be considered
+  </p>
 
-<ul>
-  <li ng-repeat="game in nomrank.collection">
-    {{game.name}}
-    <input ng-click="nomrank.addNominee()" ng-model="game.nominated" type="checkbox" value="nominated">
+  <button class="ribbon right-ribbon" ng-class="{transparent: nomrank.nomineesArray.length < 1}" ng-click="nomrank.goToValueVoting()" type="button">
+    done nominating
+  </button>
+
+  <div class="clearfix"></div>
+
+</section>
+
+<ul class="gamelist">
+  <li class="ribbon gamelist-ribbon right-ribbon" ng-repeat="game in nomrank.collection">
+    <div class="nominate-checkbox">
+      <input id="{{game.objectID}}" ng-click="nomrank.addNominee()" ng-model="game.nominated" type="checkbox" value="nominated">
+      <label for="{{game.objectID}}">
+        <div class="x-mark x-mark-front"></div>
+        <div class="x-mark x-mark-back"></div>
+      </label>
+    </div>
+    <img ng-src="{{game.image.thumbnailURL}}"/>
+    <div class="aside-wrapper">
+      <h3>{{game.name}}</h3>
+      <aside>{{game.playerCount.min}} to {{game.playerCount.max}} players</aside>
+      <aside>{{game.playTime.max}} minutes</aside>
+    </div>
   </li>
+  <div class="clearfix"></div>
 </ul>
