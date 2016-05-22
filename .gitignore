@@ -4,3 +4,4 @@ node_modules/
 css/main.css.map
 token.md
 js/vendor/
+npm-debug.log

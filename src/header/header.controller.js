@@ -8,7 +8,7 @@
   HeaderController.$inject = ['$state', '$localStorage', 'GameFactory'];
 
   function HeaderController($state, $localStorage, GameFactory) {
-    console.log('Inside of HeaderController');
+    console.log('Inside of HeaderController', GameFactory.amILoggedIn);
 
     this.loggedIn = GameFactory.amILoggedIn;
 
