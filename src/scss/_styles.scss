@@ -49,6 +49,10 @@ select:focus{
   width: 78%;
 }
 
+.text-input-ribbon{
+  width: 55%;
+}
+
 .select-arrow{
   position: relative;
   right: 26%;
@@ -142,7 +146,7 @@ select:focus{
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   float: left;
-  border-left: none;
+  border-left: 1px solid #015C35;
   &::-webkit-input-placeholder {
   color: #015C35;
   }

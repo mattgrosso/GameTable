@@ -1,3 +1,35 @@
 @media screen and (min-width: 501px) and (max-width: 800px){
-  
+  .ribbon{
+    font-size: 1.75em;
+  }
+  .username-banner {
+    margin-top: 80px;
+    width: 45%;
+    padding-left: 30px;
+    background-color: red;
+  }
+  .username-banner a {
+    font-size: 0.9em;
+    float: right;
+    padding-top: 6px;
+  }
+  .username-banner h4 {
+    float: left;
+    font-size: 1.25em;
+    padding-right: 20px;
+    padding-left: 8px;
+    padding-bottom: 4px;
+  }
+  .username-banner aside {
+    float: left;
+    padding-left: 23px;
+    padding-right: 10px;
+    padding-top: 2px;
+  }
+  .ribbon-noclick {
+    padding-top: 12px;
+  }
+  .input-ribbon{
+    font-size: 1.75em;
+  }
 }

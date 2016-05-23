@@ -3,8 +3,8 @@
 <section class="description-section">
 
   <form>
-    <input class="input-ribbon left-ribbon" ng-model="choose.players" type="text" name="player-count" placeholder="player count" autocomplete="off">
-    <input class="input-ribbon left-ribbon" ng-model="choose.duration" type="text" name="duration" placeholder="duration"autocomplete="off">
+    <input class="input-ribbon text-input-ribbon left-ribbon" ng-model="choose.players" type="text" name="player-count" placeholder="player count" autocomplete="off">
+    <input class="input-ribbon text-input-ribbon left-ribbon" ng-model="choose.duration" type="text" name="duration" placeholder="duration"autocomplete="off">
     <select id="genre-selector" class="input-ribbon select-ribbon left-ribbon" ng-model="choose.genre" name="genre">
       <option value="" disabled selected>genre</option>
       <option ng-repeat="genre in choose.genreArray">{{genre | titleCase}}</option>
