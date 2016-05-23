@@ -86,6 +86,7 @@ module.exports = function(grunt) {
               'node_modules/ng-storage/ngStorage.min.js',
               'src/app/game.module.js',
               'src/header/header.controller.js',
+              'src/login/login.controller.js',
               'test/specs/**/*.js'
             ],
             preprocessors:{
