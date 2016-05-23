@@ -87,18 +87,26 @@ module.exports = function(grunt) {
               'src/app/game.module.js',
               'src/header/header.controller.js',
               'src/login/login.controller.js',
+              'src/games/games.service.js',
               'test/specs/**/*.js'
             ],
             preprocessors:{
               'src/**/*.js': ['coverage']
             },
             reporters: [
-              'progress',
+              'mocha',
               'coverage'
             ],
             coverageReporter: {
               type: 'text-summary'
-            }
+            },
+            plugins: [
+              'karma-mocha-reporter',
+              'karma-mocha',
+              'karma-coverage',
+              'karma-chai',
+              'karma-phantomjs-launcher'
+            ]
           }
         }
       },

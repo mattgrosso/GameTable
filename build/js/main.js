@@ -844,6 +844,7 @@
           }
         }).then(function successGetUserCollection(response) {
           if (response.data === 'in queue') {
+            console.log('in in queue');
             var def = $q.defer();
             var status = {
               status: "in queue",

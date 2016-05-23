@@ -32,17 +32,14 @@
         var def = $q.defer();
 
         if(username === 'matt'){
-          console.log('username === matt');
           def.resolve({
             status: 'ok'
           });
         } else if (username === 'queue') {
-          console.log('username === queue');
           def.reject({
             status: 'in queue'
           });
         } else {
-          console.log('else triggered in mockGameFactory.getUserCollection');
           def.reject({
             status: ''
           });
@@ -71,11 +68,9 @@
     });
 
     test('login function catches properly', function (){
-      console.log('in the login testing catches');
       loginController.username = '';
       loginController.login()
         .then(function () {
-          console.log('running .then in catch test');
           assert.strictEqual(loginController.message, 'Log in failed. Please check your username.', 'the message is updating');
         });
       $rootScope.$digest();
