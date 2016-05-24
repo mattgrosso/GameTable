@@ -1,8 +1,8 @@
 <!-- <h2 class="chooser-header ribbon right-ribbon">choose a game</h2> -->
 
-<section class="description-section">
+<section class="description-section large-view-main-page-description-section">
 
-  <form>
+  <form class="filter-form">
     <input class="input-ribbon text-input-ribbon left-ribbon large-view-input player-count" ng-model="choose.players" type="text" name="player-count" placeholder="player count" autocomplete="off">
     <input class="input-ribbon text-input-ribbon left-ribbon large-view-input" ng-model="choose.duration" type="text" name="duration" placeholder="duration"autocomplete="off">
 
@@ -30,7 +30,7 @@
     <aside class="add-game-button ribbon right-ribbon" ng-click="choose.showAddGameForm()">+</aside>
     <div class="clearfix"></div>
   </form>
-
+  <div class="clearfix"></div>
 </section>
 
 <modal show="choose.showAddGame" close="choose.showAddGame = false">
@@ -71,7 +71,7 @@
 </modal>
 
 
-<ul class="gamelist gamelist-noclick">
+<ul class="gamelist gamelist-noclick large-view-gamelist-ul">
   <li class="ribbon gamelist-ribbon right-ribbon ribbon-noclick large-view-game-list" ng-repeat="game in choose.collection | gameFilter:choose.players:choose.duration:choose.genre as filteredCollection">
     <img ng-src="{{game.image.thumbnailURL}}"/>
     <div class="aside-wrapper">

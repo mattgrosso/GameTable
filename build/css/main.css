@@ -261,7 +261,8 @@ select:focus {
 
 .description-section {
   clear: both;
-  padding-top: 10px; }
+  padding-top: 10px;
+  background-color: white; }
 
 .chooser-info {
   display: none; }
@@ -304,6 +305,9 @@ select:focus {
   padding-top: 10px;
   background-color: white; }
 
+.game-count {
+  border-radius: 0px; }
+
 input[type=checkbox] {
   display: none; }
 
@@ -312,7 +316,7 @@ input[type=checkbox] {
   height: 30px;
   background: #015C35;
   position: relative;
-  top: 25%;
+  top: 17px;
   border-radius: 3px;
   float: left;
   margin-right: 12px; }
@@ -353,7 +357,7 @@ input[type=checkbox] {
   height: 30px;
   background: #015C35;
   position: relative;
-  top: 25%;
+  top: 17px;
   border-radius: 3px;
   float: left;
   margin-right: 12px; }
@@ -371,26 +375,32 @@ input[type=checkbox] {
     position: relative;
     font-size: 28px;
     color: #015C35;
-    top: -9px;
+    top: -6px;
     left: -2px;
     background: none;
     border: none; }
+    .vote-button button:focus {
+      outline: none; }
+    .vote-button button .plus-mark {
+      border-bottom: 2px solid #015C35;
+      width: 16px;
+      height: 16px; }
+    .vote-button button .plus-mark-front {
+      position: relative;
+      top: -1px; }
+    .vote-button button .plus-mark-back {
+      transform: rotate(90deg);
+      position: relative;
+      top: -11px;
+      left: 8px; }
 
 .vote-popup {
-  position: absolute;
-  width: 1460%;
-  height: 360%;
+  position: relative;
+  width: 100%;
+  height: 100%;
   background-color: #015C35;
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
   opacity: 0.7;
-  top: -132%;
-  left: -65%; }
-  .vote-popup div {
-    color: white;
-    position: relative;
-    top: 28px;
-    left: 130px; }
+  top: -43px; }
 
 .transparent {
   opacity: 0; }
@@ -407,6 +417,9 @@ input[type=checkbox] {
   clear: none;
   padding-right: 12px; }
 
+.nomrank-point-total {
+  font-size: 1em; }
+
 @media screen and (min-width: 501px) and (max-width: 650px) {
   .logosmall {
     width: 15%; }
@@ -418,7 +431,13 @@ input[type=checkbox] {
 
   .gamelist-ribbon img {
     max-width: 160px;
-    height: 85px; } }
+    height: 85px; }
+
+  .nominate-checkbox {
+    top: 28px; }
+
+  .vote-button {
+    top: 28px; } }
 @media screen and (min-width: 651px) and (max-width: 800px) {
   .logosmall {
     width: 13%; }
@@ -431,7 +450,7 @@ input[type=checkbox] {
 
   .gamelist-ribbon img {
     max-width: 210px;
-    height: 150px; }
+    height: 100px; }
 
   .select-ribbon {
     width: 109%;
@@ -451,7 +470,13 @@ input[type=checkbox] {
 
   .gamelist-stay-small img {
     height: 85px;
-    max-width: 160px; } }
+    max-width: 160px; }
+
+  .nominate-checkbox {
+    top: 60px; }
+
+  .vote-button {
+    top: 60px; } }
 @media screen and (min-width: 801px) and (max-width: 1000px) {
   .logosmall {
     width: 13%; }
@@ -484,7 +509,7 @@ input[type=checkbox] {
 
   .gamelist-ribbon img {
     max-width: 260px;
-    height: 180px; }
+    height: 110px; }
 
   .select-ribbon {
     width: 109%;
@@ -510,15 +535,27 @@ input[type=checkbox] {
 
   .gamelist-stay-small img {
     height: 85px;
-    max-width: 160px; } }
+    max-width: 160px; }
+
+  .nominate-checkbox {
+    top: 75px; }
+
+  .vote-button {
+    top: 75px; }
+    .vote-button button {
+      top: -9px; }
+
+  .vote-popup {
+    top: -48px; } }
 @media screen and (min-width: 1001px) {
   .logosmall {
     height: 215px;
     width: inherit;
-    z-index: -1;
-    position: absolute;
-    top: -62px;
+    position: relative;
+    top: -74px;
     left: 1%; }
+    .logosmall::after {
+      z-index: 1; }
 
   .logolarge {
     width: 40%;
@@ -568,7 +605,7 @@ input[type=checkbox] {
 
   .gamelist-ribbon img {
     max-width: 260px;
-    height: 180px; }
+    height: 130px; }
   .gamelist-ribbon h3 {
     font-size: 1.3em; }
 
@@ -608,12 +645,11 @@ input[type=checkbox] {
     .search-ribbon:focus {
       border-right: none; }
 
-  .description-section {
-    width: 20%;
-    float: right; }
-
   .large-view-input {
     width: 100%; }
+
+  .large-view-gamelist-ul {
+    border: none; }
 
   .large-view-game-list {
     font-family: 'Libre Baskerville', serif;
@@ -629,7 +665,8 @@ input[type=checkbox] {
     border-left: 1px solid #015C35;
     border-right: inherit;
     width: 68%;
-    clear: none; }
+    clear: none;
+    z-index: 1; }
     .large-view-game-list::-webkit-input-placeholder {
       color: #015C35; }
     .large-view-game-list::-moz-placeholder {
@@ -639,15 +676,51 @@ input[type=checkbox] {
     .large-view-game-list:-moz-placeholder {
       color: #015C35; }
 
-  .player-count {
-    margin-top: 4px; } }
+  .large-view-main-page-description-section {
+    width: 20%;
+    float: right; }
+
+  .nominate-checkbox {
+    top: 75px; }
+
+  .vote-button {
+    top: 75px; }
+    .vote-button button {
+      top: -9px; }
+
+  .vote-popup {
+    top: -48px; }
+
+  .description-section {
+    z-index: 1; }
+
+  .headersmall {
+    height: 108px;
+    overflow: hidden; } }
 @media screen and (min-width: 1200px) {
   .logosmall {
     height: 215px;
     width: inherit;
-    z-index: -1;
-    position: absolute;
-    top: -62px;
-    left: 1%; } }
+    position: relative;
+    top: -74px;
+    left: 1%; }
+
+  .nominate-checkbox {
+    top: 75px; }
+
+  .vote-button {
+    top: 75px; }
+    .vote-button button {
+      top: -9px; }
+
+  .vote-popup {
+    top: -48px; }
+
+  .description-section {
+    z-index: 1; }
+
+  .headersmall {
+    height: 108px;
+    overflow: hidden; } }
 
 /*# sourceMappingURL=main.css.map */

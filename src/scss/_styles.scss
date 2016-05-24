@@ -260,6 +260,7 @@ select:focus{
 .description-section{
   clear: both;
   padding-top: 10px;
+  background-color: white;
 }
 
 .chooser-info{
@@ -310,6 +311,10 @@ select:focus{
   background-color: white;
 }
 
+.game-count{
+  border-radius: 0px;
+}
+
 input[type=checkbox]{
   display: none;
 }
@@ -319,7 +324,7 @@ input[type=checkbox]{
   height: 30px;
   background: #015C35;
   position: relative;
-  top: 25%;
+  top: 17px;
   border-radius: 3px;
   float: left;
   margin-right: 12px;
@@ -370,7 +375,7 @@ input[type=checkbox]{
   height: 30px;
   background: #015C35;
   position: relative;
-  top: 25%;
+  top: 17px;
   border-radius: 3px;
   float: left;
   margin-right: 12px;
@@ -389,29 +394,38 @@ input[type=checkbox]{
     position: relative;
     font-size: 28px;
     color: #015C35;
-    top: -9px;
+    top: -6px;
     left: -2px;
     background: none;
     border: none;
+    &:focus{
+      outline: none;
+    }
+    .plus-mark{
+      border-bottom: 2px solid #015C35;
+      width: 16px;
+      height: 16px;
+    }
+    .plus-mark-front{
+      position: relative;
+      top: -1px;
+    }
+    .plus-mark-back{
+      transform: rotate(90deg);
+      position: relative;
+      top: -11px;
+      left: 8px;
+    }
   }
 }
 
 .vote-popup{
-  position: absolute;
-  width: 1460%;
-  height: 360%;
+  position: relative;
+  width: 100%;
+  height: 100%;
   background-color: #015C35;
-  border-top-left-radius: 2px;
-  border-bottom-left-radius: 2px;
   opacity: 0.7;
-  top: -132%;
-  left: -65%;
-  div{
-    color: white;
-    position: relative;
-    top: 28px;
-    left: 130px;
-  }
+  top: -43px;
 }
 
 .transparent{
@@ -430,4 +444,8 @@ input[type=checkbox]{
 .add-game-button{
   clear: none;
   padding-right: 12px;
+}
+
+.nomrank-point-total{
+  font-size: 1em;
 }

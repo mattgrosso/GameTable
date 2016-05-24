@@ -11,6 +11,12 @@
     max-width: 160px;
     height: 85px;
   }
+  .nominate-checkbox{
+    top: 28px;
+  }
+  .vote-button{
+    top: 28px;
+  }
 }
 
 @media screen and (min-width: 651px) and (max-width: 800px){
@@ -25,7 +31,7 @@
   }
   .gamelist-ribbon img{
     max-width: 210px;
-    height: 150px;
+    height: 100px;
   }
   .select-ribbon{
     width: 109%;
@@ -51,6 +57,12 @@
       height: 85px;
       max-width: 160px;
     }
+  }
+  .nominate-checkbox{
+    top: 60px;
+  }
+  .vote-button{
+    top: 60px;
   }
 }
 
@@ -89,7 +101,7 @@
   }
   .gamelist-ribbon img{
     max-width: 260px;
-    height: 180px;
+    height: 110px;
   }
   .select-ribbon{
     width: 109%;
@@ -122,16 +134,30 @@
       max-width: 160px;
     }
   }
+  .nominate-checkbox{
+    top: 75px;
+  }
+  .vote-button{
+    top: 75px;
+    button{
+      top: -9px;
+    }
+  }
+  .vote-popup{
+    top: -48px;
+  }
 }
 
 @media screen and (min-width: 1001px){
   .logosmall{
     height: 215px;
     width: inherit;
-    z-index: -1;
-    position: absolute;
-    top: -62px;
+    position: relative;
+    top: -74px;
     left: 1%;
+    &::after{
+      z-index: 1;
+    }
   }
   .logolarge{
     width: 40%;
@@ -192,7 +218,7 @@
   .gamelist-ribbon {
     img{
       max-width: 260px;
-      height: 180px;
+      height: 130px;
     }
     h3{
       font-size: 1.3em;
@@ -242,12 +268,11 @@
       border-right: none;
     }
   }
-  .description-section{
-    width: 20%;
-    float: right;
-  }
   .large-view-input{
     width: 100%;
+  }
+  .large-view-gamelist-ul{
+    border: none;
   }
   .large-view-game-list{
     font-family: 'Libre Baskerville', serif;
@@ -264,6 +289,7 @@
     border-right: inherit;
     width: 68%;
     clear: none;
+    z-index: 1;
     &::-webkit-input-placeholder {
     color: #015C35;
     }
@@ -277,8 +303,28 @@
       color: #015C35;
     }
   }
-  .player-count{
-    margin-top: 4px;
+  .large-view-main-page-description-section{
+    width: 20%;
+    float: right;
+  }
+  .nominate-checkbox{
+    top: 75px;
+  }
+  .vote-button{
+    top: 75px;
+    button{
+      top: -9px;
+    }
+  }
+  .vote-popup{
+    top: -48px;
+  }
+  .description-section{
+    z-index: 1;
+  }
+  .headersmall{
+    height: 108px;
+    overflow: hidden;
   }
 }
 
@@ -286,9 +332,27 @@
   .logosmall{
     height: 215px;
     width: inherit;
-    z-index: -1;
-    position: absolute;
-    top: -62px;
+    position: relative;
+    top: -74px;
     left: 1%;
+  }
+  .nominate-checkbox{
+    top: 75px;
+  }
+  .vote-button{
+    top: 75px;
+    button{
+      top: -9px;
+    }
+  }
+  .vote-popup{
+    top: -48px;
+  }
+  .description-section{
+    z-index: 1;
+  }
+  .headersmall{
+    height: 108px;
+    overflow: hidden;
   }
 }

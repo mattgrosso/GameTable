@@ -9,9 +9,9 @@
     return {
       restrict: 'A',
       template: '',
-      link: function renderPopUp(scope, element, attrs) {
+      link: function renderPopUp(scope, element) {
         element.click(function() {
-          element.after('<div class="vote-popup"><div>' + attrs.popUpNote + '</div></div>');
+          element.after('<div class="vote-popup"></div>');
           setTimeout(function () {
             $('.vote-popup').remove();
           }, 500);
