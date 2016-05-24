@@ -19,12 +19,12 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
 
     this.login = function login() {
       $localStorage.collection = null;
-      that.message = "Please hold, BGG is slow.";
+      that.message = "please hold, bgg is slow.";
       return GameFactory.getUserCollection(that.username)
         .then(function () {
           console.log('in .then for ctrl');
           $localStorage.username = that.username;
-          that.message = "You are now logged in.";
+          that.message = "you are now logged in";
           that.username = "";
           that.storedUsername = $localStorage.username;
           $state.go('choose');
@@ -37,7 +37,7 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
             setTimeout(that.login, 1000);
           } else {
             console.log('in the else in the catch');
-            that.message = "Log in failed. Please check your username.";
+            that.message = "log in failed. please check your username.";
           }
         });
     };

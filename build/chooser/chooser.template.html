@@ -3,10 +3,10 @@
 <section class="description-section">
 
   <form>
-    <input class="input-ribbon text-input-ribbon left-ribbon" ng-model="choose.players" type="text" name="player-count" placeholder="player count" autocomplete="off">
-    <input class="input-ribbon text-input-ribbon left-ribbon" ng-model="choose.duration" type="text" name="duration" placeholder="duration"autocomplete="off">
+    <input class="input-ribbon text-input-ribbon left-ribbon large-view-input player-count" ng-model="choose.players" type="text" name="player-count" placeholder="player count" autocomplete="off">
+    <input class="input-ribbon text-input-ribbon left-ribbon large-view-input" ng-model="choose.duration" type="text" name="duration" placeholder="duration"autocomplete="off">
 
-    <div class="select-styling-div input-ribbon left-ribbon">
+    <div class="select-styling-div input-ribbon left-ribbon large-view-input">
       <select id="genre-selector" class="select-ribbon" ng-model="choose.genre" name="genre">
         <option value="" disabled selected>genre</option>
         <option ng-repeat="genre in choose.genreArray">{{genre | titleCase}}</option>
@@ -15,7 +15,7 @@
 
     <div class="select-arrow top-select-arrow"></div>
 
-    <div class="select-styling-div input-ribbon left-ribbon">
+    <div class="select-styling-div input-ribbon left-ribbon large-view-input">
       <select id="select-selector" class="select-ribbon" ng-model="choose.chooser" ng-change="choose.goToChooser(filteredCollection)">
         <option value="" disabled selected>method</option>
         <option ng-repeat="chooser in choose.chooserArray" value="{{chooser.stateName}}">{{chooser.menuName}}</option>
@@ -72,18 +72,12 @@
 
 
 <ul class="gamelist gamelist-noclick">
-  <li class="ribbon gamelist-ribbon right-ribbon ribbon-noclick" ng-repeat="game in choose.collection | gameFilter:choose.players:choose.duration:choose.genre as filteredCollection">
+  <li class="ribbon gamelist-ribbon right-ribbon ribbon-noclick large-view-game-list" ng-repeat="game in choose.collection | gameFilter:choose.players:choose.duration:choose.genre as filteredCollection">
     <img ng-src="{{game.image.thumbnailURL}}"/>
     <div class="aside-wrapper">
       <h3>{{game.name}}</h3>
       <aside>{{game.playerCount.min}} to {{game.playerCount.max}} players</aside>
       <aside>{{game.playTime.max}} minutes</aside>
-      <div class="large-view-stats">
-        <aside class="year">{{game.year}}</aside>
-        <aside class="rank">rank: {{game.rank.boardgame}}</aside>
-        <aside class="geek-rating">geek rating: {{game.rating.geekRating}}</aside>
-        <aside class="user-rating">user rating: {{game.rating.userAverage}}</aside>
-      </div>
     </div>
   </li>
   <div class="clearfix"></div>
