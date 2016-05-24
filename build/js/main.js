@@ -908,7 +908,7 @@
             parsedResponse.items.item.forEach(function (each) {
               var prettyFullSearchItem = {};
               prettyFullSearchItem.objectID = each.$.id;
-              prettyFullSearchItem.name = each.name[0].$.value;
+              prettyFullSearchItem.name = (each.name && each.name[0].$.value) || "unnamed";
               prettyFullSearchItem.type = each.$.type;
               prettyFullSearchItem.image = {};
               if (each.image) {
@@ -925,26 +925,28 @@
               };
               prettyFullSearchItem.year = parseInt(each.yearpublished[0].$.value);
               prettyFullSearchItem.playerCount = {
-                max: parseInt(each.maxplayers[0].$.value),
-                min: parseInt(each.minplayers[0].$.value)
+                max: (each.maxplayers && parseInt(each.maxplayers[0].$.value)) || 10,
+                min: (each.minplayers && parseInt(each.minplayers[0].$.value)) || 1
               };
               prettyFullSearchItem.playTime = {
-                max: parseInt(each.maxplaytime[0].$.value),
-                min: parseInt(each.minplaytime[0].$.value)
+                max: (each.maxplaytime && parseInt(each.maxplaytime[0].$.value)) || 60,
+                min: (each.minplaytime && parseInt(each.minplaytime[0].$.value)) || 1
               };
               prettyFullSearchItem.rating = {
                 myRating: 10,
-                userAverage: parseInt(each.statistics[0].ratings[0].average[0].$.value),
-                userRatings: parseInt(each.statistics[0].ratings[0].usersrated[0].$.value),
-                geekRating: parseInt(each.statistics[0].ratings[0].bayesaverage[0].$.value)
+                userAverage: (each.statistics && parseInt(each.statistics[0].ratings[0].average[0].$.value)) || 0,
+                userRatings: (each.statistics && parseInt(each.statistics[0].ratings[0].usersrated[0].$.value)) || 0,
+                geekRating: (each.statistics && parseInt(each.statistics[0].ratings[0].bayesaverage[0].$.value)) || 0
               };
-              prettyFullSearchItem.numberOwned = parseInt(each.statistics[0].ratings[0].owned[0].$.value);
+              prettyFullSearchItem.numberOwned = (each.statistics && parseInt(each.statistics[0].ratings[0].owned[0].$.value)) || 0;
               prettyFullSearchItem.rank = {};
               prettyFullSearchItem.genres = [];
-              each.statistics[0].ratings[0].ranks[0].rank.forEach(function (rank) {
-                prettyFullSearchItem.rank[rank.$.name] = rank.$.value;
-                prettyFullSearchItem.genres.push(rank.$.name);
-              });
+              if (each.statistics[0].ratings[0].ranks[0].rank.length) {
+                each.statistics[0].ratings[0].ranks[0].rank.forEach(function (rank) {
+                  prettyFullSearchItem.rank[rank.$.name] = rank.$.value;
+                  prettyFullSearchItem.genres.push(rank.$.name);
+                });
+              }
               prettyFullSearchArray.push(prettyFullSearchItem);
             });
             return prettyFullSearchArray;
