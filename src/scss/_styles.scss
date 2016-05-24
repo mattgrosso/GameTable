@@ -224,11 +224,6 @@ select:focus{
   transition: all 0.5s ease-in;
 }
 
-.login-form-styling-div{
-  // max-width: 300px;
-  // border: 1px solid black;
-}
-
 .login-input{
   width: 60%;
 }
@@ -261,7 +256,6 @@ select:focus{
     font-size: 0.7em;
   }
 }
-
 
 .description-section{
   clear: both;
@@ -313,6 +307,7 @@ select:focus{
   list-style: none;
   border-top: solid #015C35 5px;
   padding-top: 10px;
+  background-color: white;
 }
 
 input[type=checkbox]{
@@ -432,6 +427,7 @@ input[type=checkbox]{
   left: 88%;
 }
 
-.large-view-stats{
-  display: none;
+.add-game-button{
+  clear: none;
+  padding-right: 12px;
 }

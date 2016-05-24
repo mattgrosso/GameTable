@@ -301,7 +301,8 @@ select:focus {
 .gamelist {
   list-style: none;
   border-top: solid #015C35 5px;
-  padding-top: 10px; }
+  padding-top: 10px;
+  background-color: white; }
 
 input[type=checkbox] {
   display: none; }
@@ -402,8 +403,9 @@ input[type=checkbox] {
   top: -8px;
   left: 88%; }
 
-.large-view-stats {
-  display: none; }
+.add-game-button {
+  clear: none;
+  padding-right: 12px; }
 
 @media screen and (min-width: 501px) and (max-width: 650px) {
   .logosmall {
@@ -511,7 +513,12 @@ input[type=checkbox] {
     max-width: 160px; } }
 @media screen and (min-width: 1001px) {
   .logosmall {
-    width: 10%; }
+    height: 215px;
+    width: inherit;
+    z-index: -1;
+    position: absolute;
+    top: -62px;
+    left: 1%; }
 
   .logolarge {
     width: 40%;
@@ -591,32 +598,6 @@ input[type=checkbox] {
   #select-selector {
     padding-left: 0%; }
 
-  .large-view-stats {
-    display: block;
-    float: right;
-    width: 19%;
-    margin-top: 2%; }
-    .large-view-stats .year {
-      text-align: right;
-      float: right;
-      clear: both;
-      padding-top: 4px; }
-    .large-view-stats .rank {
-      text-align: right;
-      float: right;
-      clear: both;
-      padding-top: 4px; }
-    .large-view-stats .geek-rating {
-      text-align: right;
-      float: right;
-      clear: both;
-      padding-top: 4px; }
-    .large-view-stats .user-rating {
-      text-align: right;
-      float: right;
-      clear: both;
-      padding-top: 4px; }
-
   .gamelist-stay-small img {
     height: 85px;
     max-width: 160px; }
@@ -658,13 +639,15 @@ input[type=checkbox] {
     .large-view-game-list:-moz-placeholder {
       color: #015C35; }
 
-  .add-game-button {
-    clear: none; }
-
   .player-count {
     margin-top: 4px; } }
 @media screen and (min-width: 1200px) {
   .logosmall {
-    width: 8%; } }
+    height: 215px;
+    width: inherit;
+    z-index: -1;
+    position: absolute;
+    top: -62px;
+    left: 1%; } }
 
 /*# sourceMappingURL=main.css.map */

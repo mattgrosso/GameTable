@@ -126,7 +126,12 @@
 
 @media screen and (min-width: 1001px){
   .logosmall{
-    width: 10%;
+    height: 215px;
+    width: inherit;
+    z-index: -1;
+    position: absolute;
+    top: -62px;
+    left: 1%;
   }
   .logolarge{
     width: 40%;
@@ -272,9 +277,6 @@
       color: #015C35;
     }
   }
-  .add-game-button{
-    clear: none;
-  }
   .player-count{
     margin-top: 4px;
   }
@@ -282,6 +284,11 @@
 
 @media screen and (min-width: 1200px){
   .logosmall{
-    width: 8%;
+    height: 215px;
+    width: inherit;
+    z-index: -1;
+    position: absolute;
+    top: -62px;
+    left: 1%;
   }
 }
