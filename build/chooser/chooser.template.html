@@ -5,16 +5,24 @@
   <form>
     <input class="input-ribbon text-input-ribbon left-ribbon" ng-model="choose.players" type="text" name="player-count" placeholder="player count" autocomplete="off">
     <input class="input-ribbon text-input-ribbon left-ribbon" ng-model="choose.duration" type="text" name="duration" placeholder="duration"autocomplete="off">
-    <select id="genre-selector" class="input-ribbon select-ribbon left-ribbon" ng-model="choose.genre" name="genre">
-      <option value="" disabled selected>genre</option>
-      <option ng-repeat="genre in choose.genreArray">{{genre | titleCase}}</option>
-    </select>
-    <div class="select-arrow"></div>
-    <select id="select-selector" class="input-ribbon select-ribbon left-ribbon" ng-model="choose.chooser" ng-change="choose.goToChooser(filteredCollection)">
-      <option value="" disabled selected>method</option>
-      <option ng-repeat="chooser in choose.chooserArray" value="{{chooser.stateName}}">{{chooser.menuName}}</option>
-    </select>
-    <div class="select-arrow"></div>
+
+    <div class="select-styling-div input-ribbon left-ribbon">
+      <select id="genre-selector" class="select-ribbon" ng-model="choose.genre" name="genre">
+        <option value="" disabled selected>genre</option>
+        <option ng-repeat="genre in choose.genreArray">{{genre | titleCase}}</option>
+      </select>
+    </div>
+
+    <div class="select-arrow top-select-arrow"></div>
+
+    <div class="select-styling-div input-ribbon left-ribbon">
+      <select id="select-selector" class="select-ribbon" ng-model="choose.chooser" ng-change="choose.goToChooser(filteredCollection)">
+        <option value="" disabled selected>method</option>
+        <option ng-repeat="chooser in choose.chooserArray" value="{{chooser.stateName}}">{{chooser.menuName}}</option>
+      </select>
+    </div>
+
+    <div class="select-arrow bottom-select-arrow"></div>
     <aside class="chooser-info">
       Random: Choose a game randomly.<br>Nominate-Random: Choose a game randomly from a list of games you nominate.<br>Eliminate: Choose a game by taking turns eliminating games from a list.<br>Vote: Choose a game by voting on games in a list of games you nominate.<br>Nominate-Rank: Choose a game through a series of votes of increasing value.<br>Bracket: Choose a game by going though a tournament of head-to-head matchups
     </aside>
@@ -28,7 +36,7 @@
 <modal show="choose.showAddGame" close="choose.showAddGame = false">
 
   <form>
-    <input class="ribbon input-ribbon left-ribbon" ng-model="choose.addGameTitle" type="text" name="game-name" placeholder="search for games" autocomplete="off">
+    <input class="ribbon input-ribbon left-ribbon search-ribbon" ng-model="choose.addGameTitle" type="text" name="game-name" placeholder="search for games" autocomplete="off">
     <button class="ribbon right-ribbon" ng-click="choose.findGameToAdd(choose.addGameTitle)" type="submit">find game</button>
   </form>
 
@@ -36,7 +44,7 @@
 
   <div class="clearfix"></div>
 
-  <ul class="gamelist" ng-show="choose.showGamesToAdd">
+  <ul class="gamelist gamelist-stay-small" ng-show="choose.showGamesToAdd">
     <li class="ribbon gamelist-ribbon right-ribbon" ng-click="choose.addGameToList(choose.firstGameToAdd)" ng-show="choose.firstGameToAdd">
       <img ng-src="{{choose.firstGameToAdd.image.thumbnailURL}}"/>
       <div class="aside-wrapper">
@@ -70,6 +78,12 @@
       <h3>{{game.name}}</h3>
       <aside>{{game.playerCount.min}} to {{game.playerCount.max}} players</aside>
       <aside>{{game.playTime.max}} minutes</aside>
+      <div class="large-view-stats">
+        <aside class="year">{{game.year}}</aside>
+        <aside class="rank">rank: {{game.rank.boardgame}}</aside>
+        <aside class="geek-rating">geek rating: {{game.rating.geekRating}}</aside>
+        <aside class="user-rating">user rating: {{game.rating.userAverage}}</aside>
+      </div>
     </div>
   </li>
   <div class="clearfix"></div>

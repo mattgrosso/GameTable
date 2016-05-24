@@ -59,7 +59,6 @@ table {
 
 .left-ribbon:focus {
   border: solid #015C35 2px;
-  border-left: none;
   outline: none;
   box-shadow: #015C35 0px 0px 5px; }
 
@@ -86,7 +85,20 @@ select:focus {
   transition: all 0.5s ease-in; }
 
 .select-ribbon {
-  width: 78%; }
+  width: 109%;
+  margin-right: -20%;
+  border: none;
+  background-color: transparent;
+  font-size: 1em;
+  font-family: 'Libre Baskerville', serif;
+  color: #015C35;
+  -webkit-appearance: none; }
+  .select-ribbon:focus {
+    border: none;
+    box-shadow: none; }
+
+.select-styling-div {
+  width: 55%; }
 
 .text-input-ribbon {
   width: 55%; }
@@ -101,7 +113,8 @@ select:focus {
   width: 10px;
   height: 10px;
   transform: rotate(45deg);
-  z-index: 1; }
+  z-index: 1;
+  pointer-events: none; }
 
 #genre-selector {
   padding-left: 40%; }
@@ -418,6 +431,9 @@ input[type=checkbox] {
   top: -8px;
   left: 88%; }
 
+.large-view-stats {
+  display: none; }
+
 @media screen and (min-width: 501px) and (max-width: 650px) {
   .logosmall {
     width: 15%; }
@@ -434,14 +450,31 @@ input[type=checkbox] {
     height: 150px; }
 
   .select-ribbon {
-    width: 77%; } }
+    width: 109%;
+    margin-right: -20%;
+    border: none;
+    background-color: transparent;
+    font-size: 1em;
+    font-family: 'Libre Baskerville', serif;
+    color: #015C35;
+    -webkit-appearance: none; }
+    .select-ribbon:focus {
+      border: none;
+      box-shadow: none; }
+
+  .select-styling-div {
+    width: 55%; }
+
+  .gamelist-stay-small img {
+    height: 85px;
+    max-width: 160px; } }
 @media screen and (min-width: 801px) and (max-width: 1000px) {
   .logosmall {
     width: 13%; }
 
   .username-banner {
     margin-top: 40px;
-    width: 35%;
+    width: 37%;
     font-size: 1.5em; }
     .username-banner h4 {
       margin-left: 10px; }
@@ -464,10 +497,116 @@ input[type=checkbox] {
     height: 180px; }
 
   .select-ribbon {
-    width: 76.5%; }
+    width: 109%;
+    margin-right: -20%;
+    border: none;
+    background-color: transparent;
+    font-size: 1em;
+    font-family: 'Libre Baskerville', serif;
+    color: #015C35;
+    -webkit-appearance: none; }
+    .select-ribbon:focus {
+      border: none;
+      box-shadow: none; }
+
+  .select-styling-div {
+    width: 55%; }
 
   .select-arrow {
+    border-bottom: #015C35 solid 2px;
+    border-right: #015C36 solid 2px;
     width: 15px;
-    height: 15px; } }
+    height: 15px; }
+
+  .gamelist-stay-small img {
+    height: 85px;
+    max-width: 160px; } }
+@media screen and (min-width: 1001px) {
+  .logosmall {
+    width: 10%; }
+
+  .username-banner {
+    margin-top: 40px;
+    width: 35%;
+    font-size: 1.5em; }
+    .username-banner h4 {
+      margin-left: 10px; }
+    .username-banner aside {
+      padding-left: 15px;
+      padding-right: 15px;
+      margin-top: 2px; }
+    .username-banner a {
+      float: left;
+      margin-top: 10px; }
+
+  .input-ribbon {
+    text-align: left;
+    font-family: 'Libre Baskerville', serif;
+    padding-right: 5%;
+    padding-left: 12px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    border: 2px solid #015C35;
+    border-right: none;
+    float: right;
+    width: 18%;
+    margin-bottom: 10px; }
+    .input-ribbon::-webkit-input-placeholder {
+      color: #015C35; }
+    .input-ribbon::-moz-placeholder {
+      color: #015C35; }
+    .input-ribbon:-ms-input-placeholder {
+      color: #015C35; }
+    .input-ribbon:-moz-placeholder {
+      color: #015C35; }
+
+  .ribbon {
+    font-size: 1.5em; }
+
+  .gamelist-ribbon img {
+    max-width: 260px;
+    height: 180px; }
+
+  .select-ribbon {
+    width: 122%;
+    margin-right: 2%;
+    border: none;
+    background-color: transparent;
+    font-size: 1em;
+    font-family: 'Libre Baskerville', serif;
+    color: #015C35; }
+    .select-ribbon:focus {
+      border: none;
+      box-shadow: none; }
+
+  .select-styling-div {
+    height: 20px; }
+
+  .select-arrow {
+    right: -22%; }
+
+  #genre-selector {
+    padding-left: 0%; }
+
+  #select-selector {
+    padding-left: 0%; }
+
+  .large-view-stats {
+    display: block; }
+
+  .gamelist-stay-small img {
+    height: 85px;
+    max-width: 160px; }
+
+  .search-ribbon {
+    width: inherit;
+    padding-left: 2%; }
+    .search-ribbon:focus {
+      border-right: none; } }
+@media screen and (min-width: 1200px) {
+  .logosmall {
+    width: 8%; } }
 
 /*# sourceMappingURL=main.css.map */

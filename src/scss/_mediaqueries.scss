@@ -17,7 +17,29 @@
     height: 150px;
   }
   .select-ribbon{
-    width: 77%;
+    width: 109%;
+    margin-right: -20%;
+    border: none;
+    background-color: transparent;
+    font-size: 1em;
+    font-family: 'Libre Baskerville', serif;
+    color: #015C35;
+    -webkit-appearance: none;
+    &:focus{
+      border: none;
+      box-shadow: none;
+    }
+  }
+  .select-styling-div {
+    width: 55%;
+    select {
+     }
+  }
+  .gamelist-stay-small{
+    img{
+      height: 85px;
+      max-width: 160px;
+    }
   }
 }
 
@@ -27,7 +49,7 @@
   }
   .username-banner{
     margin-top: 40px;
-    width: 35%;
+    width: 37%;
     font-size: 1.5em;
     h4{
       margin-left: 10px;
@@ -53,10 +75,138 @@
     height: 180px;
   }
   .select-ribbon{
-    width: 76.5%;
+    width: 109%;
+    margin-right: -20%;
+    border: none;
+    background-color: transparent;
+    font-size: 1em;
+    font-family: 'Libre Baskerville', serif;
+    color: #015C35;
+    -webkit-appearance: none;
+    &:focus{
+      border: none;
+      box-shadow: none;
+    }
+  }
+  .select-styling-div {
+    width: 55%;
+    select {
+     }
   }
   .select-arrow{
+    border-bottom: #015C35 solid 2px;
+    border-right: #015C36 solid 2px;
     width: 15px;
     height: 15px;
+  }
+  .gamelist-stay-small{
+    img{
+      height: 85px;
+      max-width: 160px;
+    }
+  }
+}
+
+@media screen and (min-width: 1001px){
+  .logosmall{
+    width: 10%;
+  }
+  .username-banner{
+    margin-top: 40px;
+    width: 35%;
+    font-size: 1.5em;
+    h4{
+      margin-left: 10px;
+    }
+    aside{
+      padding-left: 15px;
+      padding-right: 15px;
+      margin-top: 2px;
+    }
+    a{
+      float: left;
+      margin-top: 10px;
+    }
+  }
+  .input-ribbon{
+    text-align: left;
+    font-family: 'Libre Baskerville', serif;
+    padding-right: 5%;
+    padding-left: 12px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+    border: 2px solid #015C35;
+    border-right: none;
+    float: right;
+    width: 18%;
+    margin-bottom: 10px;
+    &::-webkit-input-placeholder {
+    color: #015C35;
+    }
+    &::-moz-placeholder {
+    color: #015C35;
+    }
+    &:-ms-input-placeholder {
+      color: #015C35;
+    }
+    &:-moz-placeholder {
+      color: #015C35;
+    }
+  }
+  .ribbon{
+    font-size: 1.5em;
+  }
+  .gamelist-ribbon img{
+    max-width: 260px;
+    height: 180px;
+  }
+  .select-ribbon{
+    width: 122%;
+    margin-right: 2%;
+    border: none;
+    background-color: transparent;
+    font-size: 1em;
+    font-family: 'Libre Baskerville', serif;
+    color: #015C35;
+    &:focus{
+      border: none;
+      box-shadow: none;
+    }
+  }
+  .select-styling-div{
+    height: 20px;
+  }
+  .select-arrow{
+    right: -22%;
+  }
+  #genre-selector{
+    padding-left: 0%;
+  }
+  #select-selector{
+    padding-left: 0%;
+  }
+  .large-view-stats{
+    display: block;
+  }
+  .gamelist-stay-small{
+    img{
+      height: 85px;
+      max-width: 160px;
+    }
+  }
+  .search-ribbon{
+    width: inherit;
+    padding-left: 2%;
+    &:focus{
+      border-right: none;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px){
+  .logosmall{
+    width: 8%;
   }
 }

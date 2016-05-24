@@ -15,7 +15,6 @@
 
 .left-ribbon:focus{
   border: solid #015C35 2px;
-  border-left: none;
   outline: none;
   box-shadow: #015C35 0px 0px 5px;
 }
@@ -46,7 +45,23 @@ select:focus{
 }
 
 .select-ribbon{
-  width: 78%;
+  width: 109%;
+  margin-right: -20%;
+  border: none;
+  background-color: transparent;
+  font-size: 1em;
+  font-family: 'Libre Baskerville', serif;
+  color: #015C35;
+  -webkit-appearance: none;
+  &:focus{
+    border: none;
+    box-shadow: none;
+  }
+}
+.select-styling-div {
+  width: 55%;
+  select {
+   }
 }
 
 .text-input-ribbon{
@@ -64,6 +79,7 @@ select:focus{
   height: 10px;
   transform: rotate(45deg);
   z-index: 1;
+  pointer-events: none;
 }
 
 #genre-selector{
@@ -438,4 +454,8 @@ input[type=checkbox]{
   color: #015C35;
   top: -8px;
   left: 88%;
+}
+
+.large-view-stats{
+  display: none;
 }
