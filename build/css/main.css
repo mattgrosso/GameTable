@@ -146,7 +146,7 @@ select:focus {
   font-family: 'Libre Baskerville', serif;
   padding-right: 5%;
   padding-left: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 2%;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   border-right: none;
@@ -417,5 +417,57 @@ input[type=checkbox] {
   color: #015C35;
   top: -8px;
   left: 88%; }
+
+@media screen and (min-width: 501px) and (max-width: 650px) {
+  .logosmall {
+    width: 15%; }
+
+  .gamelist-ribbon img {
+    max-width: 160px;
+    height: 85px; } }
+@media screen and (min-width: 651px) and (max-width: 800px) {
+  .logosmall {
+    width: 13%; }
+
+  .gamelist-ribbon img {
+    max-width: 210px;
+    height: 150px; }
+
+  .select-ribbon {
+    width: 77%; } }
+@media screen and (min-width: 801px) and (max-width: 1000px) {
+  .logosmall {
+    width: 13%; }
+
+  .username-banner {
+    margin-top: 40px;
+    width: 35%;
+    font-size: 1.5em; }
+    .username-banner h4 {
+      margin-left: 10px; }
+    .username-banner aside {
+      padding-left: 15px;
+      padding-right: 15px;
+      margin-top: 2px; }
+    .username-banner a {
+      float: left;
+      margin-top: 10px; }
+
+  .input-ribbon {
+    font-size: 1.5em; }
+
+  .ribbon {
+    font-size: 1.5em; }
+
+  .gamelist-ribbon img {
+    max-width: 260px;
+    height: 180px; }
+
+  .select-ribbon {
+    width: 76.5%; }
+
+  .select-arrow {
+    width: 15px;
+    height: 15px; } }
 
 /*# sourceMappingURL=main.css.map */
