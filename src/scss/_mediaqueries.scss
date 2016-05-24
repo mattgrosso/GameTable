@@ -2,6 +2,11 @@
   .logosmall{
     width: 15%;
   }
+  .logolarge{
+    width: 50%;
+    margin-top: 12%;
+    margin-bottom: 15%;
+  }
   .gamelist-ribbon img{
     max-width: 160px;
     height: 85px;
@@ -11,6 +16,12 @@
 @media screen and (min-width: 651px) and (max-width: 800px){
   .logosmall{
     width: 13%;
+  }
+  .logolarge{
+    width: 50%;
+    margin-left: 20%;
+    margin-top: 8%;
+    margin-bottom: 10%;
   }
   .gamelist-ribbon img{
     max-width: 210px;
@@ -46,6 +57,12 @@
 @media screen and (min-width: 801px) and (max-width: 1000px){
   .logosmall{
     width: 13%;
+  }
+  .logolarge{
+    width: 40%;
+    margin-left: 10%;
+    margin-top: 5%;
+    margin-bottom: 10%;
   }
   .username-banner{
     margin-top: 40px;
@@ -111,6 +128,13 @@
   .logosmall{
     width: 10%;
   }
+  .logolarge{
+    width: 40%;
+    margin-left: 10%;
+    margin-top: 4%;
+    margin-bottom: 5%;
+  }
+
   .username-banner{
     margin-top: 40px;
     width: 35%;

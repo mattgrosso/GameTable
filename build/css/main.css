@@ -233,6 +233,18 @@ select:focus {
   margin-top: 2%;
   transition: all 0.5s ease-in; }
 
+.login-input {
+  width: 60%; }
+
+.login-button {
+  width: 25%; }
+
+.login-message {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 35px;
+  max-width: 70%; }
+
 .username-banner {
   margin-top: 20px; }
   .username-banner h4 {
@@ -246,19 +258,6 @@ select:focus {
     text-decoration: none;
     color: #015C35;
     font-size: 0.7em; }
-
-.login-message {
-  display: block;
-  margin: auto;
-  font-size: 1.25em;
-  background-color: #015C35;
-  margin-top: 30px;
-  color: white;
-  text-align: center;
-  width: 70%;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: grey 5px 5px 25px; }
 
 .description-section {
   clear: both;
@@ -410,12 +409,23 @@ input[type=checkbox] {
   .logosmall {
     width: 15%; }
 
+  .logolarge {
+    width: 50%;
+    margin-top: 12%;
+    margin-bottom: 15%; }
+
   .gamelist-ribbon img {
     max-width: 160px;
     height: 85px; } }
 @media screen and (min-width: 651px) and (max-width: 800px) {
   .logosmall {
     width: 13%; }
+
+  .logolarge {
+    width: 50%;
+    margin-left: 20%;
+    margin-top: 8%;
+    margin-bottom: 10%; }
 
   .gamelist-ribbon img {
     max-width: 210px;
@@ -443,6 +453,12 @@ input[type=checkbox] {
 @media screen and (min-width: 801px) and (max-width: 1000px) {
   .logosmall {
     width: 13%; }
+
+  .logolarge {
+    width: 40%;
+    margin-left: 10%;
+    margin-top: 5%;
+    margin-bottom: 10%; }
 
   .username-banner {
     margin-top: 40px;
@@ -496,6 +512,12 @@ input[type=checkbox] {
 @media screen and (min-width: 1001px) {
   .logosmall {
     width: 10%; }
+
+  .logolarge {
+    width: 40%;
+    margin-left: 10%;
+    margin-top: 4%;
+    margin-bottom: 5%; }
 
   .username-banner {
     margin-top: 40px;

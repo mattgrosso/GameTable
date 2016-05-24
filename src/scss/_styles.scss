@@ -229,6 +229,21 @@ select:focus{
   // border: 1px solid black;
 }
 
+.login-input{
+  width: 60%;
+}
+
+.login-button{
+  width: 25%;
+}
+
+.login-message{
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 35px;
+  max-width: 70%;
+}
+
 .username-banner{
   margin-top: 20px;
   h4{
@@ -247,19 +262,6 @@ select:focus{
   }
 }
 
-.login-message{
-  display: block;
-  margin: auto;
-  font-size: 1.25em;
-  background-color: #015C35;
-  margin-top: 30px;
-  color: white;
-  text-align: center;
-  width: 70%;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: grey 5px 5px 25px;
-}
 
 .description-section{
   clear: both;
