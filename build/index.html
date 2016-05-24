@@ -12,7 +12,7 @@
 
   </head>
   <body>
-
+    
     <header ng-class="{headerlarge: !header.loggedIn(), headersmall: header.loggedIn()}" ng-controller="HeaderController as header">
       <img class="logo" ui-sref="choose" ng-class="{logolarge: !header.loggedIn(), logosmall: header.loggedIn()}" src="/images/gametable.png" alt="gametable logo" />
       <aside class="ribbon right-ribbon username-banner" ng-hide="!header.loggedIn()">
@@ -22,14 +22,8 @@
           logout
         </a>
       </aside>
+      <div class="clearfix"></div>
     </header>
-
-    <!-- <nav class="main-nav" ng-controller="LoginController as login" ng-show="login.loggedIn()">
-      <ul>
-        <li><a class="nav-link" ui-sref="choose">Choose a Game</a></li>
-        <li><a class="nav-link" href="#" ng-click="login.logOut()">Logout</a></li>
-      </ul>
-    </nav> -->
 
     <section class="main-content" ui-view class="main-content"></section>
 

@@ -160,8 +160,8 @@ select:focus {
   padding-right: 5%;
   padding-left: 12px;
   margin-bottom: 2%;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
   border-right: none;
   float: right; }
   .right-ribbon::-webkit-input-placeholder {
@@ -179,8 +179,8 @@ select:focus {
   padding-right: 12px;
   margin-bottom: 10px;
   margin-left: -1px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 2px;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   float: left;
@@ -232,38 +232,6 @@ select:focus {
   margin-left: 2%;
   margin-top: 2%;
   transition: all 0.5s ease-in; }
-
-.login-input {
-  margin: auto;
-  font-size: 1em;
-  font-family: 'Libre Baskerville', serif;
-  margin-top: 10%;
-  width: 90%;
-  height: 40px;
-  border-radius: 5px;
-  border: 1px solid #bfbfbf;
-  text-align: center;
-  box-shadow: #bfbfbf 5px 5px 25px;
-  display: block; }
-  .login-input:focus {
-    outline-color: white;
-    border: solid black 2px; }
-
-.login-button {
-  margin: auto;
-  margin-top: 45px;
-  padding: 7px;
-  width: 70%;
-  font-size: 1.25em;
-  font-family: 'Libre Baskerville', serif;
-  color: white;
-  background-color: #015C35;
-  border-radius: 5px;
-  border: none;
-  box-shadow: #bfbfbf 5px 5px 25px;
-  display: block; }
-  .login-button:focus {
-    outline: none; }
 
 .username-banner {
   margin-top: 20px; }
@@ -348,6 +316,8 @@ input[type=checkbox] {
   border-radius: 3px;
   float: left;
   margin-right: 12px; }
+  .nominate-checkbox input {
+    display: none; }
   .nominate-checkbox label {
     display: block;
     width: 24px;
@@ -399,10 +369,12 @@ input[type=checkbox] {
     color: #015C35; }
   .vote-button button {
     position: relative;
-    font-size: 29px;
+    font-size: 28px;
     color: #015C35;
-    top: -12px;
-    left: -4px; }
+    top: -9px;
+    left: -2px;
+    background: none;
+    border: none; }
 
 .vote-popup {
   position: absolute;
@@ -544,8 +516,8 @@ input[type=checkbox] {
     font-family: 'Libre Baskerville', serif;
     padding-right: 5%;
     padding-left: 12px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
     border-bottom-right-radius: 0px;
     border-top-right-radius: 0px;
     border: 2px solid #015C35;
