@@ -798,46 +798,59 @@
           url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username + '&stats=1&excludesubtype=boardgameexpansion&own=1',
           transformResponse: function prettifyCollectionArray(response) {
             var parsedResponse = JSON.parse(response);
+            console.log(parsedResponse);
             if (typeof parsedResponse.message === 'string') {
               return 'in queue';
             }
             var prettyCollectionArray = [];
+            console.log(parsedResponse.items.item);
             parsedResponse.items.item.forEach(function (each) {
               var gameObject = {};
               gameObject.objectID = each.$.objectid;
-              gameObject.name = each.name[0]._;
+              gameObject.name = (each.name && each.name[0]._) || "unnamed";
               gameObject.type = each.$.subtype;
               gameObject.image = {
-                imageURL: each.image[0],
-                thumbnailURL: each.thumbnail[0]
+                imageURL: (each.image && each.image[0]) || "",
+                thumbnailURL: (each.thumbnail && each.thumbnail[0]) || ""
               };
-              gameObject.status = {
-                forTrade: each.status[0].$.fortrade,
-                own: each.status[0].$.own,
-                previouslyOwn: each.status[0].$.prevowned,
-                wantInTrade: each.status[0].$.want
-              };
-              gameObject.year = parseInt(each.yearpublished[0]);
+              if (each.status && each.status[0]) {
+                gameObject.status = {
+                  forTrade: each.status[0].$.fortrade,
+                  own: each.status[0].$.own,
+                  previouslyOwn: each.status[0].$.prevowned,
+                  wantInTrade: each.status[0].$.want
+                };
+              } else {
+                gameObject.status = {
+                  forTrade: "0",
+                  own: "1",
+                  previouslyOwn: "0",
+                  wantInTrade: "0"
+                };
+              }
+              gameObject.year = (each.yearpublished && parseInt(each.yearpublished[0])) || 0;
               gameObject.playerCount = {
-                max: parseInt(each.stats[0].$.maxplayers),
-                min: parseInt(each.stats[0].$.minplayers)
+                max: (each.stats && parseInt(each.stats[0].$.maxplayers)) || 10,
+                min: (each.stats && parseInt(each.stats[0].$.minplayers)) || 1
               };
               gameObject.playTime = {
-                max: parseInt(each.stats[0].$.maxplaytime),
-                min: parseInt(each.stats[0].$.minplaytime)
+                max: (each.stats && parseInt(each.stats[0].$.maxplaytime)) || 60,
+                min: (each.stats && parseInt(each.stats[0].$.minplaytime)) || 1
               };
               gameObject.rating = {
-                myRating: parseInt(each.stats[0].rating[0].$.value),
-                userAverage: parseInt(each.stats[0].rating[0].average[0].$.value),
-                userRatings: parseInt(each.stats[0].rating[0].usersrated[0].$.value),
-                geekRating: parseInt(each.stats[0].rating[0].bayesaverage[0].$.value)
+                myRating: (each.stats[0].rating && parseInt(each.stats[0].rating[0].$.value)) || 0,
+                userAverage: (each.stats[0].rating && parseInt(each.stats[0].rating[0].average[0].$.value)) || 0,
+                userRatings: (each.stats[0].rating && parseInt(each.stats[0].rating[0].usersrated[0].$.value)) || 0,
+                geekRating: (each.stats[0].rating && parseInt(each.stats[0].rating[0].bayesaverage[0].$.value)) || 0
               };
               gameObject.rank = {};
               gameObject.genres = [];
-              each.stats[0].rating[0].ranks[0].rank.forEach(function (rank) {
-                gameObject.rank[rank.$.name] = rank.$.value;
-                gameObject.genres.push(rank.$.name);
-              });
+              if (each.stats[0].rating[0].ranks[0].rank.length) {
+                each.stats[0].rating[0].ranks[0].rank.forEach(function (rank) {
+                  gameObject.rank[rank.$.name] = rank.$.value;
+                  gameObject.genres.push(rank.$.name);
+                });
+              }
               prettyCollectionArray.push(gameObject);
             });
             return prettyCollectionArray;
