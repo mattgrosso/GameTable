@@ -413,7 +413,8 @@ input[type=checkbox] {
   top: -43px; }
 
 .transparent {
-  opacity: 0; }
+  opacity: 0;
+  pointer-events: none; }
 
 .bracket-vs-label {
   clear: both;

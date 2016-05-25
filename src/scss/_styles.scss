@@ -442,6 +442,7 @@ input[type=checkbox]{
 
 .transparent{
   opacity: 0;
+  pointer-events: none;
 }
 
 .bracket-vs-label{
