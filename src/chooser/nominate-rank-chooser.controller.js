@@ -65,8 +65,6 @@
     };
 
     this.addValue = function addValue(game) {
-      console.log(game);
-      console.log(game.value);
       game.value = game.value || 0;
       game.value = game.value + this.currentValueOfVotes;
     };
