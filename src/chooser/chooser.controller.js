@@ -85,7 +85,7 @@
     };
 
     this.addGameToList = function addGameToList(game) {
-      this.collection.push(game);
+      this.collection.unshift(game);
       this.showGamesToAdd = false;
       this.showAddGame = false;
     };
