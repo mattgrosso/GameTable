@@ -445,6 +445,8 @@
         that.firstGameToAdd = mostPopular[0];
         that.secondGameToAdd = mostPopular[1];
         that.thirdGameToAdd = mostPopular[2];
+      }).catch(function () {
+        that.addGamesPopupMessage = "too many results. try something more specific.";
       });
     };
 
@@ -883,8 +885,18 @@
       return $http({
         method: 'GET',
         url: 'http://mattgrosso.herokuapp.com/api/v1/search?query=' + cleanTitle,
-        transformResponse: function prettifySearchResults(response) {
-          var parsedResponse = JSON.parse(response);
+        transformResponse: function prettifySearchResults(response, headersGetter, status) {
+          var parsedResponse;
+          try {
+            parsedResponse = JSON.parse(response);
+            if (!parsedResponse) {
+              var e = new Error("invalid data from server");
+              e.status = status;
+              return e;
+            }
+          } catch (e) {
+            return "invalid data from server";
+          }
           var prettySearchArray = [];
           parsedResponse.items.item.forEach(function (each) {
             var prettySearchItem = {};
@@ -1058,8 +1070,11 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
     this.username = null;
     this.storedUsername = $localStorage.username;
     this.message = "";
-
     this.loggedIn = GameFactory.amILoggedIn;
+
+    if (this.loggedIn) {
+      $state.go('choose');
+    }
 
     this.login = function login() {
       $localStorage.collection = null;

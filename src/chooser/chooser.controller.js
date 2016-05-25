@@ -79,6 +79,8 @@
         that.firstGameToAdd = mostPopular[0];
         that.secondGameToAdd = mostPopular[1];
         that.thirdGameToAdd = mostPopular[2];
+      }).catch(function () {
+        that.addGamesPopupMessage = "too many results. try something more specific.";
       });
     };
 

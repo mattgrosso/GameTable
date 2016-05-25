@@ -113,8 +113,18 @@
       return $http({
         method: 'GET',
         url: 'http://mattgrosso.herokuapp.com/api/v1/search?query=' + cleanTitle,
-        transformResponse: function prettifySearchResults(response) {
-          var parsedResponse = JSON.parse(response);
+        transformResponse: function prettifySearchResults(response, headersGetter, status) {
+          var parsedResponse;
+          try {
+            parsedResponse = JSON.parse(response);
+            if (!parsedResponse) {
+              var e = new Error("invalid data from server");
+              e.status = status;
+              return e;
+            }
+          } catch (e) {
+            return "invalid data from server";
+          }
           var prettySearchArray = [];
           parsedResponse.items.item.forEach(function (each) {
             var prettySearchItem = {};

@@ -14,8 +14,11 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
     this.username = null;
     this.storedUsername = $localStorage.username;
     this.message = "";
-
     this.loggedIn = GameFactory.amILoggedIn;
+
+    if (this.loggedIn) {
+      $state.go('choose');
+    }
 
     this.login = function login() {
       $localStorage.collection = null;
