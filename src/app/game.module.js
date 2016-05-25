@@ -26,6 +26,11 @@
         secure: true,
         controllerAs: 'choose'
       })
+      .state('choose.top', {
+        url: '/choose#topanchor',
+        templateUrl: 'chooser/chooser.template.html',
+        secure: true,
+      })
       .state('random', {
         url: '/random',
         templateUrl: 'chooser/random-chooser.template.html',

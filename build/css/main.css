@@ -220,18 +220,24 @@ select:focus {
   padding-left: 3%;
   border-bottom: solid 5px #015C35; }
 
-.logolarge {
-  display: block;
-  width: 70%;
-  margin: auto;
-  margin-top: 25%;
-  margin-bottom: 20%; }
-
 .logosmall {
   width: 20%;
   margin-left: 2%;
   margin-top: 2%;
   transition: all 0.5s ease-in; }
+
+.logo-fixed {
+  position: fixed;
+  z-index: 1; }
+
+.logolarge {
+  display: block;
+  width: 70%;
+  margin: auto;
+  margin-top: 25%;
+  margin-bottom: 20%;
+  position: inherit;
+  z-index: 0; }
 
 .login-input {
   width: 60%; }

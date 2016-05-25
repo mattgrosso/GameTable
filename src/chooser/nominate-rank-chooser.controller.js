@@ -46,6 +46,7 @@
 
     this.goToValueVoting = function goToValueVoting() {
       this.showStartScreen = false;
+      console.log(this.currentValueOfVotes);
       if(this.currentValueOfVotes < 3){
         this.currentValueOfVotes++;
         $state.go('nominate-rank.value', {
@@ -83,7 +84,6 @@
           name: null,
           games: []
         };
-
         this.nomineesArray.forEach(function (each) {
           if(each.value > mostValue.value){
             mostValue.name = each.name;

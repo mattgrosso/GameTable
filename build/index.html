@@ -12,9 +12,9 @@
 
   </head>
   <body>
-    
     <header ng-class="{headerlarge: !header.loggedIn(), headersmall: header.loggedIn()}" ng-controller="HeaderController as header">
-      <img class="logo" ui-sref="choose" ng-class="{logolarge: !header.loggedIn(), logosmall: header.loggedIn()}" src="/images/gametable.png" alt="gametable logo" />
+      <img class="logo logo-fixed" ui-sref="choose.top" ng-class="{logolarge: !header.loggedIn(), logosmall: header.loggedIn()}" src="/images/gametable-solid.png" alt="gametable logo" />
+      <img class="logo logosmall" ng-hide="!header.loggedIn()" src="/images/blank.png"/>
       <aside class="ribbon right-ribbon username-banner" ng-hide="!header.loggedIn()">
         <h4>{{header.username()}}</h4>
         <aside>|</aside>
