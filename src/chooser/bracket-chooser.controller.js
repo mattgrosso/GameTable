@@ -9,6 +9,8 @@
 
   function BracketChooserController($stateParams, $localStorage, GameFactory) {
 
+    console.log('initiating BracketChooserController');
+
     var that = this;
 
     this.arrayToBeRandomized = $stateParams.filteredCollection;
@@ -25,9 +27,11 @@
     this.showRoundCounter = false;
 
     if (!this.arrayToBeRandomized || !this.arrayToBeRandomized.length) {
+      console.log('start of if statement that checks if arrayToBeRandomized has content', $localStorage.collection);
       GameFactory.getUserCollection()
         .then(function () {
           that.arrayToBeRandomized = $localStorage.collection;
+          console.log('end of if statement that checks if arrayToBeRandomized has content', $localStorage.collection);
         });
     }
 
@@ -66,15 +70,11 @@
       }
       this.firstContender = this.entrantArray[0];
       this.secondContender = this.entrantArray[1];
-      console.log(this.entrantArray);
-      console.log(this.firstContender);
-
       this.showStart = false;
       this.showMatchUp = true;
     };
 
     this.pickWinner = function pickWinner(number) {
-      console.log(number);
       if(number === 1){
         this.winnersArray.push(this.firstContender);
         this.entrantArray.splice(0, 2);
