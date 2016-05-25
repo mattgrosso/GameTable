@@ -1,26 +1,24 @@
 <a id="topanchor"></a>
 <section class="description-section large-view-main-page-description-section">
 
+  <button class="ribbon right-ribbon" type="button" ng-click="choose.showHelpModal()">?</button>
+
   <form class="filter-form">
     <input class="input-ribbon text-input-ribbon left-ribbon large-view-input player-count" ng-model="choose.players" type="tel" name="player-count" placeholder="player count" autocomplete="off" autocapitalize="off">
     <input class="input-ribbon text-input-ribbon left-ribbon large-view-input" ng-model="choose.duration" type="tel" name="duration" placeholder="duration" autocomplete="off" autocapitalize="off">
-
     <div class="select-styling-div input-ribbon left-ribbon large-view-input">
       <select id="genre-selector" class="select-ribbon" ng-model="choose.genre" name="genre">
         <option value="" disabled selected>genre</option>
         <option ng-repeat="genre in choose.genreArray">{{genre | titleCase}}</option>
       </select>
     </div>
-
     <div class="select-arrow top-select-arrow"></div>
-
     <div class="select-styling-div input-ribbon left-ribbon large-view-input">
       <select id="select-selector" class="select-ribbon" ng-model="choose.chooser" ng-change="choose.goToChooser(filteredCollection)">
         <option value="" disabled selected>method</option>
         <option ng-repeat="chooser in choose.chooserArray" value="{{chooser.stateName}}">{{chooser.menuName}}</option>
       </select>
     </div>
-
     <div class="select-arrow bottom-select-arrow"></div>
     <aside class="chooser-info">
       Random: Choose a game randomly.<br>Nominate-Random: Choose a game randomly from a list of games you nominate.<br>Eliminate: Choose a game by taking turns eliminating games from a list.<br>Vote: Choose a game by voting on games in a list of games you nominate.<br>Nominate-Rank: Choose a game through a series of votes of increasing value.<br>Bracket: Choose a game by going though a tournament of head-to-head matchups

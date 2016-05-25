@@ -418,6 +418,7 @@
     this.showAddGame = false;
     this.showGamesToAdd = false;
     this.freezeScrolling = false;
+    this.showHelp = false;
 
     GameFactory.getUserCollection().then(function (collection) {
       that.collection = collection;
@@ -431,6 +432,11 @@
       this.showAddGame = true;
       this.freezeScrolling = true;
       this.addGamesPopupMessage = "";
+    };
+
+    this.showHelpModal = function showHelpModal() {
+      this.showHelp = true;
+      this.freezeScrolling = true;
     };
 
     this.findGameToAdd = function findGameToAdd(title) {
@@ -458,6 +464,8 @@
       this.showGamesToAdd = false;
       this.showAddGame = false;
     };
+
+
 
   }
 })();
