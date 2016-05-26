@@ -775,8 +775,6 @@
 
   function GameFactory($http, $q, $localStorage) {
 
-    var genreArray = [];
-
     return {
       getUserCollection: getUserCollection,
       searchForGame: searchForGame,
@@ -1007,7 +1005,40 @@
           }
         });
       });
-      return genreArray;
+      var prettyGenreArray = [];
+      $localStorage.genreArray.forEach(function prettifyGenreNames(each) {
+        if (each === 'boardgame') {
+          prettyGenreArray.push({
+            prettyName: 'all games',
+            originalName: each
+          });
+        } else if (each === 'cgs') {
+          prettyGenreArray.push({
+            prettyName: 'card',
+            originalName: each
+          });
+        } else if (each === 'childrensgames') {
+          prettyGenreArray.push({
+            prettyName: "children's",
+            originalName: each
+          });
+        } else if(each.indexOf('game') > 0){
+          var startOfGame = each.indexOf('game');
+          var stringLength = each.length;
+          var lettersToKeep = stringLength - (stringLength - startOfGame);
+          prettyGenreArray.push({
+            prettyName: each.substr(0, lettersToKeep),
+            originalName: each
+          });
+        } else{
+          prettyGenreArray.push({
+            prettyName: each,
+            originalName: each
+          });
+        }
+      });
+      $localStorage.genreArray = prettyGenreArray;
+      console.log($localStorage.genreArray);
     }
 
     function amILoggedIn() {

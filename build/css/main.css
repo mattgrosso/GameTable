@@ -119,18 +119,11 @@ select:focus {
   z-index: 1;
   pointer-events: none; }
 
-#genre-selector {
-  padding-left: 40%; }
-
-#select-selector {
-  padding-left: 38%; }
-
 .input-ribbon {
   background-color: white;
   color: #015C35;
   padding: 9px;
   font-size: 1em;
-  text-align: center;
   clear: both;
   border: 2px solid #015C35; }
 
