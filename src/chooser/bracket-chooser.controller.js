@@ -9,6 +9,8 @@
 
   function BracketChooserController($stateParams, $state) {
 
+    $(window).scrollTop();
+
     console.log('initiating BracketChooserController');
 
     this.arrayToBeRandomized = $stateParams.filteredCollection;

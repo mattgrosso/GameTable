@@ -187,7 +187,7 @@
     .directive('modal', Modal);
 
   function Modal() {
-
+    
     return {
       restrict: 'E',
       templateUrl: '/app/modal.template.html',
@@ -267,6 +267,8 @@
   BracketChooserController.$input = ['$stateParams', '$state'];
 
   function BracketChooserController($stateParams, $state) {
+
+    $(window).scrollTop();
 
     console.log('initiating BracketChooserController');
 
@@ -471,6 +473,8 @@
 
   function EliminateChooserController($stateParams, $localStorage, GameFactory) {
 
+    $(window).scrollTop();
+
     var that = this;
 
     this.collection = $stateParams.filteredCollection;
@@ -515,6 +519,8 @@
 
   function NomRandChooserController($stateParams, $localStorage, GameFactory) {
 
+    $(window).scrollTop();
+
     var that = this;
 
     this.collection = $stateParams.filteredCollection;
@@ -557,6 +563,7 @@
   NomRankChooserController.$inject = ['$stateParams', '$state', '$localStorage', 'GameFactory'];
 
   function NomRankChooserController($stateParams, $state, $localStorage, GameFactory) {
+    $(window).scrollTop();
 
     console.log('refreshing NomRankChooserController');
 
@@ -669,6 +676,7 @@
   RandomChooserController.$inject = ['$stateParams', '$localStorage', 'GameFactory'];
 
   function RandomChooserController($stateParams, $localStorage, GameFactory) {
+    $(window).scrollTop();
 
     var that = this;
 
@@ -700,6 +708,7 @@
   VoteChooserController.$inject = ['$stateParams', '$localStorage', 'GameFactory'];
 
   function VoteChooserController($stateParams, $localStorage, GameFactory) {
+    $(window).scrollTop();
 
     var that = this;
 

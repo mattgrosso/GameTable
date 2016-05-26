@@ -6,7 +6,7 @@
     .directive('modal', Modal);
 
   function Modal() {
-
+    
     return {
       restrict: 'E',
       templateUrl: '/app/modal.template.html',

@@ -9,6 +9,8 @@
 
   function NomRandChooserController($stateParams, $localStorage, GameFactory) {
 
+    $(window).scrollTop();
+
     var that = this;
 
     this.collection = $stateParams.filteredCollection;
