@@ -54,26 +54,11 @@ body::-webkit-scrollbar {
 .clearfix {
   clear: both; }
 
-.right-ribbon:focus {
-  border: solid #015C35 2px;
-  border-right: none;
-  outline: none;
-  box-shadow: #015C35 0px 0px 5px; }
-
-.left-ribbon:focus {
+input:focus {
   outline: none; }
 
-input:focus {
-  border: solid #015C35 2px;
-  border-left: none;
-  outline: none;
-  box-shadow: #015C35 0px 0px 5px; }
-
 select:focus {
-  border: solid #015C35 2px;
-  border-left: none;
-  outline: none;
-  box-shadow: #015C35 0px 0px 5px; }
+  outline: none; }
 
 .ribbon {
   background-color: white;
@@ -90,7 +75,7 @@ select:focus {
   border: none;
   background-color: transparent;
   font-size: 1em;
-  font-family: 'Libre Baskerville', serif;
+  font-family: "Libre Baskerville", serif;
   color: #A9A9AE;
   -webkit-appearance: none; }
   .select-ribbon:focus {
@@ -149,7 +134,7 @@ select:focus {
 
 .right-ribbon {
   text-align: left;
-  font-family: 'Libre Baskerville', serif;
+  font-family: "Libre Baskerville", serif;
   padding-right: 5%;
   padding-left: 12px;
   margin-bottom: 2%;
@@ -157,9 +142,14 @@ select:focus {
   border-bottom-left-radius: 2px;
   border-right: none;
   float: right; }
+  .right-ribbon:focus {
+    border: solid #015C35 2px;
+    outline: none;
+    box-shadow: #015C35 0px 0px 5px;
+    border-right: none; }
 
 .left-ribbon {
-  font-family: 'Libre Baskerville', serif;
+  font-family: "Libre Baskerville", serif;
   padding-left: 20%;
   padding-right: 12px;
   margin-bottom: 10px;
@@ -170,6 +160,11 @@ select:focus {
   border-bottom-left-radius: 0px;
   float: left;
   border-left: 1px solid #015C35; }
+  .left-ribbon:focus {
+    border: solid #015C35 2px;
+    outline: none;
+    box-shadow: #015C35 0px 0px 5px;
+    border-left: none; }
 
 .ribbon-noclick {
   background-color: #015C35;
@@ -218,9 +213,16 @@ select:focus {
 
 .login-input {
   width: 60%; }
+  .login-input:focus {
+    outline: none;
+    box-shadow: #015C35 0px 0px 5px;
+    border: solid #015C35 2px;
+    border-right: none; }
 
 .login-button {
   width: 25%; }
+  .login-button:focus {
+    outline: none; }
 
 .login-message {
   padding-top: 15px;
@@ -246,9 +248,6 @@ select:focus {
   clear: both;
   padding-top: 10px;
   background-color: white; }
-
-.chooser-info {
-  display: none; }
 
 .modal-background {
   position: absolute;

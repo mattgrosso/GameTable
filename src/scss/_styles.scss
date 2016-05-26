@@ -10,38 +10,21 @@ body::-webkit-scrollbar {
   clear: both;
 }
 
-.right-ribbon:focus{
-  border: solid #015C35 2px;
-  border-right: none;
-  outline: none;
-  box-shadow: #015C35 0px 0px 5px;
-}
-
-.left-ribbon:focus{
-  outline: none;
-}
-
 input:focus{
-  border: solid #015C35 2px;
-  border-left: none;
   outline: none;
-  box-shadow: #015C35 0px 0px 5px;
 }
 
 select:focus{
-  border: solid #015C35 2px;
-  border-left: none;
   outline: none;
-  box-shadow: #015C35 0px 0px 5px;
 }
 
 .ribbon{
   background-color: white;
-  color: #015C35;
+  color: $base-green;
   padding: 9px;
   font-size: 1em;
   clear: both;
-  border: 2px solid #015C35;
+  border: 2px solid $base-green;
   max-width: 65%;
 }
 
@@ -51,18 +34,17 @@ select:focus{
   border: none;
   background-color: transparent;
   font-size: 1em;
-  font-family: 'Libre Baskerville', serif;
-  color: #A9A9AE;
+  font-family: $base-font-family;
+  color: $base-grey;
   -webkit-appearance: none;
   &:focus{
     border: none;
     box-shadow: none;
   }
 }
+
 .select-styling-div {
   width: 55%;
-  select {
-   }
 }
 
 .text-input-ribbon{
@@ -74,8 +56,8 @@ select:focus{
   right: 26%;
   top: 14px;
   float: right;
-  border-bottom: #015C35 solid 1px;
-  border-right: #015C35 solid 1px;
+  border-bottom: $base-green solid 1px;
+  border-right: $base-green solid 1px;
   width: 10px;
   height: 10px;
   transform: rotate(45deg);
@@ -85,11 +67,11 @@ select:focus{
 
 .input-ribbon{
   background-color: white;
-  color: #015C35;
+  color: $base-green;
   padding: 9px;
   font-size: 1em;
   clear: both;
-  border: 2px solid #015C35;
+  border: 2px solid $base-green;
 }
 
 .gamelist-ribbon{
@@ -121,7 +103,7 @@ select:focus{
 
 .right-ribbon{
   text-align: left;
-  font-family: 'Libre Baskerville', serif;
+  font-family: $base-font-family;
   padding-right: 5%;
   padding-left: 12px;
   margin-bottom: 2%;
@@ -129,10 +111,16 @@ select:focus{
   border-bottom-left-radius: 2px;
   border-right: none;
   float: right;
+  &:focus{
+    border: $standard-border;
+    outline: none;
+    box-shadow: $base-green 0px 0px 5px;
+    border-right: none;
+  }
 }
 
 .left-ribbon{
-  font-family: 'Libre Baskerville', serif;
+  font-family: $base-font-family;
   padding-left: 20%;
   padding-right: 12px;
   margin-bottom: 10px;
@@ -142,11 +130,17 @@ select:focus{
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
   float: left;
-  border-left: 1px solid #015C35;
+  border-left: 1px solid $base-green;
+  &:focus{
+    border: $standard-border;
+    outline: none;
+    box-shadow: $base-green 0px 0px 5px;
+    border-left: none;
+  }
 }
 
 .ribbon-noclick{
-  background-color: #015C35;
+  background-color: $base-green;
   color: white;
 }
 
@@ -174,7 +168,7 @@ select:focus{
   padding-top: 1%;
   padding-bottom: 1%;
   padding-left: 3%;
-  border-bottom: solid 5px #015C35;
+  border-bottom: solid 5px $base-green;
 }
 
 .logosmall{
@@ -201,10 +195,19 @@ select:focus{
 
 .login-input{
   width: 60%;
+  &:focus{
+    outline: none;
+    box-shadow: $base-green 0px 0px 5px;
+    border: $standard-border;
+    border-right: none;
+  }
 }
 
 .login-button{
   width: 25%;
+  &:focus{
+    outline: none;
+  }
 }
 
 .login-message{
@@ -227,7 +230,7 @@ select:focus{
   }
   a{
     text-decoration: none;
-    color: #015C35;
+    color: $base-green;
     font-size: 0.7em;
   }
 }
@@ -236,10 +239,6 @@ select:focus{
   clear: both;
   padding-top: 10px;
   background-color: white;
-}
-
-.chooser-info{
-  display: none;
 }
 
 .modal-background{
@@ -257,7 +256,7 @@ select:focus{
   position: absolute;
   background-color: white;
   width: 75%;
-  border: solid 1px #015C35;
+  border: solid 1px $base-green;
   border-radius: 2px;
   top: 15%;
   left: 12%;
@@ -270,7 +269,7 @@ select:focus{
     max-width: 70%;
   }
   ul{
-    border-top: solid #015C35 5px;
+    border-top: solid $base-green 5px;
     padding-top: 10px;
   }
   .aside-wrapper{
@@ -282,7 +281,7 @@ select:focus{
 
 .gamelist{
   list-style: none;
-  border-top: solid #015C35 5px;
+  border-top: solid $base-green 5px;
   padding-top: 10px;
   background-color: white;
 }
@@ -298,7 +297,7 @@ input[type=checkbox]{
 .nominate-checkbox{
   width: 30px;
   height: 30px;
-  background: #015C35;
+  background: $base-green;
   position: relative;
   top: 17px;
   border-radius: 3px;
@@ -327,13 +326,13 @@ input[type=checkbox]{
       transform: rotate(45deg);
       top: -6px;
       left: -7px;
-      border-right: solid 3px #015C35;
+      border-right: solid 3px $base-green;
     }
     .x-mark-back{
       transform: rotate(-45deg);
       top: -12px;
       left: -7px;
-      border-right: solid 3px #015C35;
+      border-right: solid 3px $base-green;
     }
     .x-mark-eliminate{
       opacity: 1;
@@ -349,7 +348,7 @@ input[type=checkbox]{
 .vote-button{
   width: 30px;
   height: 30px;
-  background: #015C35;
+  background: $base-green;
   position: relative;
   top: 17px;
   border-radius: 3px;
@@ -364,12 +363,12 @@ input[type=checkbox]{
     top: 3px;
     left: 3px;
     font-size: 2em;
-    color: #015C35;
+    color: $base-green;
   }
   button{
     position: relative;
     font-size: 28px;
-    color: #015C35;
+    color: $base-green;
     top: -6px;
     left: -2px;
     background: none;
@@ -378,7 +377,7 @@ input[type=checkbox]{
       outline: none;
     }
     .plus-mark{
-      border-bottom: 2px solid #015C35;
+      border-bottom: 2px solid $base-green;
       width: 16px;
       height: 16px;
     }
@@ -399,7 +398,7 @@ input[type=checkbox]{
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: #015C35;
+  background-color: $base-green;
   opacity: 0.7;
   top: -43px;
 }
@@ -413,7 +412,7 @@ input[type=checkbox]{
   clear: both;
   position: relative;
   font-size: 1.75em;
-  color: #015C35;
+  color: $base-green;
   top: -8px;
   left: 88%;
 }
