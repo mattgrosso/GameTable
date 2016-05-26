@@ -14,20 +14,25 @@
 
     $stateProvider
       .state('login', {
-        url: '/login#login-top',
+        url: '/login',
         templateUrl: 'login/login.template.html',
         controller: 'LoginController',
         controllerAs: 'login'
       })
       .state('choose', {
-        url: '/choose#choose-top',
+        url: '/choose',
         templateUrl: 'chooser/chooser.template.html',
         controller: 'ChooserController',
         secure: true,
         controllerAs: 'choose'
       })
+      .state('choose.choose-top', {
+        url: '/choose#choose-top',
+        templateUrl: 'chooser/chooser.template.html',
+        secure: true,
+      })
       .state('random', {
-        url: '/random#random-top',
+        url: '/random',
         templateUrl: 'chooser/random-chooser.template.html',
         controller: 'RandomChooserController',
         controllerAs: 'random',
@@ -37,7 +42,7 @@
         }
       })
       .state('nominate-random', {
-        url: '/nomrand#nomrand-top',
+        url: '/nomrand',
         templateUrl: 'chooser/nominate-random-chooser.template.html',
         controller: 'NomRandChooserController',
         controllerAs: 'nomrand',
@@ -47,7 +52,7 @@
         }
       })
       .state('eliminate', {
-        url: '/eliminate#eliminate-top',
+        url: '/eliminate',
         templateUrl: 'chooser/eliminate-chooser.template.html',
         controller: 'EliminateChooserController',
         controllerAs: 'eliminate',
@@ -57,7 +62,7 @@
         }
       })
       .state('vote', {
-        url: '/vote#vote-top',
+        url: '/vote',
         templateUrl: 'chooser/vote-chooser.template.html',
         controller: 'VoteChooserController',
         controllerAs: 'vote',
@@ -67,7 +72,7 @@
         }
       })
       .state('nominate-rank', {
-        url: '/nomrank#nomrank-top',
+        url: '/nomrank',
         templateUrl: 'chooser/nominate-rank-chooser.template.html',
         controller: 'NomRankChooserController',
         controllerAs: 'nomrank',
@@ -115,7 +120,7 @@
         }
       })
       .state('bracket', {
-        url: '/bracket#bracket-top',
+        url: '/bracket',
         templateUrl: 'chooser/bracket-chooser.template.html',
         controller: 'BracketChooserController',
         controllerAs: 'bracket',
