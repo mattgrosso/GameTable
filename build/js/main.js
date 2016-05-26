@@ -9,6 +9,7 @@
   gameConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 
   function gameConfig($stateProvider, $urlRouterProvider) {
+    $(window).scrollTop();
 
     $urlRouterProvider.otherwise('/choose');
 
@@ -187,7 +188,7 @@
     .directive('modal', Modal);
 
   function Modal() {
-    
+
     return {
       restrict: 'E',
       templateUrl: '/app/modal.template.html',
@@ -204,6 +205,7 @@
         return scope.show;
       }, function (value) {
         if (value) {
+          $(window).scrollTop(0);
           angular.element('body').addClass('freeze-scrolling');
         } else {
           angular.element('body').removeClass('freeze-scrolling');
@@ -413,7 +415,7 @@
     this.showFilters = true;
     this.showAddGame = false;
     this.showGamesToAdd = false;
-    this.freezeScrolling = false;
+    // this.freezeScrolling = false;
 
     GameFactory.getUserCollection().then(function (collection) {
       that.collection = collection;
@@ -425,7 +427,7 @@
 
     this.showAddGameForm = function showAddGameForm() {
       this.showAddGame = true;
-      this.freezeScrolling = true;
+      // this.freezeScrolling = true;
       this.addGamesPopupMessage = "";
     };
 
