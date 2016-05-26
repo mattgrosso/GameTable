@@ -9,6 +9,7 @@
   gameConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 
   function gameConfig($stateProvider, $urlRouterProvider) {
+    $(window).scrollTop();
 
     $urlRouterProvider.otherwise('/choose');
 
@@ -204,6 +205,7 @@
         return scope.show;
       }, function (value) {
         if (value) {
+          $(window).scrollTop(0);
           angular.element('body').addClass('freeze-scrolling');
         } else {
           angular.element('body').removeClass('freeze-scrolling');
@@ -267,6 +269,8 @@
   BracketChooserController.$input = ['$stateParams', '$state'];
 
   function BracketChooserController($stateParams, $state) {
+
+    $(window).scrollTop();
 
     console.log('initiating BracketChooserController');
 
@@ -411,7 +415,7 @@
     this.showFilters = true;
     this.showAddGame = false;
     this.showGamesToAdd = false;
-    this.freezeScrolling = false;
+    // this.freezeScrolling = false;
 
     GameFactory.getUserCollection().then(function (collection) {
       that.collection = collection;
@@ -423,7 +427,7 @@
 
     this.showAddGameForm = function showAddGameForm() {
       this.showAddGame = true;
-      this.freezeScrolling = true;
+      // this.freezeScrolling = true;
       this.addGamesPopupMessage = "";
     };
 
@@ -471,6 +475,8 @@
 
   function EliminateChooserController($stateParams, $localStorage, GameFactory) {
 
+    $(window).scrollTop();
+
     var that = this;
 
     this.collection = $stateParams.filteredCollection;
@@ -515,6 +521,8 @@
 
   function NomRandChooserController($stateParams, $localStorage, GameFactory) {
 
+    $(window).scrollTop();
+
     var that = this;
 
     this.collection = $stateParams.filteredCollection;
@@ -557,6 +565,7 @@
   NomRankChooserController.$inject = ['$stateParams', '$state', '$localStorage', 'GameFactory'];
 
   function NomRankChooserController($stateParams, $state, $localStorage, GameFactory) {
+    $(window).scrollTop();
 
     console.log('refreshing NomRankChooserController');
 
@@ -669,6 +678,7 @@
   RandomChooserController.$inject = ['$stateParams', '$localStorage', 'GameFactory'];
 
   function RandomChooserController($stateParams, $localStorage, GameFactory) {
+    $(window).scrollTop();
 
     var that = this;
 
@@ -700,6 +710,7 @@
   VoteChooserController.$inject = ['$stateParams', '$localStorage', 'GameFactory'];
 
   function VoteChooserController($stateParams, $localStorage, GameFactory) {
+    $(window).scrollTop();
 
     var that = this;
 

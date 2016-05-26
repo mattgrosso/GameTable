@@ -8,6 +8,7 @@
   NomRankChooserController.$inject = ['$stateParams', '$state', '$localStorage', 'GameFactory'];
 
   function NomRankChooserController($stateParams, $state, $localStorage, GameFactory) {
+    $(window).scrollTop();
 
     console.log('refreshing NomRankChooserController');
 

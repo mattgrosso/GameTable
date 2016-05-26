@@ -23,6 +23,7 @@
         return scope.show;
       }, function (value) {
         if (value) {
+          $(window).scrollTop(0);
           angular.element('body').addClass('freeze-scrolling');
         } else {
           angular.element('body').removeClass('freeze-scrolling');
