@@ -6,7 +6,7 @@
 
 <form class="login-form" ng-submit="login.login()" class="login-form">
   <input class="ribbon right-ribbon login-input" ng-model="login.username" type="text" autocapitalize="off" autocomplete="off" placeholder="bgg username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'BGG username'">
-  <input class="ribbon right-ribbon login-button" type="submit" value="login">
+  <button class="ribbon right-ribbon login-button" type="submit">login</button>
 </form>
 <p class="ribbon left-ribbon ribbon-noclick login-message" ng-show="login.message">{{login.message}}</p>
 
