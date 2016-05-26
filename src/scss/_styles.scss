@@ -18,9 +18,7 @@ body::-webkit-scrollbar {
 }
 
 .left-ribbon:focus{
-  border: solid #015C35 2px;
   outline: none;
-  box-shadow: #015C35 0px 0px 5px;
 }
 
 input:focus{
@@ -45,7 +43,6 @@ select:focus{
   clear: both;
   border: 2px solid #015C35;
   max-width: 65%;
-  transition: all 0.5s ease-in;
 }
 
 .select-ribbon{
@@ -55,7 +52,7 @@ select:focus{
   background-color: transparent;
   font-size: 1em;
   font-family: 'Libre Baskerville', serif;
-  color: #015C35;
+  color: #A9A9AE;
   -webkit-appearance: none;
   &:focus{
     border: none;
@@ -132,18 +129,6 @@ select:focus{
   border-bottom-left-radius: 2px;
   border-right: none;
   float: right;
-  &::-webkit-input-placeholder {
-  color: #015C35;
-  }
-  &::-moz-placeholder {
-  color: #015C35;
-  }
-  &:-ms-input-placeholder {
-    color: #015C35;
-  }
-  &:-moz-placeholder {
-    color: #015C35;
-  }
 }
 
 .left-ribbon{
@@ -158,18 +143,6 @@ select:focus{
   border-bottom-left-radius: 0px;
   float: left;
   border-left: 1px solid #015C35;
-  &::-webkit-input-placeholder {
-  color: #015C35;
-  }
-  &::-moz-placeholder {
-  color: #015C35;
-  }
-  &:-ms-input-placeholder {
-    color: #015C35;
-  }
-  &:-moz-placeholder {
-    color: #015C35;
-  }
 }
 
 .ribbon-noclick{
@@ -452,4 +425,11 @@ input[type=checkbox]{
 
 .nomrank-point-total{
   font-size: 1em;
+}
+
+.search-ribbon:focus{
+  outline: none;
+  border-left: none;
+  margin-left: 1px;
+  transition: all 0s;
 }
