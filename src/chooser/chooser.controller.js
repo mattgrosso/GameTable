@@ -86,6 +86,7 @@
 
     this.addGameToList = function addGameToList(game) {
       this.collection.unshift(game);
+      $localStorage.collection.unshift(game);
       this.showGamesToAdd = false;
       this.showAddGame = false;
     };
