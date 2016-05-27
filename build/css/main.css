@@ -284,7 +284,6 @@ select:focus {
 
 .gamelist {
   list-style: none;
-  border-top: solid #015C35 5px;
   padding-top: 10px;
   background-color: white; }
 
