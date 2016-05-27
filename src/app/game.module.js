@@ -1,3 +1,7 @@
+/**
+ * This is the main angular module for the app. The bulk of the code here is made
+ * up of states for ui-router to use.
+ */
 (function() {
   'use strict';
 
@@ -134,6 +138,11 @@
 
   appStart.$inject = ["$rootScope", "$state", "GameFactory"];
 
+  /**
+   * Check to see if the user is logged in before loading any page. If they are
+   * logged in they can go to any page but if they are not logged in they are
+   * directed to the login page.
+   */
   function appStart($rootScope, $state, GameFactory) {
     $rootScope.$on('$stateChangeStart', function checkLoggedIn(event, toState) {
       var isLoggedIn = GameFactory.amILoggedIn();

@@ -1,3 +1,7 @@
+/**
+ * This is a tiny bit of functionality that flashes a visual cue to the user
+ * when they push the vote button in the vote chooser.
+ */
 (function() {
   'use strict';
 
