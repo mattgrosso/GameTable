@@ -1,3 +1,8 @@
+/**
+ * This is the controller for the main page of the app where users can filter
+ * their game collection, add new games to the list and choose which method
+ * they want to use for picking a game.
+ */
 (function() {
   'use strict';
 
@@ -53,20 +58,46 @@
     this.showGamesToAdd = false;
     // this.freezeScrolling = false;
 
-    GameFactory.getUserCollection().then(function (collection) {
-      that.collection = collection;
-    });
+    /**
+     * This function is called when the choose page is loaded so that if someone
+     * is returning to the app directly they do not need to go through the log in page.
+     * It calls on a method from the GameFactory service which retrieves the
+     * user's collection.
+     */
+    GameFactory.getUserCollection()
+      .then(function (collection) {
+        that.collection = collection;
+      });
 
+    /**
+     * This function is triggered by the select of game choosers and directs
+     * the user to teh appropriate state for the chosen chooser.
+     * It also passes in the filtered collection array as a state parameter.
+     */
     this.goToChooser = function (filtered) {
       $state.go(this.chooser, {filteredCollection: filtered});
     };
 
+    /**
+     * This function is called when the user clicks the button to add a new game
+     * to the list.
+     * It toggles the view for the new game search box and ensures that the
+     * message on that box is empty.
+     */
     this.showAddGameForm = function showAddGameForm() {
       this.showAddGame = true;
-      // this.freezeScrolling = true;
       this.addGamesPopupMessage = "";
     };
 
+    /**
+     * This function is triggered when a user submits the game search form in
+     * order to find a game to add to the list.
+     * It calls on the searchForGame method on the GameFactory service.
+     * When the promise is returned, it runs the findThreeMostPopular method on
+     * the results and updates some views in the page.
+     * If the results come back as an error is notifies the user.
+     * @param  {string} title Game title from the search input field
+     */
     this.findGameToAdd = function findGameToAdd(title) {
       this.addGamesPopupMessage = "please hold, bgg is working on it.";
       GameFactory.searchForGame(title).then(function (response) {
@@ -84,12 +115,23 @@
       });
     };
 
+    /**
+     * This function is called when the user selects a game from the search
+     * results.
+     * It adds the selected game to the colelction and hides the add game modal.
+     * @param {Object} game The selected game obect
+     */
     this.addGameToList = function addGameToList(game) {
       this.collection.unshift(game);
+      $localStorage.collection.unshift(game);
       this.showGamesToAdd = false;
       this.showAddGame = false;
     };
 
+    /**
+     * This function is called when a user clicks off of the add game modal.
+     * It simply hides the modal and returns the user to the main site.
+     */
     this.hideAddGame = function hideAddGame() {
       this.showGamesToAdd = false;
       this.showAddGame = false;

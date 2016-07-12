@@ -1,3 +1,6 @@
+/**
+ * This directive creates a modal popup window for messages to the user.
+ */
 (function() {
   'use strict';
 

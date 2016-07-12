@@ -1,3 +1,6 @@
+/**
+ * This is the controller for the vote chooser.
+ */
 (function() {
   'use strict';
 
@@ -18,6 +21,10 @@
     this.showNominees = false;
     this.winner = null;
 
+    /**
+     * If the user navigated directly to this page this if statement sets the list
+     * of games to be the entire collection from localStorage.
+     */
     if (!this.collection || !this.collection.length) {
       GameFactory.getUserCollection()
         .then(function () {
@@ -25,6 +32,12 @@
         });
     }
 
+    /**
+     * This function is called when the user clicks on a nominate button.
+     * It sets the nomineesArray to a filters set of the collection that only
+     * includes games that have the property nominated.
+     * It also resets the number of votes on all games.
+     */
     this.addNominee = function addNominee() {
       this.nomineesArray = this.collection.filter(function (game) {
         if(game.nominated){
@@ -38,23 +51,36 @@
       });
     };
 
+    /**
+     * This function is called when the user clicks on 'done nominating'.
+     * It hides the collection and only shows the list of nominees.
+     */
     this.doneNominating = function doneNominating() {
       this.showCollection = false;
       this.showNominees = true;
     };
 
+    /**
+     * This function is called when a user votes for a game.
+     * It increments the number of votes for the selected game.
+     * @param  {object} game Game object selected.
+     */
     this.voteForGame = function voteForGame(game) {
       game.votes = game.votes || 0;
       game.votes = game.votes + 1;
     };
 
+    /**
+     * This function is called when the user selects the 'show winner' button.
+     * It checks over the array of nominees and displays the one with the
+     * highest number of votes.
+     */
     this.showWinner = function showWinner() {
       var mostVotes = {
         votes: 0,
         name: null,
         games: []
       };
-
       this.nomineesArray.forEach(function (each) {
         if(each.votes > mostVotes.votes){
           mostVotes.name = each.name;

@@ -1,3 +1,7 @@
+/**
+ * This is the main angular module for the app. The bulk of the code here is made
+ * up of states for ui-router to use.
+ */
 (function() {
   'use strict';
 
@@ -134,6 +138,11 @@
 
   appStart.$inject = ["$rootScope", "$state", "GameFactory"];
 
+  /**
+   * Check to see if the user is logged in before loading any page. If they are
+   * logged in they can go to any page but if they are not logged in they are
+   * directed to the login page.
+   */
   function appStart($rootScope, $state, GameFactory) {
     $rootScope.$on('$stateChangeStart', function checkLoggedIn(event, toState) {
       var isLoggedIn = GameFactory.amILoggedIn();
@@ -146,6 +155,9 @@
 
 })();
 
+/**
+ * This is a filter which checks the full list against teh criteria in the input fields.
+ */
 (function() {
   'use strict';
 
@@ -169,7 +181,7 @@
             if(duration < ((each.playTime.min + each.playTime.max)/2)){
               include = false;
             }
-          }          
+          }
           if(include && genre){
             include = each.genres.indexOf(genre.toLowerCase()) > -1;
           }
@@ -180,6 +192,9 @@
 
 })();
 
+/**
+ * This directive creates a modal popup window for messages to the user.
+ */
 (function() {
   'use strict';
 
@@ -218,6 +233,10 @@
 
 })();
 
+/**
+ * This is a tiny bit of functionality that flashes a visual cue to the user
+ * when they push the vote button in the vote chooser.
+ */
 (function() {
   'use strict';
 
@@ -242,23 +261,9 @@
 
 })();
 
-(function() {
-  'use strict';
-
-  angular
-    .module('game')
-    // This filter was lifted from http://ng.malsup.com/#!/titlecase-filter.
-    .filter('titleCase', function () {
-      return function(s) {
-        s = ( s === undefined || s === null ) ? '' : s;
-        return s.toString().toLowerCase().replace( /\b([a-z])/g, function(ch) {
-            return ch.toUpperCase();
-        });
-      };
-    });
-
-})();
-
+/**
+ * This is the controller for the bracket style chooser.
+ */
 (function() {
   'use strict';
 
@@ -287,11 +292,22 @@
     this.showWinner = false;
     this.showRoundCounter = false;
 
-
+    /**
+     * This checks to see if the user arrived here correctly. If they came
+     * directly to this page without passing in the arry of games they are
+     * directed back to the choose state.
+     */
     if (!this.arrayToBeRandomized || !this.arrayToBeRandomized.length) {
       $state.go('choose');
     }
 
+    /**
+     * This function is triggered by the 'start tournament' button. It takes in
+     * the array of games from the main list and generates a new array where
+     * the games are arranged randomly. Once it has randomized the entire array
+     * it calls countRounds with the length of the entrantArray and then
+     * calls 'nextMatchup'.
+     */
     this.startTournament = function startTournament() {
       if(this.arrayToBeRandomized.length > 0){
         var randomIndex = Math.floor((Math.random() * this.arrayToBeRandomized.length));
@@ -306,6 +322,16 @@
       }
     };
 
+    /**
+     * This function checks to see if there are any games left in the array of
+     * entrants.
+     * If there is only one game remaining, that game is set as the winner of
+     * the tournament.
+     * If the number of games in the array is not divisible by 2 it then removes
+     * one game randomly from the set and adds it to the array for the next round.
+     * Then it sets the first and second games in the array as the first and
+     * second contenders which displays them in the UI.
+     */
     this.nextMatchup = function nextMatchup() {
       if(this.entrantArray.length === 0) {
         this.entrantArray = this.winnersArray;
@@ -331,6 +357,15 @@
       this.showMatchUp = true;
     };
 
+    /**
+     * This function is called when the user chooses a winner in each matchup.
+     * Whichever contender was chosen is added to the array of winners and then
+     * both the first and the second game are removed from the entrantArray.
+     * Finally, nextMatchup is called again.
+     * There is also a button for choosing randomly which randomly chooses either
+     * 1 or 2 and then calls pickWinner recursively.
+     * @param  {number} number This will be 1 if firstContender was chosen and 2 if secondContender was chosen.
+     */
     this.pickWinner = function pickWinner(number) {
       if(number === 1){
         this.winnersArray.push(this.firstContender);
@@ -347,6 +382,16 @@
       }
     };
 
+    /**
+     * This function is called by startTournament.
+     * It is given the total number of entrants and it determines how many
+     * rounds there will need to be in the tournament. It requires the second
+     * argument (roundCount) because it figures out the number of rounds by
+     * calling on itself and tracking the current count through its own arguement.
+     * In the end it sets this.numberOfRounds to the total number of rounds.
+     * @param  {number} entrants   Number of entrants in the tournament
+     * @param  {number} roundCount Running total of rounds
+     */
     this.countRounds = function countRounds(entrants, roundCount) {
       var runningTotal = entrants;
       var roundCounter = roundCount || 0;
@@ -362,6 +407,11 @@
 
 })();
 
+/**
+ * This is the controller for the main page of the app where users can filter
+ * their game collection, add new games to the list and choose which method
+ * they want to use for picking a game.
+ */
 (function() {
   'use strict';
 
@@ -417,20 +467,46 @@
     this.showGamesToAdd = false;
     // this.freezeScrolling = false;
 
-    GameFactory.getUserCollection().then(function (collection) {
-      that.collection = collection;
-    });
+    /**
+     * This function is called when the choose page is loaded so that if someone
+     * is returning to the app directly they do not need to go through the log in page.
+     * It calls on a method from the GameFactory service which retrieves the
+     * user's collection.
+     */
+    GameFactory.getUserCollection()
+      .then(function (collection) {
+        that.collection = collection;
+      });
 
+    /**
+     * This function is triggered by the select of game choosers and directs
+     * the user to teh appropriate state for the chosen chooser.
+     * It also passes in the filtered collection array as a state parameter.
+     */
     this.goToChooser = function (filtered) {
       $state.go(this.chooser, {filteredCollection: filtered});
     };
 
+    /**
+     * This function is called when the user clicks the button to add a new game
+     * to the list.
+     * It toggles the view for the new game search box and ensures that the
+     * message on that box is empty.
+     */
     this.showAddGameForm = function showAddGameForm() {
       this.showAddGame = true;
-      // this.freezeScrolling = true;
       this.addGamesPopupMessage = "";
     };
 
+    /**
+     * This function is triggered when a user submits the game search form in
+     * order to find a game to add to the list.
+     * It calls on the searchForGame method on the GameFactory service.
+     * When the promise is returned, it runs the findThreeMostPopular method on
+     * the results and updates some views in the page.
+     * If the results come back as an error is notifies the user.
+     * @param  {string} title Game title from the search input field
+     */
     this.findGameToAdd = function findGameToAdd(title) {
       this.addGamesPopupMessage = "please hold, bgg is working on it.";
       GameFactory.searchForGame(title).then(function (response) {
@@ -448,12 +524,23 @@
       });
     };
 
+    /**
+     * This function is called when the user selects a game from the search
+     * results.
+     * It adds the selected game to the colelction and hides the add game modal.
+     * @param {Object} game The selected game obect
+     */
     this.addGameToList = function addGameToList(game) {
       this.collection.unshift(game);
+      $localStorage.collection.unshift(game);
       this.showGamesToAdd = false;
       this.showAddGame = false;
     };
 
+    /**
+     * This function is called when a user clicks off of the add game modal.
+     * It simply hides the modal and returns the user to the main site.
+     */
     this.hideAddGame = function hideAddGame() {
       this.showGamesToAdd = false;
       this.showAddGame = false;
@@ -464,6 +551,9 @@
   }
 })();
 
+/**
+ * This is the controller for the elimination method of choosing.
+ */
 (function() {
   'use strict';
 
@@ -482,6 +572,10 @@
     this.collection = $stateParams.filteredCollection;
     this.downToOne = false;
 
+    /**
+     * If the user navigated directly to this page this if statement sets the list
+     * of games to be the entire collection from localStorage.
+     */
     if (!this.collection || !this.collection.length) {
       GameFactory.getUserCollection()
         .then(function () {
@@ -489,6 +583,14 @@
         });
     }
 
+    /**
+     * This function is called when a user eliminates a game from the list.
+     * It sets the eliminated property of the game to true and then refilters
+     * the current list of games to take out any that have been eliminated.
+     * Finally, it checks to see if the list of games has been reduced to one
+     * and, if so, it displays the winning game.
+     * @param  {Object} game Game object that was selected.
+     */
     this.eliminateGame = function eliminateGame(game) {
       game.eliminated = true;
       console.log(game.eliminated);
@@ -510,6 +612,9 @@
 
 })();
 
+/**
+ * This is the controller for the Nomrand chooser.
+ */
 (function() {
   'use strict';
 
@@ -529,6 +634,10 @@
     this.nomineesArray = [];
     this.randomGame = null;
 
+    /**
+     * If the user navigated directly to this page this if statement sets the list
+     * of games to be the entire collection from localStorage.
+     */
     if (!this.collection || !this.collection.length) {
       GameFactory.getUserCollection()
         .then(function () {
@@ -536,6 +645,11 @@
         });
     }
 
+    /**
+     * This function is called when the user clicks on a nominate button.
+     * It sets the nomineesArray to a filters set of the collection that only
+     * includes games that have the property nominated.
+     */
     this.addNominee = function addNominee() {
       this.nomineesArray = this.collection.filter(function (game) {
         if(game.nominated){
@@ -546,6 +660,11 @@
       });
     };
 
+    /**
+     * This function is called when a user clicks on the 'done nominating'
+     * button.
+     * It chooses a random game from the array of nominees and displays it.
+     */
     this.doneNominating = function doneNominating() {
       console.log(this.collection);
       var randomNumber = Math.floor(Math.random() * this.nomineesArray.length);
@@ -555,6 +674,9 @@
 
 })();
 
+/**
+ * This is the controller for the NomRank chooser.
+ */
 (function() {
   'use strict';
 
@@ -578,7 +700,10 @@
     this.winner = $stateParams.winner || null;
     this.showWinner = $stateParams.showWinner || false;
 
-
+    /**
+     * If the user navigated directly to this page this if statement sets the list
+     * of games to be the entire collection from localStorage.
+     */
     if (!this.collection || !this.collection.length) {
       GameFactory.getUserCollection()
         .then(function () {
@@ -586,11 +711,21 @@
         });
     }
 
+    /**
+     * This function is called when a user clicks on the 'start process' button.
+     * It hides the start screen and sends the user to the nominate-rank.nominate
+     * state.
+     */
     this.startProcess = function startProcess() {
       this.showStartScreen = false;
       $state.go('nominate-rank.nominate');
     };
 
+    /**
+     * This function is called when the user clicks on a nominate button.
+     * It sets the nomineesArray to a filters set of the collection that only
+     * includes games that have the property nominated.
+     */
     this.addNominee = function addNominee() {
       this.nomineesArray = this.collection.filter(function (game) {
         if(game.nominated){
@@ -602,9 +737,17 @@
       });
     };
 
+    /**
+     * This function is called at the start of each voting round after the user
+     * clicks the button to take them to the next round.
+     * It checks to see what the corrent value of votes is (this is also the
+     * number of the current round) and then, if the currentValueOfVotes is
+     * less than 3, it sends the user to the nominate-rank.value state.
+     * If the currentValueOfVotes is 3 it sends the user to the
+     * nominate-rank.results state.
+     */
     this.goToValueVoting = function goToValueVoting() {
       this.showStartScreen = false;
-      console.log(this.currentValueOfVotes);
       if(this.currentValueOfVotes < 3){
         this.currentValueOfVotes++;
         $state.go('nominate-rank.value', {
@@ -623,11 +766,25 @@
       }
     };
 
+    /**
+     * This function is called whenever a user votes for a game.
+     * It adds the currentValueOfVotes to the value for the selected game.
+     * @param {Object} game Game object for the selected game.
+     */
     this.addValue = function addValue(game) {
       game.value = game.value || 0;
       game.value = game.value + this.currentValueOfVotes;
     };
 
+    /**
+     * This function is called whenever the user clicks the 'done adding value'
+     * button.
+     * If the currentValueOfVotes is less than 3 then it sends the user to the
+     * nominate-rank.results state.
+     * Otherwise, it searches the array of nominees for the game with the
+     * highest total value and assigns that game to the winner variable.
+     * Finally, it displays the winner.
+     */
     this.goToResults = function goToResults() {
       if(this.currentValueOfVotes < 3){
         $state.go('nominate-rank.results', {
@@ -654,7 +811,6 @@
         });
         this.winner = mostValue;
         this.showWinner = true;
-        console.log('this.showWinner: ', this.showWinner);
         $state.go('nominate-rank.results', {
           nominatedCollection: this.nomineesArray,
           currentValueOfVotes: this.currentValueOfVotes,
@@ -668,6 +824,9 @@
 
 })();
 
+/**
+ * This is the controller for the random chooser.
+ */
 (function() {
   'use strict';
 
@@ -685,6 +844,10 @@
     this.collection = $stateParams.filteredCollection;
     this.randomGame = null;
 
+    /**
+     * If the user navigated directly to this page this if statement sets the list
+     * of games to be the entire collection from localStorage.
+     */
     if (!this.collection || !this.collection.length) {
       GameFactory.getUserCollection()
         .then(function () {
@@ -692,6 +855,11 @@
         });
     }
 
+    /**
+     * This function is called when the user clicks on the 'choose random game'
+     * button.
+     * It selects a random game from the list and displays it.
+     */
     this.chooseRandomGame = function chooseRandomGame() {
       var randomNumber = Math.floor(Math.random() * this.collection.length);
       this.randomGame = this.collection[randomNumber];
@@ -700,6 +868,9 @@
 
 })();
 
+/**
+ * This is the controller for the vote chooser.
+ */
 (function() {
   'use strict';
 
@@ -720,6 +891,10 @@
     this.showNominees = false;
     this.winner = null;
 
+    /**
+     * If the user navigated directly to this page this if statement sets the list
+     * of games to be the entire collection from localStorage.
+     */
     if (!this.collection || !this.collection.length) {
       GameFactory.getUserCollection()
         .then(function () {
@@ -727,6 +902,12 @@
         });
     }
 
+    /**
+     * This function is called when the user clicks on a nominate button.
+     * It sets the nomineesArray to a filters set of the collection that only
+     * includes games that have the property nominated.
+     * It also resets the number of votes on all games.
+     */
     this.addNominee = function addNominee() {
       this.nomineesArray = this.collection.filter(function (game) {
         if(game.nominated){
@@ -740,23 +921,36 @@
       });
     };
 
+    /**
+     * This function is called when the user clicks on 'done nominating'.
+     * It hides the collection and only shows the list of nominees.
+     */
     this.doneNominating = function doneNominating() {
       this.showCollection = false;
       this.showNominees = true;
     };
 
+    /**
+     * This function is called when a user votes for a game.
+     * It increments the number of votes for the selected game.
+     * @param  {object} game Game object selected.
+     */
     this.voteForGame = function voteForGame(game) {
       game.votes = game.votes || 0;
       game.votes = game.votes + 1;
     };
 
+    /**
+     * This function is called when the user selects the 'show winner' button.
+     * It checks over the array of nominees and displays the one with the
+     * highest number of votes.
+     */
     this.showWinner = function showWinner() {
       var mostVotes = {
         votes: 0,
         name: null,
         games: []
       };
-
       this.nomineesArray.forEach(function (each) {
         if(each.votes > mostVotes.votes){
           mostVotes.name = each.name;
@@ -775,6 +969,10 @@
 
 })();
 
+/**
+ * This service handles all of the http requests to the BGG servers.
+ * It also tracks login state.
+ */
 (function() {
   'use strict';
 
@@ -794,6 +992,26 @@
       logOut: logOut
     };
 
+    /**
+     * This function takes in a BGG username and performs n http request to
+     * the BGG servers to retrieve that user's collection. It follows these steps:
+     * 1. First it checks to see if the user's collection is stored in local storage
+     * 			If it is, it returns the collection from local storage in a promise.
+     * 2. If the local storage collection is empty it makes a request to the
+     * 			BGG servers asking to GET the user's collection.
+     * 3. BGG responds with very messy data so the transformResponse header
+     * 			cleans things up to make them more useable on this end.
+     * 4. Sometimes the BGG server will take the request and backlog it for later
+     * 			fulfillment. When this happens the user is notified in the message
+     * 			of a returned promise.
+     * 5. Next this function runs 'buildGenreArray' to create an array of all
+     * 			included genres.
+     * 6. Finally, the function returns a promise which contains the collection.
+     * @param  {String} username Boardgamegeek.com user name
+     * @return {Promise}         Collection from localStorage
+     * @return {Promise}         Rejected promise with message
+     * @return {Promise}         Collection from BGG
+     */
     function getUserCollection(username) {
       if ($localStorage.collection){
         var def = $q.defer();
@@ -883,6 +1101,24 @@
       }
     }
 
+    /**
+     * This function is called when the user enters a search for a new game. It
+     * performs the following:
+     * 1. It takes spaces out of the search string.
+     * 2. It makes an http GET request to the BGG servers.
+     * 3. If the data that is returned is an error message because too many results
+     * 			were returned, it returns a promise and notifies the user with a message.
+     * 4. The list of search results is then reduced to a list of item IDs because
+     * 			the search results do not include all of the data needed.
+     * 5. The array of IDs is then turned into a string and is included in
+     * 			another http GET request to BGG. This time the request asks for all
+     * 			of items by ID.
+     * 6. The response data from this request is also messy so it is prettified
+     * 			for our uses.
+     * 7. Finally, the search results are returned in a promise.
+     * @param  {String} title Search query from input field
+     * @return {Promise}      Contains the results or else an error message.
+     */
     function searchForGame(title) {
       var cleanTitle = title.replace(/\s/,'+');
       return $http({
@@ -977,6 +1213,12 @@
       });
     }
 
+    /**
+     * This function is called after the search results are returned.
+     * It finds the three games in the array that are owned by the most people.
+     * @param  {Array} gameArray Array of games
+     * @return {Array}           Array of the 3 most popular games from the list.
+     */
     function findThreeMostPopular(gameArray) {
       var mostPopular = [
         {numberOwned: 0},
@@ -1006,7 +1248,30 @@
       return trimmedMostPopular;
     }
 
+    /**
+     * This function is called whenever a controller needs to confirm login status.
+     * @return {Boolean} Boolean indicating login status.
+     */
+    function amILoggedIn() {
+      return !!$localStorage.collection;
+    }
 
+    /**
+     * This function is called in order to log out of the app.
+     * It clears the username and the collection from localStorage.
+     * // TODO: Should I clear out genreArray too?
+     */
+    function logOut() {
+      $localStorage.username = null;
+      $localStorage.collection = null;
+    }
+
+    /**
+     * This function is called by getUserCollection.
+     * It takes in an array of games and finds all of the unique genres so that
+     * the list of genres can be used in the select menu.
+     * @param  {Array} gameArray Array of games
+     */
     function buildGenreArray(gameArray) {
       $localStorage.genreArray = [];
       gameArray.forEach(function (each) {
@@ -1052,18 +1317,13 @@
       console.log($localStorage.genreArray);
     }
 
-    function amILoggedIn() {
-      return !!$localStorage.collection;
-    }
-
-    function logOut() {
-      $localStorage.username = null;
-      $localStorage.collection = null;
-    }
 
   }
 })();
 
+/**
+ * This is the controller for the header.
+ */
 (function() {
   'use strict';
 
@@ -1077,12 +1337,19 @@
 
     this.loggedIn = GameFactory.amILoggedIn;
 
+    /**
+     * This function returns the username from localStorage.
+     * @return {String} Username from localStorage
+     */
     this.username = function getUsername() {
       return $localStorage.username;
     };
 
+    /**
+     * This function is called in order to log out.
+     * It calls GameFactory.logOut and then sends the user to the login state.
+     */
     this.logOut = function logOut() {
-      console.log('logout function is running');
       GameFactory.logOut();
       $state.go('login');
     };
@@ -1090,6 +1357,9 @@
 
 })();
 
+/**
+ * This is the controller for the login state
+ */
 (function() {
   'use strict';
 
@@ -1108,10 +1378,22 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
     this.message = "";
     this.loggedIn = GameFactory.amILoggedIn;
 
+    /**
+     * This checks to see if the user is already logged in in which case they
+     * are sent directly to the choose state.
+     */
     if (this.loggedIn) {
       $state.go('choose');
     }
 
+    /**
+     * This function is called when a user clicks the login button.
+     * It calls GameFactory.getUserCollection with the username from the input
+     * field and then directs the user to the choose state.
+     * Because BGG sometimes backlogs requests for collections this function will
+     * attempt to retrieve the data once every second until the data returns.
+     * If an error is returned it displays a message for the user.
+     */
     this.login = function login() {
       $localStorage.collection = null;
       that.message = "please hold, bgg is slow.";
@@ -1128,7 +1410,6 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
           console.log('in the catch in the ctrl');
           if (response.status === 'in queue') {
             console.log('in the in queue if');
-            // that.message = "BGG is working on getting your collection but they are very slow about it. Sit tight, we'll keep bugging them until they do it.";
             setTimeout(that.login, 1000);
           } else {
             console.log('in the else in the catch');
