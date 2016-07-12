@@ -1,3 +1,6 @@
+/**
+ * This is the controller for the login state
+ */
 (function() {
   'use strict';
 
@@ -16,10 +19,22 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
     this.message = "";
     this.loggedIn = GameFactory.amILoggedIn;
 
+    /**
+     * This checks to see if the user is already logged in in which case they
+     * are sent directly to the choose state.
+     */
     if (this.loggedIn) {
       $state.go('choose');
     }
 
+    /**
+     * This function is called when a user clicks the login button.
+     * It calls GameFactory.getUserCollection with the username from the input
+     * field and then directs the user to the choose state.
+     * Because BGG sometimes backlogs requests for collections this function will
+     * attempt to retrieve the data once every second until the data returns.
+     * If an error is returned it displays a message for the user.
+     */
     this.login = function login() {
       $localStorage.collection = null;
       that.message = "please hold, bgg is slow.";
@@ -36,7 +51,6 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
           console.log('in the catch in the ctrl');
           if (response.status === 'in queue') {
             console.log('in the in queue if');
-            // that.message = "BGG is working on getting your collection but they are very slow about it. Sit tight, we'll keep bugging them until they do it.";
             setTimeout(that.login, 1000);
           } else {
             console.log('in the else in the catch');

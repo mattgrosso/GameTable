@@ -1,3 +1,6 @@
+/**
+ * This is a filter which checks the full list against teh criteria in the input fields.
+ */
 (function() {
   'use strict';
 
@@ -21,7 +24,7 @@
             if(duration < ((each.playTime.min + each.playTime.max)/2)){
               include = false;
             }
-          }          
+          }
           if(include && genre){
             include = each.genres.indexOf(genre.toLowerCase()) > -1;
           }

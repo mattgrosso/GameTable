@@ -24,7 +24,7 @@ This project was built using [AngularJS](https://angularjs.org/) and [Sass](http
 
 If you would like to fork and work on your own version you will find that all of the working files are in the src folder.
 
-To get up and running by using the following steps.
+To get up and running by using the following steps.<br>
 1. [Install git](http://git-scm.com)
 2. [Install Node](http://nodejs.org)
 3. [Install Grunt](http://gruntjs.com)

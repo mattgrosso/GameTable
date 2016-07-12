@@ -1,3 +1,7 @@
+/**
+ * This service handles all of the http requests to the BGG servers.
+ * It also tracks login state.
+ */
 (function() {
   'use strict';
 
@@ -17,6 +21,26 @@
       logOut: logOut
     };
 
+    /**
+     * This function takes in a BGG username and performs n http request to
+     * the BGG servers to retrieve that user's collection. It follows these steps:
+     * 1. First it checks to see if the user's collection is stored in local storage
+     * 			If it is, it returns the collection from local storage in a promise.
+     * 2. If the local storage collection is empty it makes a request to the
+     * 			BGG servers asking to GET the user's collection.
+     * 3. BGG responds with very messy data so the transformResponse header
+     * 			cleans things up to make them more useable on this end.
+     * 4. Sometimes the BGG server will take the request and backlog it for later
+     * 			fulfillment. When this happens the user is notified in the message
+     * 			of a returned promise.
+     * 5. Next this function runs 'buildGenreArray' to create an array of all
+     * 			included genres.
+     * 6. Finally, the function returns a promise which contains the collection.
+     * @param  {String} username Boardgamegeek.com user name
+     * @return {Promise}         Collection from localStorage
+     * @return {Promise}         Rejected promise with message
+     * @return {Promise}         Collection from BGG
+     */
     function getUserCollection(username) {
       if ($localStorage.collection){
         var def = $q.defer();
@@ -106,6 +130,24 @@
       }
     }
 
+    /**
+     * This function is called when the user enters a search for a new game. It
+     * performs the following:
+     * 1. It takes spaces out of the search string.
+     * 2. It makes an http GET request to the BGG servers.
+     * 3. If the data that is returned is an error message because too many results
+     * 			were returned, it returns a promise and notifies the user with a message.
+     * 4. The list of search results is then reduced to a list of item IDs because
+     * 			the search results do not include all of the data needed.
+     * 5. The array of IDs is then turned into a string and is included in
+     * 			another http GET request to BGG. This time the request asks for all
+     * 			of items by ID.
+     * 6. The response data from this request is also messy so it is prettified
+     * 			for our uses.
+     * 7. Finally, the search results are returned in a promise.
+     * @param  {String} title Search query from input field
+     * @return {Promise}      Contains the results or else an error message.
+     */
     function searchForGame(title) {
       var cleanTitle = title.replace(/\s/,'+');
       return $http({
@@ -200,6 +242,12 @@
       });
     }
 
+    /**
+     * This function is called after the search results are returned.
+     * It finds the three games in the array that are owned by the most people.
+     * @param  {Array} gameArray Array of games
+     * @return {Array}           Array of the 3 most popular games from the list.
+     */
     function findThreeMostPopular(gameArray) {
       var mostPopular = [
         {numberOwned: 0},
@@ -229,7 +277,30 @@
       return trimmedMostPopular;
     }
 
+    /**
+     * This function is called whenever a controller needs to confirm login status.
+     * @return {Boolean} Boolean indicating login status.
+     */
+    function amILoggedIn() {
+      return !!$localStorage.collection;
+    }
 
+    /**
+     * This function is called in order to log out of the app.
+     * It clears the username and the collection from localStorage.
+     * // TODO: Should I clear out genreArray too?
+     */
+    function logOut() {
+      $localStorage.username = null;
+      $localStorage.collection = null;
+    }
+
+    /**
+     * This function is called by getUserCollection.
+     * It takes in an array of games and finds all of the unique genres so that
+     * the list of genres can be used in the select menu.
+     * @param  {Array} gameArray Array of games
+     */
     function buildGenreArray(gameArray) {
       $localStorage.genreArray = [];
       gameArray.forEach(function (each) {
@@ -275,14 +346,6 @@
       console.log($localStorage.genreArray);
     }
 
-    function amILoggedIn() {
-      return !!$localStorage.collection;
-    }
-
-    function logOut() {
-      $localStorage.username = null;
-      $localStorage.collection = null;
-    }
 
   }
 })();
