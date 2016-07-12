@@ -371,13 +371,13 @@ input[type=checkbox] {
       height: 16px; }
     .vote-button button .plus-mark-front {
       position: relative;
-      top: -7px;
-      left: -2px; }
+      top: -1px;
+      left: 0px; }
     .vote-button button .plus-mark-back {
       transform: rotate(90deg);
       position: relative;
-      top: -17px;
-      left: 6px; }
+      top: -11px;
+      left: 8px; }
 
 .vote-popup {
   position: relative;
