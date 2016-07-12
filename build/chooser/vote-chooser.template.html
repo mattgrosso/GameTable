@@ -60,7 +60,8 @@
   <section class="ribbon right-ribbon ribbon-noclick results" ng-show="vote.winner">
     <img ng-src="{{vote.winner.games[0].image.imageURL}}"/>
     <div class="aside-wrapper">
-      <h3>{{vote.winner.name}} (With {{vote.winner.votes}} votes)</h3>
+      <h3>{{vote.winner.name}}</h3>
+      <aside class="winner-points">(with {{vote.winner.votes}} votes)</aside>
     </div>
   </section>
 

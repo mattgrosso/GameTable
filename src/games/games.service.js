@@ -47,7 +47,6 @@
         var collection = angular.copy($localStorage.collection);
         def.resolve(collection);
         buildGenreArray(collection);
-        console.log(collection);
         return def.promise;
       } else {
         return $http({
@@ -55,12 +54,10 @@
           url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username + '&stats=1&excludesubtype=boardgameexpansion&own=1',
           transformResponse: function prettifyCollectionArray(response) {
             var parsedResponse = JSON.parse(response);
-            console.log(parsedResponse);
             if (typeof parsedResponse.message === 'string') {
               return 'in queue';
             }
             var prettyCollectionArray = [];
-            console.log(parsedResponse.items.item);
             parsedResponse.items.item.forEach(function (each) {
               var gameObject = {};
               gameObject.objectID = each.$.objectid;
@@ -114,7 +111,6 @@
           }
         }).then(function successGetUserCollection(response) {
           if (response.data === 'in queue') {
-            console.log('in in queue');
             var def = $q.defer();
             var status = {
               status: "in queue",
@@ -343,7 +339,6 @@
         }
       });
       $localStorage.genreArray = prettyGenreArray;
-      console.log($localStorage.genreArray);
     }
 
 

@@ -13,9 +13,9 @@
 </section>
 
 <ul class="gamelist">
-  <li class="ribbon gamelist-ribbon right-ribbon" ng-repeat="game in nomrank.collection">
+  <li class="ribbon gamelist-ribbon right-ribbon" ng-click="nomrank.addNominee()" ng-repeat="game in nomrank.collection">
     <div class="nominate-checkbox">
-      <input id="{{game.objectID}}" ng-click="nomrank.addNominee()" ng-model="game.nominated" type="checkbox" value="nominated">
+      <input id="{{game.objectID}}" ng-model="game.nominated" type="checkbox" value="nominated">
       <label for="{{game.objectID}}">
         <div class="x-mark x-mark-front"></div>
         <div class="x-mark x-mark-back"></div>

@@ -1,15 +1,11 @@
 <section class="description-section">
-
   <p class="ribbon left-ribbon ribbon-noclick">
     These are the scores so far. Click 'next round' when you're ready to move to the next round.
   </p>
-
   <button class="ribbon right-ribbon" ng-show="{{nomrank.currentValueOfVotes}} < 3" ng-hide="{{nomrank.showWinner}}" ng-click="nomrank.goToValueVoting()" type="button">
     Next Round
   </button>
-
   <div class="clearfix"></div>
-
 </section>
 
 
@@ -28,7 +24,8 @@
   <section class="ribbon right-ribbon ribbon-noclick results" ng-show="{{nomrank.showWinner}}">
     <img ng-src="{{nomrank.winner.games[0].image.imageURL}}"/>
     <div class="aside-wrapper">
-      <h3>{{nomrank.winner.name}} with {{nomrank.winner.value}}pts</h3>
+      <h3>{{nomrank.winner.name}}</h3>
+      <aside class="winner-points">(with {{nomrank.winner.value}}pts)</aside>
     </div>
   </section>
 </div>

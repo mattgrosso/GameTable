@@ -14,6 +14,7 @@
     $(window).scrollTop();
 
     console.log('refreshing NomRankChooserController');
+    console.log('nomineesArray:', this.nomineesArray);
 
     var that = this;
 
