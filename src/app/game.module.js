@@ -9,6 +9,7 @@
   gameConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 
   function gameConfig($stateProvider, $urlRouterProvider) {
+    $(window).scrollTop();
 
     $urlRouterProvider.otherwise('/choose');
 

@@ -8,6 +8,7 @@
   RandomChooserController.$inject = ['$stateParams', '$localStorage', 'GameFactory'];
 
   function RandomChooserController($stateParams, $localStorage, GameFactory) {
+    $(window).scrollTop();
 
     var that = this;
 

@@ -51,7 +51,7 @@
     this.showFilters = true;
     this.showAddGame = false;
     this.showGamesToAdd = false;
-    this.freezeScrolling = false;
+    // this.freezeScrolling = false;
 
     GameFactory.getUserCollection().then(function (collection) {
       that.collection = collection;
@@ -63,7 +63,7 @@
 
     this.showAddGameForm = function showAddGameForm() {
       this.showAddGame = true;
-      this.freezeScrolling = true;
+      // this.freezeScrolling = true;
       this.addGamesPopupMessage = "";
     };
 

@@ -8,6 +8,7 @@
   VoteChooserController.$inject = ['$stateParams', '$localStorage', 'GameFactory'];
 
   function VoteChooserController($stateParams, $localStorage, GameFactory) {
+    $(window).scrollTop();
 
     var that = this;
 
