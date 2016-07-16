@@ -26,7 +26,6 @@
             }
           }
           if (duration && isNaN(Number(duration)) && duration.includes('-')) {
-            console.log('in the correct filter');
             var durationWithoutSpaces = duration.split(' ').join('');
             var durationRangeArray = durationWithoutSpaces.split('-');
             var minDuration = 0;
@@ -42,8 +41,6 @@
             });
 
             if (minDuration > ((each.playTime.min + each.playTime.max)/2) || maxDuration < ((each.playTime.min + each.playTime.max)/2)) {
-              console.log('Min: ', each.playTime.min);
-              console.log('Max: ', each.playTime.max);
               include = false;
             }
           }

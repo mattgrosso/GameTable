@@ -183,7 +183,6 @@
             }
           }
           if (duration && isNaN(Number(duration)) && duration.includes('-')) {
-            console.log('in the correct filter');
             var durationWithoutSpaces = duration.split(' ').join('');
             var durationRangeArray = durationWithoutSpaces.split('-');
             var minDuration = 0;
@@ -199,8 +198,6 @@
             });
 
             if (minDuration > ((each.playTime.min + each.playTime.max)/2) || maxDuration < ((each.playTime.min + each.playTime.max)/2)) {
-              console.log('Min: ', each.playTime.min);
-              console.log('Max: ', each.playTime.max);
               include = false;
             }
           }
@@ -447,12 +444,13 @@
     var that = this;
 
     this.collection = [];
-    this.players = "";
-    this.duration = "";
-    this.genre = "";
+    this.players = $localStorage.filterSet.players || "";
+    this.duration = $localStorage.filterSet.duration || "";
+    this.genre = $localStorage.filterSet.genre || "";
     this.genreArray = $localStorage.genreArray;
     this.chooser = "";
     this.addGameTitle = "";
+    this.filterSet = {};
     this.chooserArray = [
       {
         menuName: 'Random',
@@ -506,6 +504,13 @@
      * It also passes in the filtered collection array as a state parameter.
      */
     this.goToChooser = function (filtered) {
+      this.filterSet.players = this.players || '';
+      this.filterSet.duration = this.duration || '';
+      this.filterSet.genre = this.genre || '';
+      $localStorage.filterSet = this.filterSet || '';
+
+      console.log($localStorage.filterSet);
+
       $state.go(this.chooser, {filteredCollection: filtered});
     };
 
@@ -1283,6 +1288,7 @@
     function logOut() {
       $localStorage.username = null;
       $localStorage.collection = null;
+      $localStorage.filterSet = null;
     }
 
     /**
