@@ -538,10 +538,7 @@ input[type=checkbox] {
   .vote-button {
     top: 39px; }
     .vote-button button {
-      top: -9px; }
-
-  .vote-popup {
-    top: -48px; } }
+      top: -9px; } }
 @media screen and (min-width: 1001px) {
   .logosmall {
     height: 215px;
@@ -683,9 +680,6 @@ input[type=checkbox] {
     .vote-button button {
       top: -9px; }
 
-  .vote-popup {
-    top: -48px; }
-
   .description-section {
     z-index: 1; }
 
@@ -707,9 +701,6 @@ input[type=checkbox] {
     top: 50px; }
     .vote-button button {
       top: -9px; }
-
-  .vote-popup {
-    top: -48px; }
 
   .description-section {
     z-index: 1; }
