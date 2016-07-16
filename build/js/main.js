@@ -444,6 +444,7 @@
     var that = this;
 
     this.collection = [];
+    console.log($localStorage);
     this.players = $localStorage.filterSet.players || "";
     this.duration = $localStorage.filterSet.duration || "";
     this.genre = $localStorage.filterSet.genre || "";
