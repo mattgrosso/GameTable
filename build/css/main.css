@@ -471,7 +471,7 @@ input[type=checkbox] {
     top: 60px; }
 
   .vote-button {
-    top: 60px; } }
+    top: 32px; } }
 @media screen and (min-width: 801px) and (max-width: 1000px) {
   .logosmall {
     width: 13%; }
@@ -536,7 +536,7 @@ input[type=checkbox] {
     top: 75px; }
 
   .vote-button {
-    top: 75px; }
+    top: 39px; }
     .vote-button button {
       top: -9px; }
 
@@ -679,7 +679,7 @@ input[type=checkbox] {
     top: 75px; }
 
   .vote-button {
-    top: 75px; }
+    top: 47px; }
     .vote-button button {
       top: -9px; }
 
@@ -704,7 +704,7 @@ input[type=checkbox] {
     top: 75px; }
 
   .vote-button {
-    top: 75px; }
+    top: 50px; }
     .vote-button button {
       top: -9px; }
 
