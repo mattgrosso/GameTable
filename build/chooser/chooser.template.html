@@ -70,6 +70,7 @@
       <h3>{{game.name}}</h3>
       <aside>{{game.playerCount.min}} to {{game.playerCount.max}} players</aside>
       <aside>{{(game.playTime.min + game.playTime.max)/2}} min</aside>
+      <aside class="added-game-delete-button" ng-show="{{game.addedBySearch}}"></aside>
     </div>
   </li>
   <div class="clearfix"></div>

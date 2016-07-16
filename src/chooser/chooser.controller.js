@@ -131,6 +131,7 @@
      * @param {Object} game The selected game obect
      */
     this.addGameToList = function addGameToList(game) {
+      game.addedBySearch = true;
       this.collection.unshift(game);
       $localStorage.collection.unshift(game);
       this.showGamesToAdd = false;
