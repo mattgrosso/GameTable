@@ -468,7 +468,7 @@ input[type=checkbox] {
     max-width: 160px; }
 
   .nominate-checkbox {
-    top: 60px; }
+    top: 32px; }
 
   .vote-button {
     top: 32px; } }
@@ -533,7 +533,7 @@ input[type=checkbox] {
     max-width: 160px; }
 
   .nominate-checkbox {
-    top: 75px; }
+    top: 39px; }
 
   .vote-button {
     top: 39px; }
@@ -673,7 +673,7 @@ input[type=checkbox] {
     float: right; }
 
   .nominate-checkbox {
-    top: 75px; }
+    top: 47px; }
 
   .vote-button {
     top: 47px; }
@@ -695,7 +695,7 @@ input[type=checkbox] {
     left: 1%; }
 
   .nominate-checkbox {
-    top: 75px; }
+    top: 50px; }
 
   .vote-button {
     top: 50px; }
