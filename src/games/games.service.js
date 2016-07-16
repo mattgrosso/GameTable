@@ -289,6 +289,7 @@
     function logOut() {
       $localStorage.username = null;
       $localStorage.collection = null;
+      $localStorage.filterSet = null;
     }
 
     /**
