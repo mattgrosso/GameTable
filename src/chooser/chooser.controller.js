@@ -147,6 +147,11 @@
       this.showAddGame = false;
     };
 
+    this.removeAddedGame = function removeAddedGame(game) {
+      var indexValue = this.collection.indexOf(game);
+      this.collection.splice(indexValue, 1);
+      $localStorage.collection.splice(indexValue, 1);
+    };
 
 
   }
