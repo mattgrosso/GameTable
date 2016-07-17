@@ -219,16 +219,36 @@ select:focus {
     border: solid #015C35 2px;
     border-right: none; }
 
+.login-options-div {
+  position: relative;
+  float: right;
+  width: 100%; }
+
 .login-button {
-  width: 25%; }
+  width: 25%;
+  position: absolute;
+  right: 0;
+  transition: all 0.3s ease-in;
+  font-size: 0.75em; }
   .login-button:focus {
     outline: none; }
 
+.no-login-button {
+  position: absolute;
+  right: 0;
+  transition: all 0.3s ease-in;
+  font-size: 0.75em; }
+
 .login-message {
+  margin-top: 75px;
   padding-top: 15px;
   padding-bottom: 15px;
   padding-right: 35px;
-  max-width: 70%; }
+  padding-left: 10%;
+  max-width: 50%; }
+
+.offscreenright {
+  right: -70%; }
 
 .username-banner {
   margin-top: 20px; }

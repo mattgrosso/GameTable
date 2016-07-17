@@ -6,7 +6,10 @@
 
 <form class="login-form" ng-submit="login.login()" class="login-form">
   <input class="ribbon right-ribbon login-input" ng-model="login.username" type="text" autocapitalize="off" autocomplete="off" placeholder="bgg username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'bgg username'">
-  <button class="ribbon right-ribbon login-button" type="submit">login</button>
+  <div class="login-options-div">
+    <button class="ribbon right-ribbon login-button" ng-class="{offscreenright: !login.username}" type="submit">login</button>
+    <button class="ribbon right-ribbon no-login-button" ng-class="{offscreenright: login.username}" type="submit">or add games manually</button>
+  </div>
 </form>
 <p class="ribbon left-ribbon ribbon-noclick login-message" ng-show="login.message">{{login.message}}</p>
 
