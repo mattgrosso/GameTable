@@ -166,19 +166,38 @@
     .filter('gameFilter', function () {
       return function gameFilter(input, players, duration, genre) {
         players = Number(players) || null;
-        duration = Number(duration) || null;
+        // duration = Number(duration) || null;
         return input.filter(function (each) {
           var include = true;
           if(players && (players < each.playerCount.min || players > each.playerCount.max)){
             include = false;
           }
-          if(duration && duration < 5){
-            if((duration*60) < ((each.playTime.min + each.playTime.max)/2)){
+          if(duration && typeof Number(duration) === 'number' && Number(duration) < 5){
+            if((Number(duration)*60) < ((each.playTime.min + each.playTime.max)/2)){
               include = false;
             }
           }
-          if(duration && duration >= 5){
-            if(duration < ((each.playTime.min + each.playTime.max)/2)){
+          if(duration && typeof Number(duration) === 'number' && Number(duration) >= 5){
+            if(Number(duration) < ((each.playTime.min + each.playTime.max)/2)){
+              include = false;
+            }
+          }
+          if (duration && isNaN(Number(duration)) && duration.includes('-')) {
+            var durationWithoutSpaces = duration.split(' ').join('');
+            var durationRangeArray = durationWithoutSpaces.split('-');
+            var minDuration = 0;
+            var maxDuration = 0;
+
+            durationRangeArray.forEach(function findMinMax(each) {
+              if(Number(each) < minDuration || minDuration === 0){
+                minDuration = Number(each);
+              }
+              if (Number(each) > maxDuration || minDuration === 0) {
+                maxDuration = Number(each);
+              }
+            });
+
+            if (minDuration > ((each.playTime.min + each.playTime.max)/2) || maxDuration < ((each.playTime.min + each.playTime.max)/2)) {
               include = false;
             }
           }
@@ -425,12 +444,14 @@
     var that = this;
 
     this.collection = [];
-    this.players = "";
-    this.duration = "";
-    this.genre = "";
+    $localStorage.filterSet = $localStorage.filterSet || {};
+    this.players = $localStorage.filterSet.players || "";
+    this.duration = $localStorage.filterSet.duration || "";
+    this.genre = $localStorage.filterSet.genre || "";
     this.genreArray = $localStorage.genreArray;
     this.chooser = "";
     this.addGameTitle = "";
+    this.filterSet = {};
     this.chooserArray = [
       {
         menuName: 'Random',
@@ -484,6 +505,13 @@
      * It also passes in the filtered collection array as a state parameter.
      */
     this.goToChooser = function (filtered) {
+      this.filterSet.players = this.players || '';
+      this.filterSet.duration = this.duration || '';
+      this.filterSet.genre = this.genre || '';
+      $localStorage.filterSet = this.filterSet || '';
+
+      console.log($localStorage.filterSet);
+
       $state.go(this.chooser, {filteredCollection: filtered});
     };
 
@@ -531,6 +559,7 @@
      * @param {Object} game The selected game obect
      */
     this.addGameToList = function addGameToList(game) {
+      game.addedBySearch = true;
       this.collection.unshift(game);
       $localStorage.collection.unshift(game);
       this.showGamesToAdd = false;
@@ -546,6 +575,11 @@
       this.showAddGame = false;
     };
 
+    this.removeAddedGame = function removeAddedGame(game) {
+      var indexValue = this.collection.indexOf(game);
+      this.collection.splice(indexValue, 1);
+      $localStorage.collection.splice(indexValue, 1);
+    };
 
 
   }
@@ -1261,6 +1295,7 @@
     function logOut() {
       $localStorage.username = null;
       $localStorage.collection = null;
+      $localStorage.filterSet = null;
     }
 
     /**

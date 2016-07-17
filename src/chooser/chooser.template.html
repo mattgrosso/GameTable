@@ -69,7 +69,11 @@
     <div class="aside-wrapper">
       <h3>{{game.name}}</h3>
       <aside>{{game.playerCount.min}} to {{game.playerCount.max}} players</aside>
-      <aside>{{game.playTime.max}} minutes</aside>
+      <aside>{{(game.playTime.min + game.playTime.max)/2}} min</aside>
+      <div class="added-game-delete-button" ng-show="{{game.addedBySearch}}" ng-click="choose.removeAddedGame(game)">
+        <div class="x-mark x-mark-front"></div>
+        <div class="x-mark x-mark-back"></div>
+      </div>
     </div>
   </li>
   <div class="clearfix"></div>
