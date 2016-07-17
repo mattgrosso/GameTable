@@ -40,7 +40,6 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
       that.message = "please hold, bgg is slow.";
       return GameFactory.getUserCollection(that.username)
         .then(function () {
-          console.log('in .then for ctrl');
           $localStorage.username = that.username;
           that.message = "you are now logged in";
           that.username = "";
