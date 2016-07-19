@@ -37,25 +37,35 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
      */
     this.login = function login() {
       $localStorage.collection = null;
-      that.message = "please hold, bgg is slow.";
-      return GameFactory.getUserCollection(that.username)
-        .then(function () {
-          $localStorage.username = that.username;
-          that.message = "you are now logged in";
-          that.username = "";
-          that.storedUsername = $localStorage.username;
-          $state.go('choose');
-        })
-        .catch(function (response) {
-          console.log('in the catch in the ctrl');
-          if (response.status === 'in queue') {
-            console.log('in the in queue if');
-            setTimeout(that.login, 1000);
-          } else {
-            console.log('in the else in the catch');
-            that.message = "log in failed. please check your username.";
-          }
-        });
+      if (that.username) {
+        console.log('in the if');
+        that.message = "please hold, bgg is slow.";
+        return GameFactory.getUserCollection(that.username)
+          .then(function () {
+            $localStorage.username = that.username;
+            that.message = "you are now logged in";
+            that.username = "";
+            that.storedUsername = $localStorage.username;
+            $state.go('choose');
+          })
+          .catch(function (response) {
+            console.log('in the catch in the ctrl');
+            if (response.status === 'in queue') {
+              console.log('in the in queue if');
+              setTimeout(that.login, 1000);
+            } else {
+              console.log('in the else in the catch');
+              that.message = "log in failed. please check your username.";
+            }
+          });
+      } else {
+        console.log('in the else');
+        $localStorage.username = "no username";
+        that.username = "";
+        that.storedUsername = $localStorage.username;
+        $localStorage.collection = [];
+        $state.go('choose');
+      }
     };
   }
 

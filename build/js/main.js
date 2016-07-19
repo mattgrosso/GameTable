@@ -441,6 +441,7 @@
   ChooserController.$inject = ['GameFactory', '$localStorage', '$state'];
 
   function ChooserController(GameFactory, $localStorage, $state) {
+    console.log('in the chooser controller');
     var that = this;
 
     this.collection = [];
@@ -486,7 +487,6 @@
     this.showFilters = true;
     this.showAddGame = false;
     this.showGamesToAdd = false;
-    // this.freezeScrolling = false;
 
     /**
      * This function is called when the choose page is loaded so that if someone
@@ -501,7 +501,7 @@
 
     /**
      * This function is triggered by the select of game choosers and directs
-     * the user to teh appropriate state for the chosen chooser.
+     * the user to the appropriate state for the chosen chooser.
      * It also passes in the filtered collection array as a state parameter.
      */
     this.goToChooser = function (filtered) {
@@ -509,8 +509,6 @@
       this.filterSet.duration = this.duration || '';
       this.filterSet.genre = this.genre || '';
       $localStorage.filterSet = this.filterSet || '';
-
-      console.log($localStorage.filterSet);
 
       $state.go(this.chooser, {filteredCollection: filtered});
     };
@@ -1367,6 +1365,7 @@
   function HeaderController($state, $localStorage, GameFactory) {
 
     this.loggedIn = GameFactory.amILoggedIn;
+    this.collection = $localStorage.collection;
 
     /**
      * This function returns the username from localStorage.
@@ -1427,25 +1426,35 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
      */
     this.login = function login() {
       $localStorage.collection = null;
-      that.message = "please hold, bgg is slow.";
-      return GameFactory.getUserCollection(that.username)
-        .then(function () {
-          $localStorage.username = that.username;
-          that.message = "you are now logged in";
-          that.username = "";
-          that.storedUsername = $localStorage.username;
-          $state.go('choose');
-        })
-        .catch(function (response) {
-          console.log('in the catch in the ctrl');
-          if (response.status === 'in queue') {
-            console.log('in the in queue if');
-            setTimeout(that.login, 1000);
-          } else {
-            console.log('in the else in the catch');
-            that.message = "log in failed. please check your username.";
-          }
-        });
+      if (that.username) {
+        console.log('in the if');
+        that.message = "please hold, bgg is slow.";
+        return GameFactory.getUserCollection(that.username)
+          .then(function () {
+            $localStorage.username = that.username;
+            that.message = "you are now logged in";
+            that.username = "";
+            that.storedUsername = $localStorage.username;
+            $state.go('choose');
+          })
+          .catch(function (response) {
+            console.log('in the catch in the ctrl');
+            if (response.status === 'in queue') {
+              console.log('in the in queue if');
+              setTimeout(that.login, 1000);
+            } else {
+              console.log('in the else in the catch');
+              that.message = "log in failed. please check your username.";
+            }
+          });
+      } else {
+        console.log('in the else');
+        $localStorage.username = "no username";
+        that.username = "";
+        that.storedUsername = $localStorage.username;
+        $localStorage.collection = [];
+        $state.go('choose');
+      }
     };
   }
 

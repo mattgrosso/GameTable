@@ -13,6 +13,7 @@
   function HeaderController($state, $localStorage, GameFactory) {
 
     this.loggedIn = GameFactory.amILoggedIn;
+    this.collection = $localStorage.collection;
 
     /**
      * This function returns the username from localStorage.
