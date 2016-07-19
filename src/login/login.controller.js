@@ -60,7 +60,7 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
           });
       } else {
         console.log('in the else');
-        $localStorage.username = "not logged in";
+        $localStorage.username = "no username";
         that.username = "";
         that.storedUsername = $localStorage.username;
         $localStorage.collection = [];
