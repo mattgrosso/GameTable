@@ -64,6 +64,10 @@
 
 
 <ul class="gamelist gamelist-noclick large-view-gamelist-ul">
+  <li class="ribbon gamelist-ribbon right-ribbon ribbon-noclick large-view-game-list" ng-show="choose.collection.length === 0">
+    add some games to start<br>
+    (try the plus sign)
+  </li>
   <li class="ribbon gamelist-ribbon right-ribbon ribbon-noclick large-view-game-list" ng-repeat="game in choose.collection | gameFilter:choose.players:choose.duration:choose.genre as filteredCollection">
     <img ng-src="{{game.image.thumbnailURL}}"/>
     <div class="aside-wrapper">
