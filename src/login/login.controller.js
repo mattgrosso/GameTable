@@ -18,7 +18,6 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
     this.storedUsername = $localStorage.username;
     this.message = "";
     this.loggedIn = GameFactory.amILoggedIn;
-    $localStorage.genreArray = ['not available with empty collection'];
 
     /**
      * This checks to see if the user is already logged in in which case they
