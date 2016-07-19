@@ -13,6 +13,7 @@
   ChooserController.$inject = ['GameFactory', '$localStorage', '$state'];
 
   function ChooserController(GameFactory, $localStorage, $state) {
+    console.log('in the chooser controller');
     var that = this;
 
     this.collection = [];
@@ -58,7 +59,6 @@
     this.showFilters = true;
     this.showAddGame = false;
     this.showGamesToAdd = false;
-    // this.freezeScrolling = false;
 
     /**
      * This function is called when the choose page is loaded so that if someone
@@ -73,7 +73,7 @@
 
     /**
      * This function is triggered by the select of game choosers and directs
-     * the user to teh appropriate state for the chosen chooser.
+     * the user to the appropriate state for the chosen chooser.
      * It also passes in the filtered collection array as a state parameter.
      */
     this.goToChooser = function (filtered) {
@@ -81,8 +81,6 @@
       this.filterSet.duration = this.duration || '';
       this.filterSet.genre = this.genre || '';
       $localStorage.filterSet = this.filterSet || '';
-
-      console.log($localStorage.filterSet);
 
       $state.go(this.chooser, {filteredCollection: filtered});
     };
