@@ -4,11 +4,27 @@
   <form class="filter-form">
     <input class="input-ribbon text-input-ribbon left-ribbon large-view-input player-count" ng-model="choose.players" type="number" name="player-count" placeholder="player count" autocomplete="off" autocapitalize="off">
     <input class="input-ribbon text-input-ribbon left-ribbon large-view-input" ng-model="choose.duration" type="number" name="duration" placeholder="duration" autocomplete="off" autocapitalize="off">
-    <div class="select-styling-div input-ribbon left-ribbon large-view-input">
-      <select id="genre-selector" class="select-ribbon" ng-model="choose.genre" name="genre">
+    <div class="select-styling-div input-ribbon left-ribbon large-view-input" ng-click="choose.showGenreOptionsModal()">
+      <!-- <select id="genre-selector" class="select-ribbon" ng-model="choose.genre" name="genre">
         <option value="" disabled selected>genre</option>
         <option ng-repeat="genre in choose.genreArray" value="{{genre.originalName}}">{{genre.prettyName}}</option>
-      </select>
+      </select> -->
+      <section ng-show="choose.showGenreOptions">
+        <div class="test-box">
+          <ul>
+            <li class="genre-options-genre" ng-repeat="genre in choose.genreArray">
+              <div class="nominate-checkbox">
+                <input id="{{genre.originalName}}" ng-click="choose.eliminateGenre(genre)" ng-model="genre.eliminated" type="checkbox" value="eliminated">
+                <label for="{{genre.originalName}}">
+                  <div class="x-mark x-mark-front"></div>
+                  <div class="x-mark x-mark-back"></div>
+                </label>
+                {{genre.prettyName}}
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
     </div>
     <div class="select-arrow top-select-arrow"></div>
     <div class="select-styling-div input-ribbon left-ribbon large-view-input">

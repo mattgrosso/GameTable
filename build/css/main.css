@@ -472,6 +472,11 @@ input[type=checkbox] {
     left: -3px;
     border-right: solid 2px #015C35; }
 
+.test-box {
+  width: 200px;
+  height: 200px;
+  background-color: green; }
+
 @media screen and (max-width: 360px) {
   .gamelist-ribbon img {
     max-width: 60px; } }
