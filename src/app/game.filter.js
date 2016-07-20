@@ -53,6 +53,9 @@
                 }
               });
             });
+            if (each.genres.length === 1 && each.genres[0] === 'boardgame') {
+              tempInclude = true;
+            }
             include = tempInclude;
           }
           return include;

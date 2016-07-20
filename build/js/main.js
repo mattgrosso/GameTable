@@ -210,6 +210,9 @@
                 }
               });
             });
+            if (each.genres.length === 1 && each.genres[0] === 'boardgame') {
+              tempInclude = true;
+            }
             include = tempInclude;
           }
           return include;
@@ -1339,10 +1342,11 @@
       var prettyGenreArray = [];
       $localStorage.genreArray.forEach(function prettifyGenreNames(each) {
         if (each === 'boardgame') {
-          prettyGenreArray.push({
-            prettyName: 'all games',
-            originalName: each
-          });
+          console.log('nothing to see here');
+          // prettyGenreArray.push({
+          //   prettyName: 'all games',
+          //   originalName: each
+          // });
         } else if (each === 'cgs') {
           prettyGenreArray.push({
             prettyName: 'card',
