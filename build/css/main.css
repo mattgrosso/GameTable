@@ -83,7 +83,8 @@ select:focus {
     box-shadow: none; }
 
 .select-styling-div {
-  width: 55%; }
+  width: 55%;
+  min-height: 20px; }
 
 .text-input-ribbon {
   width: 55%; }
@@ -472,8 +473,13 @@ input[type=checkbox] {
     left: -3px;
     border-right: solid 2px #015C35; }
 
-.test-box {
-  padding-top: 18px; }
+.genre-chooser-box {
+  padding-top: 12px;
+  border: solid 2px;
+  padding-left: 10px;
+  margin-top: 18px;
+  margin-left: -20px;
+  margin-right: 40px; }
 
 .genre-checkbox {
   width: 19px;

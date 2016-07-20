@@ -45,6 +45,7 @@ select:focus{
 
 .select-styling-div {
   width: 55%;
+  min-height: 20px;
 }
 
 .text-input-ribbon{
@@ -504,8 +505,13 @@ input[type=checkbox]{
   }
 }
 
-.test-box{
-  padding-top: 18px;
+.genre-chooser-box{
+  padding-top: 12px;
+  border: solid 2px;
+  padding-left: 10px;
+  margin-top: 18px;
+  margin-left: -20px;
+  margin-right: 40px;
 }
 
 .genre-checkbox{
