@@ -21,7 +21,7 @@
     this.duration = $localStorage.filterSet.duration || "";
     this.genre = $localStorage.filterSet.genre || "";
     this.genreArray = $localStorage.genreArray;
-    this.currentGenreArray = [];
+    this.currentGenreArray = this.genreArray;
     this.chooser = "";
     this.addGameTitle = "";
     this.filterSet = {};
@@ -101,21 +101,16 @@
       this.showGenreOptions = true;
     };
 
-    this.eliminateGenre = function eliminateGenre(genre) {
-      console.log(this.genreArray);
-      console.log('eliminateGenre activated');
-      console.log('genre: ', genre);
+    this.eliminateGenre = function eliminateGenre() {
       var filteredGenreArray = this.genreArray.filter(function filterEliminated(genre) {
         if (genre.eliminated) {
-          console.log('genre.eliminated true');
           return false;
         } else {
-          console.log('genre.eliminated false');
           return true;
         }
       });
       this.currentGenreArray = filteredGenreArray;
-      console.log(filteredGenreArray);
+      console.log(this.currentGenreArray);
     };
 
     /**

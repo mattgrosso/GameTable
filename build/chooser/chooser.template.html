@@ -84,7 +84,7 @@
     add some games to start<br>
     (try the plus sign)
   </li>
-  <li class="ribbon gamelist-ribbon right-ribbon ribbon-noclick large-view-game-list" ng-repeat="game in choose.collection | gameFilter:choose.players:choose.duration:choose.genre as filteredCollection">
+  <li class="ribbon gamelist-ribbon right-ribbon ribbon-noclick large-view-game-list" ng-repeat="game in choose.collection | gameFilter:choose.players:choose.duration:choose.currentGenreArray as filteredCollection">
     <img ng-src="{{game.image.thumbnailURL}}"/>
     <div class="aside-wrapper">
       <h3>{{game.name}}</h3>

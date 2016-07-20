@@ -44,8 +44,16 @@
               include = false;
             }
           }
-          if(include && genre){
-            include = each.genres.indexOf(genre.toLowerCase()) > -1;
+          if(include){
+            var tempInclude = false;
+            each.genres.forEach(function checkGenresAgainstGenre(everyGenre) {
+              genre.forEach(function (eachGenre) {
+                if (eachGenre.originalName === everyGenre) {
+                  tempInclude = true;
+                }
+              });
+            });
+            include = tempInclude;
           }
           return include;
         });
