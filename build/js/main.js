@@ -454,6 +454,7 @@
   function ChooserController(GameFactory, $localStorage, $state) {
     var that = this;
 
+    this.loggedIn = GameFactory.amILoggedIn;
     this.collection = [];
     $localStorage.filterSet = $localStorage.filterSet || {};
     this.players = $localStorage.filterSet.players || "";

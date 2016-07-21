@@ -33,9 +33,9 @@
   <div class="clearfix"></div>
 </ul>
 
-<div class="gamelist">
+<div class="gamelist results-outer-div">
 
-  <section class="ribbon right-ribbon ribbon-noclick results" ng-show="eliminate.downToOne">
+  <section class="ribbon right-ribbon ribbon-noclick results" ng-class="{onFromScreenRight: eliminate.downToOne}">
     <img ng-src="{{eliminate.collection[0].image.imageURL}}"/>
     <div class="aside-wrapper">
       <h3>{{eliminate.collection[0].name}}</h3>

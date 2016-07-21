@@ -55,9 +55,9 @@
   <div class="clearfix"></div>
 </ul>
 
-<div class="gamelist">
+<div class="gamelist results-outer-div">
 
-  <section class="ribbon right-ribbon ribbon-noclick results" ng-show="vote.winner">
+  <section class="ribbon right-ribbon ribbon-noclick results" ng-class="{onFromScreenRight: vote.winner}">
     <img ng-src="{{vote.winner.games[0].image.imageURL}}"/>
     <div class="aside-wrapper">
       <h3>{{vote.winner.name}}</h3>

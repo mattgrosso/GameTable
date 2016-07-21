@@ -175,7 +175,10 @@ select:focus {
 .results {
   max-width: 85%;
   width: 85%;
-  padding-bottom: 30px; }
+  padding-bottom: 30px;
+  position: relative;
+  right: -100%;
+  transition: right 0.75s ease-in 1s; }
   .results img {
     margin: auto;
     display: block;
@@ -187,6 +190,10 @@ select:focus {
     text-align: center; }
   .results h3 {
     font-size: 2em; }
+
+.results-outer-div {
+  position: relative;
+  overflow: hidden; }
 
 .headersmall {
   padding-top: 1%;
@@ -546,10 +553,16 @@ input[type=checkbox] {
   top: 18px; }
 
 .offscreenright {
-  right: -70%; }
+  right: -100%; }
 
 .offscreenleft {
-  left: -70%; }
+  left: -100%; }
+
+.onFromScreenRight {
+  right: 0px; }
+
+.onFromScreenLeft {
+  left: 0px; }
 
 @media screen and (max-width: 360px) {
   .gamelist-ribbon img {

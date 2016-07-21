@@ -150,6 +150,9 @@ select:focus{
   max-width: 85%;
   width: 85%;
   padding-bottom: 30px;
+  position: relative;
+  right: -100%;
+  transition: right 0.75s ease-in 1s;
   img{
     margin: auto;
     display: block;
@@ -164,6 +167,11 @@ select:focus{
   h3{
     font-size: 2em;
   }
+}
+
+.results-outer-div{
+  position: relative;
+  overflow: hidden;
 }
 
 .headersmall{
@@ -592,9 +600,17 @@ input[type=checkbox]{
 }
 
 .offscreenright{
-  right: -70%;
+  right: -100%;
 }
 
 .offscreenleft{
-  left: -70%;
+  left: -100%;
+}
+
+.onFromScreenRight{
+  right: 0px;
+}
+
+.onFromScreenLeft{
+  left: 0px;
 }
