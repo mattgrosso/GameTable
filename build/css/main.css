@@ -583,7 +583,7 @@ input[type=checkbox] {
     background-color: transparent;
     font-size: 1em;
     font-family: 'Libre Baskerville', serif;
-    color: #015C35;
+    color: #A9A9AE;
     -webkit-appearance: none; }
     .select-ribbon:focus {
       border: none;
@@ -642,7 +642,7 @@ input[type=checkbox] {
     background-color: transparent;
     font-size: 1em;
     font-family: 'Libre Baskerville', serif;
-    color: #015C35;
+    color: #A9A9AE;
     -webkit-appearance: none; }
     .select-ribbon:focus {
       border: none;
@@ -667,7 +667,30 @@ input[type=checkbox] {
   .vote-button {
     top: 39px; }
     .vote-button button {
-      top: -9px; } }
+      top: -9px; }
+
+  .genre-checkbox {
+    width: 28px;
+    height: 28px; }
+    .genre-checkbox label {
+      width: 24px;
+      height: 24px; }
+      .genre-checkbox label .x-mark {
+        width: 20px;
+        height: 20px; }
+      .genre-checkbox label .x-mark-front {
+        top: -5px;
+        left: -6px; }
+      .genre-checkbox label .x-mark-back {
+        top: -11px;
+        left: -6px; }
+
+  .genre-name {
+    top: -38px;
+    left: 40px; }
+
+  .select-styling-div {
+    min-height: 29px; } }
 @media screen and (min-width: 1001px) {
   .logosmall {
     height: 215px;
@@ -737,7 +760,7 @@ input[type=checkbox] {
     background-color: transparent;
     font-size: 1em;
     font-family: 'Libre Baskerville', serif;
-    color: #015C35; }
+    color: #A9A9AE; }
     .select-ribbon:focus {
       border: none;
       box-shadow: none; }
