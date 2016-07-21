@@ -11,7 +11,7 @@
     <button class="ribbon right-ribbon no-login-button" ng-class="{offscreenright: login.username}" type="submit">or add games manually</button>
   </div>
 </form>
-<p class="ribbon left-ribbon ribbon-noclick login-message" ng-show="login.message">{{login.message}}</p>
+<p class="ribbon left-ribbon ribbon-noclick login-message" ng-class="{offscreenleft: !login.message}">{{login.message}}</p>
 
 <div class="clearfix"></div>
 </div>

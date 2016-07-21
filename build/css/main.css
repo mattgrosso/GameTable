@@ -242,15 +242,22 @@ select:focus {
   font-size: 0.75em; }
 
 .login-message {
+  position: relative;
+  left: 0px;
   margin-top: 75px;
   padding-top: 15px;
   padding-bottom: 15px;
   padding-right: 35px;
   padding-left: 10%;
-  max-width: 50%; }
+  max-width: 50%;
+  min-height: 32px;
+  transition: all 0.3s ease-in; }
 
 .offscreenright {
   right: -70%; }
+
+.offscreenleft {
+  left: -70%; }
 
 .username-banner {
   margin-top: 20px; }
