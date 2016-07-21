@@ -522,6 +522,7 @@
       this.filterSet.duration = this.duration || '';
       this.filterSet.currentGenreArray = this.currentGenreArray || '';
       $localStorage.filterSet = this.filterSet || '';
+      $localStorage.genreArray = this.genreArray;
 
       $state.go(this.chooser, {filteredCollection: filtered});
     };
@@ -538,7 +539,7 @@
     };
 
     this.showGenreOptionsModal = function showGenreOptionsModal(param) {
-      console.log('currentGenreArray: ', this.currentGenreArray);
+      console.log('genreArray: ', this.genreArray);
       if (param === 'main') {
         if (this.showGenreOptions) {
           this.showGenreOptions = false;
@@ -548,9 +549,14 @@
       }
     };
 
-    this.eliminateGenre = function eliminateGenre() {
-      var filteredGenreArray = this.genreArray.filter(function filterEliminated(genre) {
-        if (genre.eliminated) {
+    this.eliminateGenre = function eliminateGenre(genre) {
+      if (genre.eliminated) {
+        genre.eliminated = false;
+      } else {
+        genre.eliminated = true;
+      }
+      var filteredGenreArray = this.genreArray.filter(function filterEliminated(each) {
+        if (each.eliminated) {
           return false;
         } else {
           return true;
