@@ -8,9 +8,6 @@
       <label class="genre-chooser-text">
         genre
       </label>
-      <!-- <select id="genre-selector" class="select-ribbon" name="genre">
-        <option value="" disabled selected>genre</option>
-      </select> -->
       <section ng-show="choose.showGenreOptions">
         <div class="genre-chooser-box">
           <ul>
@@ -22,7 +19,7 @@
                   <div class="x-mark x-mark-back"></div>
                 </label>
               </div>
-              <label class="genre-name">
+              <label class="genre-name" ng-class="{genreNameLinethrough: genre.eliminated === true}">
                 {{genre.prettyName}}
               </label>
             </li>

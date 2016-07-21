@@ -574,3 +574,7 @@ input[type=checkbox]{
 .genre-chooser-text{
   color: $base-grey;
 }
+
+.genreNameLinethrough{
+  text-decoration: line-through;
+}

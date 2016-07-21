@@ -530,6 +530,9 @@ input[type=checkbox] {
 .genre-chooser-text {
   color: #A9A9AE; }
 
+.genreNameLinethrough {
+  text-decoration: line-through; }
+
 @media screen and (max-width: 360px) {
   .gamelist-ribbon img {
     max-width: 60px; } }

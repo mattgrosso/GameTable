@@ -537,7 +537,11 @@
     };
 
     this.showGenreOptionsModal = function showGenreOptionsModal() {
-      this.showGenreOptions = true;
+      if (this.showGenreOptions) {
+        this.showGenreOptions = false;
+      } else {
+        this.showGenreOptions = true;
+      }
     };
 
     this.eliminateGenre = function eliminateGenre() {
