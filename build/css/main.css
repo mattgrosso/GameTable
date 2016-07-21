@@ -525,7 +525,10 @@ input[type=checkbox] {
 
 .genre-name {
   color: #015C35;
-  float: left; }
+  float: left;
+  position: relative;
+  top: -22px;
+  left: 25px; }
 
 .genre-chooser-text {
   color: #A9A9AE; }

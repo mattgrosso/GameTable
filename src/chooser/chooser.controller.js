@@ -97,11 +97,13 @@
       this.addGamesPopupMessage = "";
     };
 
-    this.showGenreOptionsModal = function showGenreOptionsModal() {
-      if (this.showGenreOptions) {
-        this.showGenreOptions = false;
-      } else {
-        this.showGenreOptions = true;
+    this.showGenreOptionsModal = function showGenreOptionsModal(param) {
+      if (param === 'main') {
+        if (this.showGenreOptions) {
+          this.showGenreOptions = false;
+        } else {
+          this.showGenreOptions = true;
+        }
       }
     };
 

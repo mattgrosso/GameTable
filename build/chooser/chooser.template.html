@@ -4,24 +4,25 @@
   <form class="filter-form">
     <input class="input-ribbon text-input-ribbon left-ribbon large-view-input player-count" ng-model="choose.players" type="number" name="player-count" placeholder="player count" autocomplete="off" autocapitalize="off">
     <input class="input-ribbon text-input-ribbon left-ribbon large-view-input" ng-model="choose.duration" type="number" name="duration" placeholder="duration" autocomplete="off" autocapitalize="off">
-    <div class="select-styling-div input-ribbon left-ribbon large-view-input" ng-click="choose.showGenreOptionsModal()">
+    <div class="select-styling-div input-ribbon left-ribbon large-view-input" ng-click="choose.showGenreOptionsModal('main')">
       <label class="genre-chooser-text">
         genre
       </label>
       <section ng-show="choose.showGenreOptions">
-        <div class="genre-chooser-box">
+        <div class="genre-chooser-box" ng-click="choose.showGenreOptionsModal('sub'); $event.stopPropagation()">
           <ul>
-            <li class="genre-options-genre" ng-repeat="genre in choose.genreArray">
+            <li class="genre-options-genre" ng-repeat="genre in choose.genreArray" ng-click="choose.eliminateGenre(genre)">
               <div class="genre-checkbox">
-                <input id="{{genre.originalName}}" ng-click="choose.eliminateGenre(genre)" ng-model="genre.eliminated" type="checkbox" value="eliminated">
+                <input id="{{genre.originalName}}" ng-model="genre.eliminated" type="checkbox" value="eliminated">
                 <label for="{{genre.originalName}}">
                   <div class="x-mark x-mark-front"></div>
                   <div class="x-mark x-mark-back"></div>
+                  <div class="genre-name" ng-class="{genreNameLinethrough: genre.eliminated === true}">
+                    {{genre.prettyName}}
+                  </div>
                 </label>
               </div>
-              <label class="genre-name" ng-class="{genreNameLinethrough: genre.eliminated === true}">
-                {{genre.prettyName}}
-              </label>
+              <div class="clearfix"></div>
             </li>
           </ul>
           <div class="clearfix"></div>
