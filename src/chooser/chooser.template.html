@@ -29,7 +29,7 @@
         </div>
       </section>
     </div>
-    <div class="select-arrow top-select-arrow"></div>
+    <div class="select-arrow top-select-arrow" ng-class="{rotateHalf: choose.showGenreOptions}"></div>
     <div class="select-styling-div input-ribbon left-ribbon large-view-input">
       <select id="select-selector" class="select-ribbon" ng-model="choose.chooser" ng-change="choose.goToChooser(filteredCollection)">
         <option value="" disabled selected>method</option>

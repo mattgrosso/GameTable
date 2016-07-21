@@ -64,6 +64,7 @@ select:focus{
   transform: rotate(45deg);
   z-index: 1;
   pointer-events: none;
+  transition: all 0.2s ease-in;
 }
 
 .input-ribbon{
@@ -580,4 +581,9 @@ input[type=checkbox]{
 
 .genreNameLinethrough{
   text-decoration: line-through;
+}
+
+.rotateHalf{
+  transform: rotate(226deg);
+  top: 18px;
 }

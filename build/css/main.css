@@ -100,7 +100,8 @@ select:focus {
   height: 10px;
   transform: rotate(45deg);
   z-index: 1;
-  pointer-events: none; }
+  pointer-events: none;
+  transition: all 0.2s ease-in; }
 
 .input-ribbon {
   background-color: white;
@@ -535,6 +536,10 @@ input[type=checkbox] {
 
 .genreNameLinethrough {
   text-decoration: line-through; }
+
+.rotateHalf {
+  transform: rotate(226deg);
+  top: 18px; }
 
 @media screen and (max-width: 360px) {
   .gamelist-ribbon img {
