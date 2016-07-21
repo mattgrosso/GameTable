@@ -1,5 +1,6 @@
 body::-webkit-scrollbar {
     display: none;
+    overflow-x: hidden;
 }
 
 .freeze-scrolling{
