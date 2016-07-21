@@ -242,16 +242,11 @@ select:focus{
   transition: all 0.3s ease-in;
 }
 
-.offscreenright{
-  right: -70%;
-}
-
-.offscreenleft{
-  left: -70%;
-}
-
 .username-banner{
   margin-top: 20px;
+  position: relative;
+  right: 0;
+  transition: all 0.3s ease-in;
   h4{
     float: left;
     font-size: 1.25em;
@@ -594,4 +589,12 @@ input[type=checkbox]{
 .rotateHalf{
   transform: rotate(226deg);
   top: 18px;
+}
+
+.offscreenright{
+  right: -70%;
+}
+
+.offscreenleft{
+  left: -70%;
 }

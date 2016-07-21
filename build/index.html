@@ -25,7 +25,7 @@
     <header ng-class="{headerlarge: !header.loggedIn(), headersmall: header.loggedIn()}" ng-controller="HeaderController as header">
       <img class="logo logo-fixed" ui-sref="choose.choose-top" ng-class="{logolarge: !header.loggedIn(), logosmall: header.loggedIn()}" src="/images/gametable-solid.png" alt="gametable logo" />
       <img class="logo logosmall" ng-hide="!header.loggedIn()" src="/images/blank.png"/>
-      <aside class="ribbon right-ribbon username-banner" ng-hide="!header.loggedIn()">
+      <aside class="ribbon right-ribbon username-banner" ng-class="{offscreenright: !header.loggedIn()}">
         <h4>{{header.username()}}</h4>
         <aside>|</aside>
         <a ng-hide="!header.loggedIn()" ng-click="header.logOut()" href="#">
