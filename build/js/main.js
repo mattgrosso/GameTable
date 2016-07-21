@@ -461,7 +461,7 @@
     this.duration = $localStorage.filterSet.duration || "";
     this.genre = $localStorage.filterSet.genre || "";
     this.genreArray = $localStorage.genreArray;
-    this.currentGenreArray = this.genreArray;
+    this.currentGenreArray = $localStorage.filterSet.currentGenreArray || this.genreArray;
     this.chooser = "";
     this.addGameTitle = "";
     this.filterSet = {};
@@ -520,7 +520,7 @@
     this.goToChooser = function (filtered) {
       this.filterSet.players = this.players || '';
       this.filterSet.duration = this.duration || '';
-      this.filterSet.genre = this.genre || '';
+      this.filterSet.currentGenreArray = this.currentGenreArray || '';
       $localStorage.filterSet = this.filterSet || '';
 
       $state.go(this.chooser, {filteredCollection: filtered});
@@ -538,6 +538,7 @@
     };
 
     this.showGenreOptionsModal = function showGenreOptionsModal(param) {
+      console.log('currentGenreArray: ', this.currentGenreArray);
       if (param === 'main') {
         if (this.showGenreOptions) {
           this.showGenreOptions = false;
@@ -556,7 +557,6 @@
         }
       });
       this.currentGenreArray = filteredGenreArray;
-      console.log(this.currentGenreArray);
     };
 
     /**
@@ -1349,11 +1349,8 @@
       var prettyGenreArray = [];
       $localStorage.genreArray.forEach(function prettifyGenreNames(each) {
         if (each === 'boardgame') {
-          console.log('nothing to see here');
-          // prettyGenreArray.push({
-          //   prettyName: 'all games',
-          //   originalName: each
-          // });
+          var nothing = 'nothing';
+          nothing = 'still nothing';
         } else if (each === 'cgs') {
           prettyGenreArray.push({
             prettyName: 'card',
@@ -1463,7 +1460,6 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
     this.login = function login() {
       $localStorage.collection = null;
       if (that.username) {
-        console.log('in the if');
         that.message = "please hold, bgg is slow.";
         return GameFactory.getUserCollection(that.username)
           .then(function () {
@@ -1474,17 +1470,13 @@ LoginController.$inject = ['$localStorage', '$state', 'GameFactory'];
             $state.go('choose');
           })
           .catch(function (response) {
-            console.log('in the catch in the ctrl');
             if (response.status === 'in queue') {
-              console.log('in the in queue if');
               setTimeout(that.login, 1000);
             } else {
-              console.log('in the else in the catch');
               that.message = "log in failed. please check your username.";
             }
           });
       } else {
-        console.log('in the else');
         $localStorage.username = "no username";
         that.username = "";
         that.storedUsername = $localStorage.username;

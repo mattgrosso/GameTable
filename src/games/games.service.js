@@ -310,11 +310,8 @@
       var prettyGenreArray = [];
       $localStorage.genreArray.forEach(function prettifyGenreNames(each) {
         if (each === 'boardgame') {
-          console.log('nothing to see here');
-          // prettyGenreArray.push({
-          //   prettyName: 'all games',
-          //   originalName: each
-          // });
+          var nothing = 'nothing';
+          nothing = 'still nothing';
         } else if (each === 'cgs') {
           prettyGenreArray.push({
             prettyName: 'card',

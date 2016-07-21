@@ -22,7 +22,7 @@
     this.duration = $localStorage.filterSet.duration || "";
     this.genre = $localStorage.filterSet.genre || "";
     this.genreArray = $localStorage.genreArray;
-    this.currentGenreArray = this.genreArray;
+    this.currentGenreArray = $localStorage.filterSet.currentGenreArray || this.genreArray;
     this.chooser = "";
     this.addGameTitle = "";
     this.filterSet = {};
@@ -81,7 +81,7 @@
     this.goToChooser = function (filtered) {
       this.filterSet.players = this.players || '';
       this.filterSet.duration = this.duration || '';
-      this.filterSet.genre = this.genre || '';
+      this.filterSet.currentGenreArray = this.currentGenreArray || '';
       $localStorage.filterSet = this.filterSet || '';
 
       $state.go(this.chooser, {filteredCollection: filtered});
@@ -99,6 +99,7 @@
     };
 
     this.showGenreOptionsModal = function showGenreOptionsModal(param) {
+      console.log('currentGenreArray: ', this.currentGenreArray);
       if (param === 'main') {
         if (this.showGenreOptions) {
           this.showGenreOptions = false;
@@ -117,7 +118,6 @@
         }
       });
       this.currentGenreArray = filteredGenreArray;
-      console.log(this.currentGenreArray);
     };
 
     /**
