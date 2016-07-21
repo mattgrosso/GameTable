@@ -31,9 +31,9 @@
   <div class="clearfix"></div>
 </ul>
 
-<div class="gamelist">
+<div class="gamelist results-outer-div">
 
-  <section class="ribbon right-ribbon ribbon-noclick results" ng-show="nomrand.randomGame">
+  <section class="ribbon right-ribbon ribbon-noclick results" ng-class="{onFromScreenRight: nomrand.randomGame}">
     <img ng-src="{{nomrand.randomGame.image.imageURL}}"/>
     <div class="aside-wrapper">
       <h3>{{nomrand.randomGame.name}}</h3>

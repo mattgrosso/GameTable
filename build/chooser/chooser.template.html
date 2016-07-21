@@ -2,15 +2,34 @@
 <section class="description-section large-view-main-page-description-section">
 
   <form class="filter-form">
-    <input class="input-ribbon text-input-ribbon left-ribbon large-view-input player-count" ng-model="choose.players" type="number" name="player-count" placeholder="player count" autocomplete="off" autocapitalize="off">
+    <input class="input-ribbon text-input-ribbon left-ribbon large-view-input player-count" ng-class="{offscreenleft: !choose.loggedIn()}" ng-model="choose.players" type="number" name="player-count" placeholder="player count" autocomplete="off" autocapitalize="off">
     <input class="input-ribbon text-input-ribbon left-ribbon large-view-input" ng-model="choose.duration" type="number" name="duration" placeholder="duration" autocomplete="off" autocapitalize="off">
-    <div class="select-styling-div input-ribbon left-ribbon large-view-input">
-      <select id="genre-selector" class="select-ribbon" ng-model="choose.genre" name="genre">
-        <option value="" disabled selected>genre</option>
-        <option ng-repeat="genre in choose.genreArray" value="{{genre.originalName}}">{{genre.prettyName}}</option>
-      </select>
+    <div class="select-styling-div input-ribbon left-ribbon large-view-input" ng-click="choose.showGenreOptionsModal('main')">
+      <label class="genre-chooser-text">
+        genre
+      </label>
+      <section ng-show="choose.showGenreOptions">
+        <div class="genre-chooser-box" ng-click="choose.showGenreOptionsModal('sub'); $event.stopPropagation()">
+          <ul>
+            <li class="genre-options-genre" ng-repeat="genre in choose.genreArray" ng-click="choose.eliminateGenre(genre)">
+              <div class="genre-checkbox">
+                <input id="{{genre.originalName}}" ng-model="genre.eliminated" type="checkbox" value="eliminated">
+                <label for="{{genre.originalName}}">
+                  <div class="x-mark x-mark-front"></div>
+                  <div class="x-mark x-mark-back"></div>
+                  <div class="genre-name" ng-class="{genreNameLinethrough: genre.eliminated === true}">
+                    {{genre.prettyName}}
+                  </div>
+                </label>
+              </div>
+              <div class="clearfix"></div>
+            </li>
+          </ul>
+          <div class="clearfix"></div>
+        </div>
+      </section>
     </div>
-    <div class="select-arrow top-select-arrow"></div>
+    <div class="select-arrow top-select-arrow" ng-class="{rotateHalf: choose.showGenreOptions}"></div>
     <div class="select-styling-div input-ribbon left-ribbon large-view-input">
       <select id="select-selector" class="select-ribbon" ng-model="choose.chooser" ng-change="choose.goToChooser(filteredCollection)">
         <option value="" disabled selected>method</option>
@@ -68,7 +87,7 @@
     add some games to start<br>
     (try the plus sign)
   </li>
-  <li class="ribbon gamelist-ribbon right-ribbon ribbon-noclick large-view-game-list" ng-repeat="game in choose.collection | gameFilter:choose.players:choose.duration:choose.genre as filteredCollection">
+  <li class="ribbon gamelist-ribbon right-ribbon ribbon-noclick large-view-game-list" ng-repeat="game in choose.collection | gameFilter:choose.players:choose.duration:choose.currentGenreArray as filteredCollection">
     <img ng-src="{{game.image.thumbnailURL}}"/>
     <div class="aside-wrapper">
       <h3>{{game.name}}</h3>

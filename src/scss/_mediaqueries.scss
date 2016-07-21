@@ -47,7 +47,7 @@
     background-color: transparent;
     font-size: 1em;
     font-family: 'Libre Baskerville', serif;
-    color: #015C35;
+    color: #A9A9AE;
     -webkit-appearance: none;
     &:focus{
       border: none;
@@ -117,7 +117,7 @@
     background-color: transparent;
     font-size: 1em;
     font-family: 'Libre Baskerville', serif;
-    color: #015C35;
+    color: #A9A9AE;
     -webkit-appearance: none;
     &:focus{
       border: none;
@@ -149,6 +149,33 @@
     button{
       top: -9px;
     }
+  }
+  .genre-checkbox{
+    width: 28px;
+    height: 28px;
+    label{
+      width: 24px;
+      height: 24px;
+      .x-mark{
+        width: 20px;
+        height: 20px;
+      }
+      .x-mark-front{
+        top: -5px;
+        left: -6px
+      }
+      .x-mark-back{
+        top: -11px;
+        left: -6px
+      }
+    }
+  }
+  .genre-name{
+    top: -38px;
+    left: 40px;
+  }
+  .select-styling-div{
+    min-height: 29px;
   }
 }
 
@@ -239,7 +266,7 @@
     background-color: transparent;
     font-size: 1em;
     font-family: 'Libre Baskerville', serif;
-    color: #015C35;
+    color: #A9A9AE;
     &:focus{
       border: none;
       box-shadow: none;

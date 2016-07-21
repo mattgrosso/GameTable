@@ -83,7 +83,8 @@ select:focus {
     box-shadow: none; }
 
 .select-styling-div {
-  width: 55%; }
+  width: 55%;
+  min-height: 20px; }
 
 .text-input-ribbon {
   width: 55%; }
@@ -99,7 +100,8 @@ select:focus {
   height: 10px;
   transform: rotate(45deg);
   z-index: 1;
-  pointer-events: none; }
+  pointer-events: none;
+  transition: all 0.2s ease-in; }
 
 .input-ribbon {
   background-color: white;
@@ -173,7 +175,10 @@ select:focus {
 .results {
   max-width: 85%;
   width: 85%;
-  padding-bottom: 30px; }
+  padding-bottom: 30px;
+  position: relative;
+  right: -100%;
+  transition: right 0.75s ease-in 1s; }
   .results img {
     margin: auto;
     display: block;
@@ -185,6 +190,10 @@ select:focus {
     text-align: center; }
   .results h3 {
     font-size: 2em; }
+
+.results-outer-div {
+  position: relative;
+  overflow: hidden; }
 
 .headersmall {
   padding-top: 1%;
@@ -240,18 +249,22 @@ select:focus {
   font-size: 0.75em; }
 
 .login-message {
+  position: relative;
+  left: 0px;
   margin-top: 75px;
   padding-top: 15px;
   padding-bottom: 15px;
   padding-right: 35px;
   padding-left: 10%;
-  max-width: 50%; }
-
-.offscreenright {
-  right: -70%; }
+  max-width: 50%;
+  min-height: 32px;
+  transition: all 0.3s ease-in; }
 
 .username-banner {
-  margin-top: 20px; }
+  margin-top: 20px;
+  position: relative;
+  right: 0;
+  transition: all 0.3s ease-in; }
   .username-banner h4 {
     float: left;
     font-size: 1.25em; }
@@ -472,6 +485,85 @@ input[type=checkbox] {
     left: -3px;
     border-right: solid 2px #015C35; }
 
+.genre-chooser-box {
+  padding-top: 12px;
+  border: solid 2px;
+  padding-left: 10px;
+  margin-top: 18px;
+  margin-left: -20px;
+  margin-right: 40px; }
+
+.genre-checkbox {
+  width: 19px;
+  height: 19px;
+  background: #015C35;
+  position: relative;
+  border-radius: 3px;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 15px;
+  clear: both; }
+  .genre-checkbox input {
+    display: none; }
+  .genre-checkbox label {
+    display: block;
+    width: 15px;
+    height: 15px;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    position: relative;
+    top: 2px;
+    left: 2px;
+    background: white; }
+    .genre-checkbox label .x-mark {
+      position: relative;
+      width: 11px;
+      height: 11px;
+      opacity: 0; }
+    .genre-checkbox label .x-mark-front {
+      transform: rotate(45deg);
+      top: -2px;
+      left: -3px;
+      border-right: solid 2px #015C35; }
+    .genre-checkbox label .x-mark-back {
+      transform: rotate(-45deg);
+      top: -5px;
+      left: -3.5px;
+      border-right: solid 2px #015C35; }
+    .genre-checkbox label .x-mark-eliminate {
+      opacity: 1; }
+  .genre-checkbox input[type=checkbox]:checked + label .x-mark {
+    opacity: 1; }
+
+.genre-name {
+  color: #015C35;
+  float: left;
+  position: relative;
+  top: -22px;
+  left: 25px; }
+
+.genre-chooser-text {
+  color: #A9A9AE; }
+
+.genreNameLinethrough {
+  text-decoration: line-through; }
+
+.rotateHalf {
+  transform: rotate(226deg);
+  top: 18px; }
+
+.offscreenright {
+  right: -100%; }
+
+.offscreenleft {
+  left: -100%; }
+
+.onFromScreenRight {
+  right: 0px; }
+
+.onFromScreenLeft {
+  left: 0px; }
+
 @media screen and (max-width: 360px) {
   .gamelist-ribbon img {
     max-width: 60px; } }
@@ -514,7 +606,7 @@ input[type=checkbox] {
     background-color: transparent;
     font-size: 1em;
     font-family: 'Libre Baskerville', serif;
-    color: #015C35;
+    color: #A9A9AE;
     -webkit-appearance: none; }
     .select-ribbon:focus {
       border: none;
@@ -573,7 +665,7 @@ input[type=checkbox] {
     background-color: transparent;
     font-size: 1em;
     font-family: 'Libre Baskerville', serif;
-    color: #015C35;
+    color: #A9A9AE;
     -webkit-appearance: none; }
     .select-ribbon:focus {
       border: none;
@@ -598,7 +690,30 @@ input[type=checkbox] {
   .vote-button {
     top: 39px; }
     .vote-button button {
-      top: -9px; } }
+      top: -9px; }
+
+  .genre-checkbox {
+    width: 28px;
+    height: 28px; }
+    .genre-checkbox label {
+      width: 24px;
+      height: 24px; }
+      .genre-checkbox label .x-mark {
+        width: 20px;
+        height: 20px; }
+      .genre-checkbox label .x-mark-front {
+        top: -5px;
+        left: -6px; }
+      .genre-checkbox label .x-mark-back {
+        top: -11px;
+        left: -6px; }
+
+  .genre-name {
+    top: -38px;
+    left: 40px; }
+
+  .select-styling-div {
+    min-height: 29px; } }
 @media screen and (min-width: 1001px) {
   .logosmall {
     height: 215px;
@@ -668,7 +783,7 @@ input[type=checkbox] {
     background-color: transparent;
     font-size: 1em;
     font-family: 'Libre Baskerville', serif;
-    color: #015C35; }
+    color: #A9A9AE; }
     .select-ribbon:focus {
       border: none;
       box-shadow: none; }

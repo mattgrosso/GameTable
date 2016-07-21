@@ -47,13 +47,12 @@
   <div class="clearfix"></div>
 </section>
 
-<div class="gamelist" ng-show="bracket.showWinner">
 
-  <section class="ribbon right-ribbon ribbon-noclick results">
+<div class="gamelist results-outer-div">
+  <section class="ribbon right-ribbon ribbon-noclick results" ng-class="{onFromScreenRight: bracket.showWinner}">
     <img ng-src="{{bracket.winner.image.imageURL}}"/>
     <div class="aside-wrapper">
       <h3>{{bracket.winner.name}}</h3>
     </div>
   </section>
-
 </div>

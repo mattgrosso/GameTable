@@ -33,8 +33,8 @@
 
     /**
      * This function is called when the user clicks on a nominate button.
-     * It sets the nomineesArray to a filters set of the collection that only
-     * includes games that have the property nominated.
+     * It sets the nomineesArray to a filtered set of the collection that only
+     * includes games that have the property 'nominated'.
      */
     this.addNominee = function addNominee() {
       this.nomineesArray = this.collection.filter(function (game) {

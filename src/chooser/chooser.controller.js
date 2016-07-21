@@ -13,15 +13,16 @@
   ChooserController.$inject = ['GameFactory', '$localStorage', '$state'];
 
   function ChooserController(GameFactory, $localStorage, $state) {
-    console.log('in the chooser controller');
     var that = this;
 
+    this.loggedIn = GameFactory.amILoggedIn;
     this.collection = [];
     $localStorage.filterSet = $localStorage.filterSet || {};
     this.players = $localStorage.filterSet.players || "";
     this.duration = $localStorage.filterSet.duration || "";
     this.genre = $localStorage.filterSet.genre || "";
     this.genreArray = $localStorage.genreArray;
+    this.currentGenreArray = this.genreArray;
     this.chooser = "";
     this.addGameTitle = "";
     this.filterSet = {};
@@ -59,6 +60,7 @@
     this.showFilters = true;
     this.showAddGame = false;
     this.showGamesToAdd = false;
+    this.showGenreOptions = false;
 
     /**
      * This function is called when the choose page is loaded so that if someone
@@ -94,6 +96,28 @@
     this.showAddGameForm = function showAddGameForm() {
       this.showAddGame = true;
       this.addGamesPopupMessage = "";
+    };
+
+    this.showGenreOptionsModal = function showGenreOptionsModal(param) {
+      if (param === 'main') {
+        if (this.showGenreOptions) {
+          this.showGenreOptions = false;
+        } else {
+          this.showGenreOptions = true;
+        }
+      }
+    };
+
+    this.eliminateGenre = function eliminateGenre() {
+      var filteredGenreArray = this.genreArray.filter(function filterEliminated(genre) {
+        if (genre.eliminated) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+      this.currentGenreArray = filteredGenreArray;
+      console.log(this.currentGenreArray);
     };
 
     /**

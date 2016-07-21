@@ -201,8 +201,19 @@
               include = false;
             }
           }
-          if(include && genre){
-            include = each.genres.indexOf(genre.toLowerCase()) > -1;
+          if(include){
+            var tempInclude = false;
+            each.genres.forEach(function checkGenresAgainstGenre(everyGenre) {
+              genre.forEach(function (eachGenre) {
+                if (eachGenre.originalName === everyGenre) {
+                  tempInclude = true;
+                }
+              });
+            });
+            if (each.genres.length === 1 && each.genres[0] === 'boardgame') {
+              tempInclude = true;
+            }
+            include = tempInclude;
           }
           return include;
         });
@@ -441,15 +452,16 @@
   ChooserController.$inject = ['GameFactory', '$localStorage', '$state'];
 
   function ChooserController(GameFactory, $localStorage, $state) {
-    console.log('in the chooser controller');
     var that = this;
 
+    this.loggedIn = GameFactory.amILoggedIn;
     this.collection = [];
     $localStorage.filterSet = $localStorage.filterSet || {};
     this.players = $localStorage.filterSet.players || "";
     this.duration = $localStorage.filterSet.duration || "";
     this.genre = $localStorage.filterSet.genre || "";
     this.genreArray = $localStorage.genreArray;
+    this.currentGenreArray = this.genreArray;
     this.chooser = "";
     this.addGameTitle = "";
     this.filterSet = {};
@@ -487,6 +499,7 @@
     this.showFilters = true;
     this.showAddGame = false;
     this.showGamesToAdd = false;
+    this.showGenreOptions = false;
 
     /**
      * This function is called when the choose page is loaded so that if someone
@@ -522,6 +535,28 @@
     this.showAddGameForm = function showAddGameForm() {
       this.showAddGame = true;
       this.addGamesPopupMessage = "";
+    };
+
+    this.showGenreOptionsModal = function showGenreOptionsModal(param) {
+      if (param === 'main') {
+        if (this.showGenreOptions) {
+          this.showGenreOptions = false;
+        } else {
+          this.showGenreOptions = true;
+        }
+      }
+    };
+
+    this.eliminateGenre = function eliminateGenre() {
+      var filteredGenreArray = this.genreArray.filter(function filterEliminated(genre) {
+        if (genre.eliminated) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+      this.currentGenreArray = filteredGenreArray;
+      console.log(this.currentGenreArray);
     };
 
     /**
@@ -679,8 +714,8 @@
 
     /**
      * This function is called when the user clicks on a nominate button.
-     * It sets the nomineesArray to a filters set of the collection that only
-     * includes games that have the property nominated.
+     * It sets the nomineesArray to a filtered set of the collection that only
+     * includes games that have the property 'nominated'.
      */
     this.addNominee = function addNominee() {
       this.nomineesArray = this.collection.filter(function (game) {
@@ -1314,10 +1349,11 @@
       var prettyGenreArray = [];
       $localStorage.genreArray.forEach(function prettifyGenreNames(each) {
         if (each === 'boardgame') {
-          prettyGenreArray.push({
-            prettyName: 'all games',
-            originalName: each
-          });
+          console.log('nothing to see here');
+          // prettyGenreArray.push({
+          //   prettyName: 'all games',
+          //   originalName: each
+          // });
         } else if (each === 'cgs') {
           prettyGenreArray.push({
             prettyName: 'card',
