@@ -17,6 +17,7 @@
 
     this.loggedIn = GameFactory.amILoggedIn;
     this.collection = [];
+    console.log($localStorage.filterSet);
     $localStorage.filterSet = $localStorage.filterSet || {};
     this.players = $localStorage.filterSet.players || "";
     this.duration = $localStorage.filterSet.duration || "";
@@ -79,10 +80,18 @@
      * It also passes in the filtered collection array as a state parameter.
      */
     this.goToChooser = function (filtered) {
+      console.log('this.players: ', this.players);
       this.filterSet.players = this.players || '';
+      console.log('this.filterSet.players: ', this.filterSet.players);
+      console.log('this.duration: ', this.duration);
       this.filterSet.duration = this.duration || '';
+      console.log('this.filterSet.duration: ', this.filterSet.duration);
+      console.log('this.currentGenreArray: ', this.currentGenreArray);
       this.filterSet.currentGenreArray = this.currentGenreArray || '';
+      console.log('this.filterSet.currentGenreArray: ', this.filterSet.currentGenreArray);
       $localStorage.filterSet = this.filterSet || '';
+      console.log('this.filterSet: ', this.filterSet);
+      console.log('this.$localStorage.filterSet: ', $localStorage.filterSet);
       $localStorage.genreArray = this.genreArray;
 
       $state.go(this.chooser, {filteredCollection: filtered});
@@ -100,7 +109,6 @@
     };
 
     this.showGenreOptionsModal = function showGenreOptionsModal(param) {
-      console.log('genreArray: ', this.genreArray);
       if (param === 'main') {
         if (this.showGenreOptions) {
           this.showGenreOptions = false;
