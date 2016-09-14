@@ -4,7 +4,7 @@
   you are not currently logged in. please enter your bgg username below.
 </p>
 
-<form class="login-form" ng-submit="login.login()" class="login-form">
+<form class="login-form" ng-submit="login.login()">
   <input class="ribbon right-ribbon login-input" ng-model="login.username" type="text" autocapitalize="off" autocomplete="off" placeholder="bgg username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'bgg username'">
   <div class="login-options-div">
     <button class="ribbon right-ribbon login-button" ng-class="{offscreenright: !login.username}" type="submit">login</button>

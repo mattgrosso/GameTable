@@ -456,7 +456,6 @@
 
     this.loggedIn = GameFactory.amILoggedIn;
     this.collection = [];
-    console.log($localStorage.filterSet);
     $localStorage.filterSet = $localStorage.filterSet || {};
     this.players = $localStorage.filterSet.players || "";
     this.duration = $localStorage.filterSet.duration || "";
