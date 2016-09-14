@@ -220,8 +220,8 @@ select:focus {
   display: block;
   width: 70%;
   margin: auto;
-  margin-top: 40px;
   margin-bottom: 20%;
+  padding-top: 40px;
   position: inherit;
   z-index: 0; }
 
