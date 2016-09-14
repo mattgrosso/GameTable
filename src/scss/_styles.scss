@@ -115,6 +115,8 @@ select:focus{
   margin-bottom: 2%;
   border-top-left-radius: 2px;
   border-bottom-left-radius: 2px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
   border-right: none;
   float: right;
   &:focus{
