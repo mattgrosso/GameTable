@@ -45,6 +45,9 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+html {
+  overflow-x: hidden; }
+
 body {
   overflow-x: hidden;
   position: relative; }
