@@ -46,7 +46,8 @@ table {
   border-spacing: 0; }
 
 body {
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  position: relative; }
 
 body::-webkit-scrollbar {
   display: none; }
