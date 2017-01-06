@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
   'use strict';
 
-    grunt.loadNpmTasks('grunt-notify');
+    // grunt.loadNpmTasks('grunt-notify');
     grunt.initConfig({
 
       jshint: {
@@ -68,48 +68,48 @@ module.exports = function(grunt) {
         }
       },
 
-      karma: {
-        app: {
-          options: {
-            frameworks: ['mocha', 'chai'],
-            client: {
-              mocha: {
-                ui: 'tdd'
-              }
-            },
-            browsers: ['PhantomJS'],
-            singleRun: true,
-            files: [
-              'node_modules/angular/angular.js',
-              'node_modules/angular-ui-router/release/angular-ui-router.js',
-              'node_modules/angular-mocks/angular-mocks.js',
-              'node_modules/ng-storage/ngStorage.min.js',
-              'src/app/game.module.js',
-              'src/header/header.controller.js',
-              'src/login/login.controller.js',
-              'src/games/games.service.js',
-              'test/specs/**/*.js'
-            ],
-            preprocessors:{
-              'src/**/*.js': ['coverage']
-            },
-            reporters: [
-              'mocha',
-              'coverage'
-            ],
-            coverageReporter: {
-              type: 'text-summary'
-            },
-            plugins: [
-              'karma-mocha-reporter',
-              'karma-mocha',
-              'karma-coverage',
-              'karma-chai',
-              'karma-phantomjs-launcher'
-            ]
-          }
-        }
-      },
+      // karma: {
+      //   app: {
+      //     options: {
+      //       frameworks: ['mocha', 'chai'],
+      //       client: {
+      //         mocha: {
+      //           ui: 'tdd'
+      //         }
+      //       },
+      //       browsers: ['PhantomJS'],
+      //       singleRun: true,
+      //       files: [
+      //         'node_modules/angular/angular.js',
+      //         'node_modules/angular-ui-router/release/angular-ui-router.js',
+      //         'node_modules/angular-mocks/angular-mocks.js',
+      //         'node_modules/ng-storage/ngStorage.min.js',
+      //         'src/app/game.module.js',
+      //         'src/header/header.controller.js',
+      //         'src/login/login.controller.js',
+      //         'src/games/games.service.js',
+      //         'test/specs/**/*.js'
+      //       ],
+      //       preprocessors:{
+      //         'src/**/*.js': ['coverage']
+      //       },
+      //       reporters: [
+      //         'mocha',
+      //         'coverage'
+      //       ],
+      //       coverageReporter: {
+      //         type: 'text-summary'
+      //       },
+      //       plugins: [
+      //         'karma-mocha-reporter',
+      //         'karma-mocha',
+      //         'karma-coverage',
+      //         'karma-chai',
+      //         'karma-phantomjs-launcher'
+      //       ]
+      //     }
+      //   }
+      // },
 
       notify_hooks: {
         options: {

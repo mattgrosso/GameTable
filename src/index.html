@@ -22,6 +22,7 @@
 
   </head>
   <body>
+    <h1>Hello</h1>
     <header ng-class="{headerlarge: !header.loggedIn(), headersmall: header.loggedIn()}" ng-controller="HeaderController as header">
       <img class="logo logo-fixed" ui-sref="choose.choose-top" ng-class="{logolarge: !header.loggedIn(), logosmall: header.loggedIn()}" src="/images/gametable-solid.png" alt="gametable logo" />
       <img class="logo logosmall" ng-hide="!header.loggedIn()" src="/images/blank.png"/>

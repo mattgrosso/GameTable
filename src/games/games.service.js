@@ -51,7 +51,7 @@
       } else {
         return $http({
           method: 'GET',
-          url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username + '&stats=1&excludesubtype=boardgameexpansion&own=1',
+          url: 'https://www.boardgamegeek.com/xmlapi2/api/v1/collection?username=' + username + '&stats=1&excludesubtype=boardgameexpansion&own=1',
           transformResponse: function prettifyCollectionArray(response) {
             var parsedResponse = JSON.parse(response);
             if (typeof parsedResponse.message === 'string') {
