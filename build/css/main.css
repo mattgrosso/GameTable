@@ -224,7 +224,7 @@ select:focus {
   display: block;
   width: 70%;
   margin: auto;
-  margin-bottom: 20%;
+  margin-bottom: 10%;
   padding-top: 40px;
   position: inherit;
   z-index: 0; }
@@ -653,6 +653,13 @@ input[type=checkbox] {
     margin: auto; }
 
   .logosmall {
-    width: 140px; } }
+    width: 140px; }
+
+  .logolarge {
+    width: 50%;
+    margin-left: 15%; }
+
+  .login-message {
+    margin-bottom: 25%; } }
 
 /*# sourceMappingURL=main.css.map */
