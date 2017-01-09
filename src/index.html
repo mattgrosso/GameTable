@@ -17,6 +17,7 @@
     <meta name="msapplication-TileColor" content="#FFFFFF" />
     <meta name="msapplication-TileImage" content="/images/mstile-144x144.png" />
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <script src="https://use.fontawesome.com/d0e9be0862.js"></script>
     <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700,400italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
 
@@ -25,6 +26,7 @@
     <header ng-class="{headerlarge: !header.loggedIn(), headersmall: header.loggedIn()}" ng-controller="HeaderController as header">
       <img class="logo logo-fixed" ui-sref="choose.choose-top" ng-class="{logolarge: !header.loggedIn(), logosmall: header.loggedIn()}" src="/images/gametable-solid.png" alt="gametable logo" />
       <img class="logo logosmall" ng-hide="!header.loggedIn()" src="/images/blank.png"/>
+      <a class="github-logo" href="https://github.com/mattgrosso/GameTable" target="_blank">Contribute on Github<i class="fa fa-github" aria-hidden="true"></i></a>
       <aside class="ribbon right-ribbon username-banner" ng-class="{offscreenright: !header.loggedIn()}">
         <h4>{{header.username()}}</h4>
         <aside>|</aside>

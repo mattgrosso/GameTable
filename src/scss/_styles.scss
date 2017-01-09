@@ -214,6 +214,19 @@ select:focus{
   z-index: 0;
 }
 
+.github-logo{
+  color: $base-green;
+  font-size: 0.6em;
+  text-decoration: none;
+  position: absolute;
+  top: 7px;
+  right: 5px;
+  i{
+    font-size: 1.1em;
+    margin-left: 4px;
+  }
+}
+
 .login-input{
   width: 60%;
   &:focus{
