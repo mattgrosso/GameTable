@@ -344,7 +344,9 @@ select:focus {
   border-radius: 0px; }
 
 .star-rating {
-  font-size: 1.25em; }
+  font-size: 1.2em;
+  padding-top: 10px;
+  padding-bottom: 8px; }
   .star-rating i {
     margin-right: -4px; }
 

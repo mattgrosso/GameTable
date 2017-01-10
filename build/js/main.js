@@ -629,8 +629,23 @@
 
     /**
      * This section is here to manage the star-rating filter.
+     * starRating is the currently selected minimum rating.
+     * setStarRating is called when a user clicks on one of the stars and it
+     * sets the starRating to the correct number.
+     * isStarRatingAbove checks to see if each star should be hollow or solid.
      */
-    this.starRating = 2;
+    this.starRating = 0;
+
+    this.setStarRating = function setStarRating(number) {
+      if (number > 10) {
+        this.starRating = 10;
+      } else if (number < 0) {
+        this.starRating = 0;
+      } else {
+        this.starRating = number;
+      }
+    };
+
     this.isStarRatingAbove = function isStarRatingAbove(number) {
       if (number > this.starRating) {
         return true;
