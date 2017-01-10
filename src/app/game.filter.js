@@ -1,5 +1,5 @@
 /**
- * This is a filter which checks the full list against teh criteria in the input fields.
+ * This is a filter which checks the full list against the criteria in the input fields.
  */
 (function() {
   'use strict';
@@ -7,7 +7,7 @@
   angular
     .module('game')
     .filter('gameFilter', function () {
-      return function gameFilter(input, players, duration, genre) {
+      return function gameFilter(input, players, duration, genre, rating) {
         players = Number(players) || null;
         // duration = Number(duration) || null;
         return input.filter(function (each) {
@@ -25,7 +25,7 @@
               include = false;
             }
           }
-          if (duration && isNaN(Number(duration)) && duration.includes('-')) {
+          if(duration && isNaN(Number(duration)) && duration.includes('-')) {
             var durationWithoutSpaces = duration.split(' ').join('');
             var durationRangeArray = durationWithoutSpaces.split('-');
             var minDuration = 0;
@@ -57,6 +57,9 @@
               tempInclude = true;
             }
             include = tempInclude;
+          }
+          if (rating && ((each.rating.myRating > 0 && rating > each.rating.myRating) || (each.rating.myRating === 0 && rating > each.rating.geekRating))) {
+            include = false;
           }
           return include;
         });
