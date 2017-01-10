@@ -188,6 +188,16 @@
       $localStorage.collection.splice(indexValue, 1);
     };
 
-
+    /**
+     * This section is here to manage the star-rating filter.
+     */
+    this.starRating = 2;
+    this.isStarRatingAbove = function isStarRatingAbove(number) {
+      if (number > this.starRating) {
+        return true;
+      } else{
+        return false;
+      }
+    };
   }
 })();

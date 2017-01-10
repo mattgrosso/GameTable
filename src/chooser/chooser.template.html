@@ -23,6 +23,27 @@
       </section>
     </div>
     <div class="select-arrow top-select-arrow" ng-class="{rotateHalf: choose.showGenreOptions}"></div>
+    <!-- <input type="number" name="tester" value="0" ng-model="choose.starRating" style="
+    position: absolute;
+    top: 240px;
+    right: 0;
+    border: solid red;
+    width: 50px;
+    height: 30px;
+    font-size: 1.5em;
+    color: black;"> -->
+    <div class="select-styling-div input-ribbon left-ribbon large-view-input star-rating">
+      <i class="fa" ng-class="choose.isStarRatingAbove(1) ? 'fa-star-o' : 'fa-star'" aria-hidden="true"></i>
+      <i class="fa" ng-class="choose.isStarRatingAbove(2) ? 'fa-star-o' : 'fa-star'" aria-hidden="true"></i>
+      <i class="fa" ng-class="choose.isStarRatingAbove(3) ? 'fa-star-o' : 'fa-star'" aria-hidden="true"></i>
+      <i class="fa" ng-class="choose.isStarRatingAbove(4) ? 'fa-star-o' : 'fa-star'" aria-hidden="true"></i>
+      <i class="fa" ng-class="choose.isStarRatingAbove(5) ? 'fa-star-o' : 'fa-star'" aria-hidden="true"></i>
+      <i class="fa" ng-class="choose.isStarRatingAbove(6) ? 'fa-star-o' : 'fa-star'" aria-hidden="true"></i>
+      <i class="fa" ng-class="choose.isStarRatingAbove(7) ? 'fa-star-o' : 'fa-star'" aria-hidden="true"></i>
+      <i class="fa" ng-class="choose.isStarRatingAbove(8) ? 'fa-star-o' : 'fa-star'" aria-hidden="true"></i>
+      <i class="fa" ng-class="choose.isStarRatingAbove(9) ? 'fa-star-o' : 'fa-star'" aria-hidden="true"></i>
+      <i class="fa" ng-class="choose.isStarRatingAbove(10) ? 'fa-star-o' : 'fa-star'" aria-hidden="true"></i>
+    </div>
     <div class="select-styling-div input-ribbon left-ribbon large-view-input">
       <select id="select-selector" class="select-ribbon" ng-model="choose.chooser" ng-change="choose.goToChooser(filteredCollection)">
         <option value="" disabled selected>method</option>

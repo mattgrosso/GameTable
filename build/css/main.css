@@ -343,6 +343,11 @@ select:focus {
 .game-count {
   border-radius: 0px; }
 
+.star-rating {
+  font-size: 1.25em; }
+  .star-rating i {
+    margin-right: -4px; }
+
 input[type=checkbox] {
   display: none; }
 

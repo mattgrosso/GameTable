@@ -350,6 +350,13 @@ select:focus{
   border-radius: 0px;
 }
 
+.star-rating{
+  font-size: 1.25em;
+  i{
+    margin-right: -4px;
+  }
+}
+
 input[type=checkbox]{
   display: none;
 }
