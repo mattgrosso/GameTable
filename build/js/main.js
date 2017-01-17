@@ -1131,7 +1131,7 @@
       } else {
         return $http({
           method: 'GET',
-          url: 'http://mattgrosso.herokuapp.com/api/v1/collection?username=' + username + '&stats=1&excludesubtype=boardgameexpansion&own=1',
+          url: 'http://gametableproxy.herokuapp.com/api/v1/collection?username=' + username + '&stats=1&excludesubtype=boardgameexpansion&own=1',
           transformResponse: function prettifyCollectionArray(response) {
             var parsedResponse = JSON.parse(response);
             if (typeof parsedResponse.message === 'string') {
@@ -1228,7 +1228,7 @@
       var cleanTitle = title.replace(/\s/,'+');
       return $http({
         method: 'GET',
-        url: 'http://mattgrosso.herokuapp.com/api/v1/search?query=' + cleanTitle,
+        url: 'http://gametableproxy.herokuapp.com/api/v1/search?query=' + cleanTitle,
         transformResponse: function prettifySearchResults(response, headersGetter, status) {
           var parsedResponse;
           try {
@@ -1262,7 +1262,7 @@
         });
         return $http({
           method: 'GET',
-          url: 'http://mattgrosso.herokuapp.com/api/v1/thing?id=' + listOfIds + '&stats=1',
+          url: 'http://gametableproxy.herokuapp.com/api/v1/thing?id=' + listOfIds + '&stats=1',
           transformResponse: function prettifyFullSearchResults(response) {
             var parsedResponse = JSON.parse(response);
             var prettyFullSearchArray = [];
