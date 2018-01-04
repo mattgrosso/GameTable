@@ -68,6 +68,15 @@ module.exports = function(grunt) {
         }
       },
 
+      connect: {
+        server: {
+          options: {
+            base: 'build',
+            open: true
+          }
+        }
+      },
+
       // karma: {
       //   app: {
       //     options: {
@@ -125,6 +134,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('js-build', ['concat:js', 'jshint']);
     grunt.registerTask('css-build', ['sass']);
+    grunt.registerTask('serve', ['default', 'connect', 'watch']);
     grunt.registerTask('default', ['clean', 'copy', 'concat', 'jshint', 'sass']);
 
 };
